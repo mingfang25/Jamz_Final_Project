@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "243173272705",
+    "firebase_url": "https://chat-demo-101.firebaseio.com",
+    "project_id": "chat-demo-101",
+    "storage_bucket": "chat-demo-101.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243173272705:android:83eb0aae03af0e9c",
+        "android_client_info": {
+          "package_name": "com.example.jamz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243173272705-5stt21uq237ehel56bka7mc3q6gqkpmh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jamz",
+            "certificate_hash": "26385b479ce1067ca26b07e0fa60b1f04af60154"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNqh3VuylVYOj3CHPeaLcuVwId6yyx-3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243173272705-aar5mjihcm12carlscuga8mjh1fbfjbl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243173272705:android:b5d75907de594a2d",
+        "android_client_info": {
+          "package_name": "com.google.firebase.codelab.friendlychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243173272705-e4sgdqif5ckneh8o730anga2fqe966cu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.firebase.codelab.friendlychat",
+            "certificate_hash": "8bb43d20bce63a53d05aa65933dd13b5431d7597"
+          }
+        },
+        {
+          "client_id": "243173272705-2in190lkaqm9i8fss4nn68tf48sdor4c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.firebase.codelab.friendlychat",
+            "certificate_hash": "26385b479ce1067ca26b07e0fa60b1f04af60154"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNqh3VuylVYOj3CHPeaLcuVwId6yyx-3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243173272705-aar5mjihcm12carlscuga8mjh1fbfjbl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

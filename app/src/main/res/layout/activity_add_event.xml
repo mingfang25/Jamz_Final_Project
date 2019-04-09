@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/editEventName"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ems="10"
+            android:fontFeatureSettings="Roboto-Regular"
+            android:inputType="textPersonName"
+            android:text="Event Name"
+            android:textSize="36sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/editDescription"
+            android:layout_width="match_parent"
+            android:layout_height="49.05dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ems="10"
+            android:fontFeatureSettings="Arial"
+            android:inputType="textPersonName"
+            android:text="Sample description for the Jam event. For example a mini concert."
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:layout_margin="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingTop="1dp"
+        android:paddingEnd="1dp"
+        android:paddingBottom="1dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:text="Location" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/tvFrom"
+            android:layout_width="match_parent"
+            android:layout_height="19dp"
+            android:layout_weight="1"
+            android:text="From"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="6dp" />
+
+        <EditText
+            android:id="@+id/editFromEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ems="10"
+            android:inputType="date"
+            android:text="Thu, Jan 26"
+            tools:layout_editor_absoluteX="221dp"
+            tools:layout_editor_absoluteY="36dp" />
+
+        <EditText
+            android:id="@+id/editFromStart"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ems="10"
+            android:inputType="date"
+            android:text="Fri, May 12 2017"
+            tools:layout_editor_absoluteY="35dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/tvTo"
+            android:layout_width="match_parent"
+            android:layout_height="19dp"
+            android:layout_weight="1"
+            android:text="To"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="6dp" />
+
+        <EditText
+            android:id="@+id/editToStart"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ems="10"
+            android:inputType="date"
+            android:text="Fri, May 12 2017"
+            tools:layout_editor_absoluteY="35dp" />
+
+        <EditText
+            android:id="@+id/editToEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ems="10"
+            android:inputType="date"
+            android:text="Thu, Jan 26"
+            tools:layout_editor_absoluteX="221dp"
+            tools:layout_editor_absoluteY="36dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="All-day" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="51dp"
+            android:layout_weight="1"
+            android:text="ADD" />
+    </LinearLayout>
+
+</LinearLayout>
