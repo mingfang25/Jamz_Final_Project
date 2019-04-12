@@ -24,14 +24,14 @@ The main functionalities of the app will be:
   *git pull origin master* 
 - Create new specific topic branch (ie. bugs, profile, login)\
   *git checkout -b login* 
-- Do Somme work
+- Do Some work
 - after finishing merge with personal branch \
   *git checkout your_name* 
   *git merge login* 
-- push your chnages (after adds ans commits)\
+- push your changes (after adds and commits)\
   *git push*
 - got onto github and make a pull request
 
-## for more detailed info look at the git sliedshow i sent you
+## for more detailed info look at the git slideshow I sent you
 
 ### _to avoid conflicts try to avoid working on the same issues at the same time_
