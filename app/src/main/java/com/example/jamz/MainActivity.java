@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements
         // Configure sign-in to request the user's ID, email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(R.string.server_client_id))
                 .requestEmail()
                 .build();
 
@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
+        //Mingfnag's test comment
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
@@ -171,6 +172,8 @@ public class MainActivity extends AppCompatActivity implements
                             Log.d(GoogleTAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            Intent i = new Intent(MainActivity.this, NavigationActivity.class);
+                            startActivity(i);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(GoogleTAG, "signInWithCredential:failure", task.getException());
