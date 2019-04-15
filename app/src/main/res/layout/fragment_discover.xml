@@ -11,4 +11,15 @@
         android:layout_centerVertical="true"
         android:text="Discover Here" />
 
+    <Button
+        android:id="@+id/btnUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="206dp"
+        android:text="Users" />
+
+
 </RelativeLayout>

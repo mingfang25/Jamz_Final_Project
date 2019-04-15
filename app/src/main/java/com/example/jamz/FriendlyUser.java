@@ -15,23 +15,25 @@
  */
 package com.example.jamz;
 
-public class FriendlyMessage {
+public class FriendlyUser {
 
     private String id;
-    private String text;
-    private String name;
+    private String createdAt;
+    private String email;
+    private String lastSignedIn;
     private String photoUrl;
-    private String imageUrl;
     private String displayName;
 
-    public FriendlyMessage() {
+    public FriendlyUser() {
     }
 
-    public FriendlyMessage(String text, String name, String photoUrl, String imageUrl) {
-        this.text = text;
-        this.name = name;
+    public FriendlyUser(String photoUrl, String imageUrl, String displayName, String createdAt, String email, String lastSignedIn) {
         this.photoUrl = photoUrl;
-        this.imageUrl = imageUrl;
+        this.displayName = displayName;
+        this.createdAt = createdAt;
+        this.email = email;
+        this.lastSignedIn = lastSignedIn;
+
     }
 
     public String getId() {
@@ -42,36 +44,28 @@ public class FriendlyMessage {
         this.id = id;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPhotoUrl() {
         return photoUrl;
-    }
-
-    public String getText() {
-        return text;
     }
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+    public String getDisplayName(){ return displayName; }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+    public void setDisplayName(String displayName) {this.displayName = displayName;}
+
+    public String getCreatedAt(String createdAt) { return createdAt; }
+
+    public void setCreatedAt(String createdAt) {this.createdAt = createdAt;}
+
+    public String getEmail(String email) { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public String getLastSignedIn(String lastSignedIn) { return lastSignedIn;}
+
+    public void setLastSignedIn(String lastSignedIn) {this.lastSignedIn = lastSignedIn;}
+
 }
-

@@ -30,6 +30,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-appindexing:15.0.0'
     implementation 'com.google.firebase:firebase-messaging:17.6.0'
     implementation 'com.google.firebase:firebase-config:15.0.0'
+    implementation 'com.android.volley:volley:1.1.1'
+
+
 
 
 
