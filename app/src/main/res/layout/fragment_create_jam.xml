@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <EditText
@@ -30,7 +30,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <EditText
@@ -48,14 +48,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="121dp"
+        android:layout_height="384dp"
         android:layout_margin="1dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:paddingTop="1dp"
         android:paddingEnd="1dp"
         android:paddingBottom="1dp"
@@ -63,12 +63,32 @@
 
         <TextView
             android:id="@+id/tvLocation"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:layout_weight="1"
-            android:text="Location" />
+            android:text="Location"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/topPanel"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <fragment
+                android:id="@+id/place_autocomplete_fragment"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -81,76 +101,43 @@
 
         <TextView
             android:id="@+id/tvFrom"
-            android:layout_width="match_parent"
-            android:layout_height="19dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="From"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="6dp" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/editFromEnd"
+            android:id="@+id/editStart"
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
             android:ems="10"
             android:inputType="date"
-            android:text="Thu, Jan 26"
+            android:text="4.16.2019"
             tools:layout_editor_absoluteX="221dp"
             tools:layout_editor_absoluteY="36dp" />
-
-        <EditText
-            android:id="@+id/editFromStart"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:ems="10"
-            android:inputType="date"
-            android:text="Fri, May 12 2017"
-            tools:layout_editor_absoluteY="35dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="1">
 
         <TextView
             android:id="@+id/tvTo"
-            android:layout_width="match_parent"
-            android:layout_height="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="To"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="6dp" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/editToStart"
+            android:id="@+id/editEnd"
             android:layout_width="wrap_content"
-            android:layout_height="21dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
             android:ems="10"
             android:inputType="date"
-            android:text="Fri, May 12 2017"
+            android:text="4.17.2019"
             tools:layout_editor_absoluteY="35dp" />
-
-        <EditText
-            android:id="@+id/editToEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="19dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:ems="10"
-            android:inputType="date"
-            android:text="Thu, Jan 26"
-            tools:layout_editor_absoluteX="221dp"
-            tools:layout_editor_absoluteY="36dp" />
 
     </LinearLayout>
 
