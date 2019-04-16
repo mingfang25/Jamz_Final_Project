@@ -384,19 +384,5 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
         return false;
     }
 
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        Button btUsers = (Button) getView().findViewById(R.id.btnUsers);
-        btUsers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), Users.class);
-                startActivity(i);
-            }
-        });
-    }
 }
 

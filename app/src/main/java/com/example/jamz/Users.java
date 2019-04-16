@@ -218,7 +218,11 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
                                 .into(viewHolder.uProfileImgVw);
                     }
                 }
-                viewHolder.usernameTxt.setText(friendlyUser.getDisplayName());
+                if (friendlyUser.getDisplayName()=="" || friendlyUser.getDisplayName()==null) {
+                    viewHolder.usernameTxt.setText("Anonymous User");
+                } else{
+                viewHolder.usernameTxt.setText(friendlyUser.getDisplayName());}
+
                 if(friendlyUser.getPhotoUrl() == null){
                     viewHolder.uProfileImgVw.setImageDrawable(ContextCompat.getDrawable(Users.this, R.drawable.ic_account_circle_black_36dp));
                 }
