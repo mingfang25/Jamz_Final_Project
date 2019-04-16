@@ -1,10 +1,18 @@
 package com.example.jamz;
 
 
+import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +21,60 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.data.model.User;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class FragCreateJam extends Fragment {
+import java.util.Arrays;
+import java.util.List;
+
+
+public class FragCreateJam extends Fragment implements OnMapReadyCallback,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        GoogleMap.OnMarkerClickListener,
+        LocationListener {
+
+
+    private GoogleMap mMap;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+    private Location mLastLocation;
+    private GoogleApiClient mGoogleApiClient;
+    private FragmentActivity myContext;
+
+
+    //auto complete map
+    private static final String AUTOTAG = "AUTOTAG";
+    private static final int PERMISSION_REQUEST_CODE = 7001;
+    private static final int PLAY_SERVICE_REQUEST = 7002;
+    private static final int UPDATE_INTERVAL = 5000;//5 detik
+    private static final int FASTEST_INTERVAL = 3000;//3detik
+    private static final int DISPLACEMENT = 10;
+    private com.google.android.libraries.places.widget.AutocompleteSupportFragment AutocompleteSupportFragment;
+    private Location mLocation;
+    private LocationRequest mLocationRequest;
+    Marker marker;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -30,6 +86,8 @@ public class FragCreateJam extends Fragment {
     private String EventFromEnd;
     private String EventToStart;
     private String EventToEnd;
+    private LatLng EventLat;
+    private String EventAddress;
     private boolean Eventallday;
 
     public FragCreateJam(){
@@ -42,13 +100,66 @@ public class FragCreateJam extends Fragment {
                              Bundle savedInstanceState) {
         //Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_create_jam, container, false);
-        return inflater.inflate(R.layout.fragment_create_jam, container, false);
+        View view = inflater.inflate(R.layout.fragment_create_jam, null, false);
+
+        return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        /**
+         * Initialize Places. For simplicity, the API key is hard-coded. In a production
+         * environment we recommend using a secure mechanism to manage API keys.
+         */
+        if (!Places.isInitialized()) {
+            Places.initialize(getActivity().getApplicationContext(), "AIzaSyBEjPfwZEYB3XHyglA3fdRML_HbhPt-q3g");
+        }
+
+        // Create a new Places client instance.
+        final PlacesClient placesClient = Places.createClient(getActivity());
+
+        // Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getChildFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS));
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                Log.i(AUTOTAG, "Place: " + place.getName() + ", " + place.getId());
+
+                EventLat = place.getLatLng();
+                EventAddress = place.getAddress();
+                mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap
+                        (BitmapFactory.decodeResource(getResources(), R.mipmap.ic_user_location))).position(EventLat).title("Position"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EventLat, 14));
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i(AUTOTAG, "An error occurred: " + status);
+            }
+        });
+
+        // Map part
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -59,10 +170,10 @@ public class FragCreateJam extends Fragment {
 
         final EditText edteventname = (EditText) getView().findViewById(R.id.editEventName);
         final EditText edteventdescription = (EditText) getView().findViewById(R.id.editDescription);
-        final EditText edtFromStart = (EditText) getView().findViewById(R.id.editFromStart);
-        final EditText edtFromEnd = (EditText) getView().findViewById(R.id.editFromEnd);
-        final EditText edtToStart = (EditText) getView().findViewById(R.id.editToStart);
-        final EditText edtToEnd = (EditText) getView().findViewById(R.id.editToEnd);
+        final EditText edtFromStart = (EditText) getView().findViewById(R.id.editStart);
+        final EditText edtFromEnd = (EditText) getView().findViewById(R.id.editEnd);
+        //final EditText edtToStart = (EditText) getView().findViewById(R.id.editToStart);
+        //final EditText edtToEnd = (EditText) getView().findViewById(R.id.editToEnd);
         final CheckBox cbAllday = (CheckBox) getView().findViewById(R.id.cballday);
 
         edteventname.setOnClickListener(new View.OnClickListener() {
@@ -94,20 +205,20 @@ public class FragCreateJam extends Fragment {
                 edtFromEnd.setText("");
             }
         });
-        edtToStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // showMyDialog();
-                edtToStart.setText("");
-            }
-        });
-        edtToEnd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // showMyDialog();
-                edtToEnd.setText("");
-            }
-        });
+//        edtToStart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // showMyDialog();
+//                edtToStart.setText("");
+//            }
+//        });
+//        edtToEnd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // showMyDialog();
+//                edtToEnd.setText("");
+//            }
+//        });
 
         Button btnCreateJam = (Button)getView().findViewById(R.id.btnAdd);
         btnCreateJam.setOnClickListener(new View.OnClickListener() {
@@ -118,8 +229,8 @@ public class FragCreateJam extends Fragment {
                 EventDescription = edteventdescription.getText().toString();
                 EventFromStart = edtFromStart.getText().toString();
                 EventFromEnd = edtFromStart.getText().toString();
-                EventToStart = edtToStart.getText().toString();
-                EventToEnd = edtToEnd.getText().toString();
+                //EventToStart = edtToStart.getText().toString();
+                //EventToEnd = edtToEnd.getText().toString();
                 Eventallday = cbAllday.isChecked();
                 basicReadWrite();
             }
@@ -133,7 +244,7 @@ public class FragCreateJam extends Fragment {
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        Event event = new Event(UserName,EventName,EventDescription, EventFromStart, EventFromEnd, EventToStart, EventToEnd, Eventallday);
+        Event event = new Event(UserName,EventName,EventDescription, EventFromStart, EventFromEnd, Eventallday,EventAddress,EventLat.latitude,EventLat.longitude);
         mDatabase.child("Events").child(event.eventname).setValue(event);
 //        DatabaseReference user_name_ref = database.getReference("User_Name");
 //        DatabaseReference event_name_ref = database.getReference("Event_Name");
@@ -164,4 +275,113 @@ public class FragCreateJam extends Fragment {
 //        });
 //        // [END read_message]
     }
+
+    protected void placeMarkerOnMap(LatLng location) {
+        // 1
+        MarkerOptions markerOptions = new MarkerOptions().position(location);
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource
+                (getResources(), R.mipmap.ic_user_location))).title("Your location");
+        // 2
+        mMap.addMarker(markerOptions);
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+//        // Add a marker for alice and move the camera
+//        LatLng alice = new LatLng(42.361145, -71.057083);
+//        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap
+//                (BitmapFactory.decodeResource(getResources(), R.mipmap.ic_user_location))).position(alice).title("Alice"));
+////        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(alice, 12));
+//
+//        // Add a marker for alice and move the camera
+//        LatLng ryan = new LatLng(42.37, -71.06);
+//        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap
+//                (BitmapFactory.decodeResource(getResources(), R.mipmap.ic_user_location))).position(ryan).title("Ryan"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ryan, 14));
+
+        // markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource
+        //(getResources(), R.mipmap.ic_user_location)));
+
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setTiltGesturesEnabled(true);
+        mMap.getUiSettings().setRotateGesturesEnabled(true);
+        mMap.setOnMarkerClickListener(this);
+        mMap.setBuildingsEnabled(true);
+    }
+
+    private void setUpMap() {
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]
+                    {android.Manifest.permission.ACCESS_FINE_LOCATION},LOCATION_PERMISSION_REQUEST_CODE);
+            return;
+        }
+
+        mMap.setMyLocationEnabled(true);
+
+        LocationAvailability locationAvailability =
+                LocationServices.FusedLocationApi.getLocationAvailability(mGoogleApiClient);
+        if (null != locationAvailability && locationAvailability.isLocationAvailable()) {
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            if (mLastLocation != null) {
+                LatLng currentLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation
+                        .getLongitude());
+                //add pin at user's location
+                placeMarkerOnMap(currentLocation);
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 12));
+            }
+        }
+
+// INFORMATION WINDOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
+        mMap.addMarker(new MarkerOptions()
+                .position(MELBOURNE)
+                .title("Melbourne")
+                .snippet("Population: 4,137,400"));
+
+    }
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        setUpMap();
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
+
 }
