@@ -58,7 +58,18 @@ public class FragFriends extends Fragment {
                 startActivity(i);
             }
         });
+
+        Button btnUsers = (Button) getView().findViewById(R.id.btnUsers);
+        btnUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), Users.class);
+                startActivity(i);
+            }
+        });
     }
+
+
 
 
 }
