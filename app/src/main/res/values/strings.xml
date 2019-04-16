@@ -5,6 +5,9 @@
     <string name="fb_login_protocol_scheme">fb2352158468402077</string>
     <string name="default_web_client_id">243173272705-5stt21uq237ehel56bka7mc3q6gqkpmh.apps.googleusercontent.com</string>
 
+    <!--Add by Lunhao on 16 April -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBEjPfwZEYB3XHyglA3fdRML_HbhPt-q3g</string>
+
     <!-- Chat -->
     <string name="welcome_msg">Welcome!</string>
     <string name="sign_out">Sign Out</string>
