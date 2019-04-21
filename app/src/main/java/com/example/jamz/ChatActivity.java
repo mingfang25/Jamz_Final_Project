@@ -105,6 +105,7 @@ public class ChatActivity extends AppCompatActivity
     private String mPhotoUrl;
     private SharedPreferences mSharedPreferences;
     private GoogleApiClient mGoogleApiClient;
+    //private static final String MESSAGE_URL = "https://chat-demo-101.firebaseio.com/messages/";
     private static final String MESSAGE_URL = "http://friendlychat.firebase.google.com/message/";
 
     private Button mSendButton;
