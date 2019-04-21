@@ -13,6 +13,7 @@ public class Event {
         public String eventAddress;
         public double eventlatitude;
         public double eventlongitude;
+        public String UserPhotoURL;
 
         public Event() {
             // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -30,6 +31,20 @@ public class Event {
         this.eventlatitude = eventlatitude;
         this.eventlongitude = eventlongitude;
         //this.eventLat = eventLat;
+    }
+
+    public Event(String username, String eventname, String eventDescription, String eventFromStart, String eventFromEnd,
+                 boolean eventallday, String eventAddress, double eventlatitude, double eventlongitude, String UserPhotoURL ) {
+        this.username = username;
+        this.eventname = eventname;
+        this.eventDescription = eventDescription;
+        this.eventFromStart = eventFromStart;
+        this.eventFromEnd = eventFromEnd;
+        this.eventallday = eventallday;
+        this.eventAddress = eventAddress;
+        this.eventlatitude = eventlatitude;
+        this.eventlongitude = eventlongitude;
+        this.UserPhotoURL = UserPhotoURL;
     }
 
         public Event(String username, String eventname, String eventDescription, String eventFromStart, String eventFromEnd, String eventToStart, String eventToEnd,
