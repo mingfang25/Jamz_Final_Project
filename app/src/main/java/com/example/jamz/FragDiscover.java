@@ -335,11 +335,62 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
             lat_set.add(event_location);
         }
 
+//        final String username;
+//        final String eventname;
+//        final String eventDescription;
+//        final String eventFromStart;
+//        final String eventFromEnd;
+//        final boolean eventallday;
+//        final String eventAddress;
+//        final double eventlatitude;
+//        final double eventlongitude;
+//        final String UserPhotoURL;
+
         for(int i=0;i<events.size();i++){
             mMap.addMarker(new MarkerOptions()
                     .position(lat_set.get(i))
                     .title(events.get(i).eventname)
                     .snippet(events.get(i).eventAddress));
+
+
+
+
+            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    int i = 0;
+                    for(int n=0;n<events.size();n++) {
+                        if(marker.getTitle().contains(events.get(n).eventname)){
+                            i = n;
+                            break;
+                        }
+                    }
+
+                    final String username = events.get(i).username;
+                    final String eventname = events.get(i).eventname;
+                    final String eventDescription = events.get(i).eventDescription;
+                    final String eventFromStart = events.get(i).eventFromStart;
+                    final String eventFromEnd = events.get(i).eventFromEnd;
+                    final boolean eventallday = events.get(i).eventallday;
+                    final String eventAddress = events.get(i).eventAddress;
+                    final double eventlatitude = events.get(i).eventlatitude;
+                    final double eventlongitude = events.get(i).eventlongitude;
+                    final String UserPhotoURL = events.get(i).UserPhotoURL;
+
+                    Intent intent = new Intent(getActivity() ,EventDetailActivity.class);
+                    intent.putExtra("username",eventname);
+                    intent.putExtra("eventname",eventname);
+                    intent.putExtra("eventDescription",eventDescription);
+                    intent.putExtra("eventFromStart",eventFromStart);
+                    intent.putExtra("eventFromEnd",eventFromEnd);
+                    intent.putExtra("eventallday",eventallday);
+                    intent.putExtra("eventAddress",eventAddress);
+                    intent.putExtra("eventlatitude",eventlatitude);
+                    intent.putExtra("eventlongitude",eventlongitude);
+                    intent.putExtra("UserPhotoURL",UserPhotoURL);
+                    startActivity(intent);
+                }
+            });
         }
 
     }
@@ -381,6 +432,7 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+
         return false;
     }
 

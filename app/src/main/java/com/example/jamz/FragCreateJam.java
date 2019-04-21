@@ -1,6 +1,5 @@
 package com.example.jamz;
 
-
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.location.Location;
@@ -43,12 +42,12 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 import java.util.List;
-
 
 public class FragCreateJam extends Fragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -56,13 +55,14 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener,
         LocationListener {
 
-
     private GoogleMap mMap;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private Location mLastLocation;
     private GoogleApiClient mGoogleApiClient;
     private FragmentActivity myContext;
-
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private String mPhotoUrl;
 
     //auto complete map
     private static final String AUTOTAG = "AUTOTAG";
@@ -101,6 +101,9 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
         //Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_create_jam, null, false);
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         return view;
     }
@@ -205,20 +208,6 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
                 edtFromEnd.setText("");
             }
         });
-//        edtToStart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // showMyDialog();
-//                edtToStart.setText("");
-//            }
-//        });
-//        edtToEnd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // showMyDialog();
-//                edtToEnd.setText("");
-//            }
-//        });
 
         Button btnCreateJam = (Button)getView().findViewById(R.id.btnAdd);
         btnCreateJam.setOnClickListener(new View.OnClickListener() {
@@ -229,6 +218,7 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
                 EventDescription = edteventdescription.getText().toString();
                 EventFromStart = edtFromStart.getText().toString();
                 EventFromEnd = edtFromStart.getText().toString();
+                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
                 //EventToStart = edtToStart.getText().toString();
                 //EventToEnd = edtToEnd.getText().toString();
                 Eventallday = cbAllday.isChecked();
@@ -244,36 +234,8 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        Event event = new Event(UserName,EventName,EventDescription, EventFromStart, EventFromEnd, Eventallday,EventAddress,EventLat.latitude,EventLat.longitude);
+        Event event = new Event(UserName,EventName,EventDescription, EventFromStart, EventFromEnd, Eventallday,EventAddress,EventLat.latitude,EventLat.longitude,mPhotoUrl);
         mDatabase.child("Events").child(event.eventname).setValue(event);
-//        DatabaseReference user_name_ref = database.getReference("User_Name");
-//        DatabaseReference event_name_ref = database.getReference("Event_Name");
-//        DatabaseReference event_description_ref = database.getReference("Event_Description");
-//        user_name_ref.setValue(UserName);
-//        event_name_ref.setValue(EventName);
-//        event_description_ref.setValue(EventDescription);
-        // [END write_message]
-
-
-
-        // [START read_message]
-        // Read from the database
-//        event_name_ref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                String value = dataSnapshot.getValue(String.class);
-//                Log.d(TAG, "Value is: " + value);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w(TAG, "Failed to read value.", error.toException());
-//            }
-//        });
-//        // [END read_message]
     }
 
     protected void placeMarkerOnMap(LatLng location) {
@@ -289,21 +251,6 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-//        // Add a marker for alice and move the camera
-//        LatLng alice = new LatLng(42.361145, -71.057083);
-//        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap
-//                (BitmapFactory.decodeResource(getResources(), R.mipmap.ic_user_location))).position(alice).title("Alice"));
-////        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(alice, 12));
-//
-//        // Add a marker for alice and move the camera
-//        LatLng ryan = new LatLng(42.37, -71.06);
-//        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap
-//                (BitmapFactory.decodeResource(getResources(), R.mipmap.ic_user_location))).position(ryan).title("Ryan"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ryan, 14));
-
-        // markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource
-        //(getResources(), R.mipmap.ic_user_location)));
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setTiltGesturesEnabled(true);
