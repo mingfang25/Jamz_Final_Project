@@ -56,6 +56,10 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
                 fragment = new FragDiscover();
                 break;
 
+            case R.id.navigation_eventlist:
+                fragment = new FragEventList();
+                break;
+
             case R.id.navigation_friends:
                 fragment = new FragFriends();
                 break;

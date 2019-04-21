@@ -12,6 +12,11 @@
         android:title="@string/title_discover" />
 
     <item
+        android:id="@+id/navigation_eventlist"
+        android:icon="@drawable/ic_event_24"
+        android:title="@string/title_events" />
+
+    <item
         android:id="@+id/navigation_friends"
         android:icon="@drawable/ic_friends_black_24dp"
         android:title="@string/title_friends" />

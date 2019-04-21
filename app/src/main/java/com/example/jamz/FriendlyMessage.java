@@ -22,6 +22,7 @@ public class FriendlyMessage {
     private String name;
     private String photoUrl;
     private String imageUrl;
+    private String displayName;
 
     public FriendlyMessage() {
     }
@@ -73,3 +74,4 @@ public class FriendlyMessage {
         this.imageUrl = imageUrl;
     }
 }
+
