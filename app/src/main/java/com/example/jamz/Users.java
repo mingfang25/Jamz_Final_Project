@@ -4,6 +4,7 @@ package com.example.jamz;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.icu.text.AlphabeticIndex;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.auth.data.model.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
@@ -55,6 +58,8 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.app.PendingIntent.getActivity;
+
 
 public class Users extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -73,12 +78,15 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
 
         TextView usernameTxt;
         ImageView uProfileImgVw;
+        ImageButton imgBtnMsg;
 
         public UserViewHolder(View v) {
             super(v);
 
             usernameTxt = (TextView) itemView.findViewById(R.id.usernameTxt);
             uProfileImgVw = (ImageView) itemView.findViewById(R.id.uProfileImgVw);
+            imgBtnMsg = (ImageButton) itemView.findViewById(R.id.imgBtnMsg);
+
 
         }
 
@@ -106,13 +114,16 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
     private ImageView m_uProfileImgVw;
     private RecyclerView mUsersRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
+    private ImageButton imgBtnMsg;
 
+    String displayName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_list);
+
 
         // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -166,6 +177,10 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
         mLinearLayoutManager.setStackFromEnd(true);
         mUsersRecyclerView.setLayoutManager(mLinearLayoutManager);
 
+        //Initialize User Message Button
+
+     //  final ImageButton imgBtnMsg = (ImageButton) findViewById(R.id.imgBtnMsg);
+
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         SnapshotParser<FriendlyUser> parser = new SnapshotParser<FriendlyUser>() {
             @Override
@@ -190,7 +205,18 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
             protected void onBindViewHolder(final UserViewHolder viewHolder, int position, FriendlyUser friendlyUser) {
 
                 viewHolder.usernameTxt.setVisibility(TextView.VISIBLE);
-                viewHolder.uProfileImgVw.setVisibility(ImageView.GONE);
+                viewHolder.uProfileImgVw.setVisibility(ImageView.VISIBLE);
+                viewHolder.imgBtnMsg.setVisibility(ImageButton.VISIBLE);
+                viewHolder.imgBtnMsg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Users.this, UserChatActivity.class);
+                        intent.putExtra("displayName",mUsername);
+                        //intent.setClass(v.getContext(), UserChatActivity.class);//Go to individual chat activity
+                        startActivity(intent);
+                    }
+                });
+
                 if(friendlyUser.getPhotoUrl() != null) {
                     String photoUrl = friendlyUser.getPhotoUrl();
 

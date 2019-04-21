@@ -93,6 +93,7 @@ public class ChatActivity extends AppCompatActivity
     //GROUPCHAT!!!!!!!!!!!!!!!!!!
     private String eventname;
 
+
     private static final String TAG = "MainActivity";
     public static final String MESSAGES_CHILD = "messages";
     private static final int REQUEST_INVITE = 1;
@@ -124,6 +125,7 @@ public class ChatActivity extends AppCompatActivity
 
         Bundle bundle = getIntent().getExtras();
         eventname = bundle.getString("eventname");
+
 
         // Set default username is anonymous.
         mUsername = ANONYMOUS;
