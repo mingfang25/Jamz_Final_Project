@@ -14,8 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -32,9 +32,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
 
 public class EventDetailActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -114,12 +111,24 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
         final TextView edtFromStart = (TextView) findViewById(R.id.editStart);
         final TextView edtFromEnd = (TextView) findViewById(R.id.editEnd);
         final CheckBox cbAllday = (CheckBox) findViewById(R.id.cballday);
+        final Button btngroupchat = (Button) findViewById(R.id.btnGroupChat);
 
         edteventname.setText(eventname);
         edteventdescription.setText(eventDescription);
         edtFromStart.setText(eventFromStart);
         edtFromEnd.setText(eventFromEnd);
         cbAllday.setChecked(eventallday);
+
+        btngroupchat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("eventname",eventname);
+                intent.setClass(v.getContext(), ChatActivity.class);//指明要跳转的Activity类
+                startActivity(intent);
+
+            }
+        });
 
         int test = 0;
     }
