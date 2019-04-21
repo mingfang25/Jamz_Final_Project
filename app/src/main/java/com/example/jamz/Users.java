@@ -74,8 +74,8 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
         TextView usernameTxt;
         ImageView uProfileImgVw;
 
-        public UserViewHolder(View v) {
-            super(v);
+        public UserViewHolder(View itemView) {
+            super(itemView);
 
             usernameTxt = (TextView) itemView.findViewById(R.id.usernameTxt);
             uProfileImgVw = (ImageView) itemView.findViewById(R.id.uProfileImgVw);
@@ -190,7 +190,7 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
             protected void onBindViewHolder(final UserViewHolder viewHolder, int position, FriendlyUser friendlyUser) {
 
                 viewHolder.usernameTxt.setVisibility(TextView.VISIBLE);
-                viewHolder.uProfileImgVw.setVisibility(ImageView.GONE);
+                //viewHolder.uProfileImgVw.setVisibility(ImageView.GONE);
                 if(friendlyUser.getPhotoUrl() != null) {
                     String photoUrl = friendlyUser.getPhotoUrl();
 
@@ -212,8 +212,9 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
                                         }
                                     }
                                 });
-                    } else {
-                        Glide.with(viewHolder.uProfileImgVw.getContext())
+                    }
+                    else {
+                        Glide.with(Users.this)
                                 .load(friendlyUser.getPhotoUrl())
                                 .into(viewHolder.uProfileImgVw);
                     }
@@ -224,7 +225,7 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
                 viewHolder.usernameTxt.setText(friendlyUser.getDisplayName());}
 
                 if(friendlyUser.getPhotoUrl() == null){
-                    viewHolder.uProfileImgVw.setImageDrawable(ContextCompat.getDrawable(Users.this, R.drawable.ic_account_circle_black_36dp));
+                    viewHolder.uProfileImgVw.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_account_circle_black_36dp));
                 }
                 else {
                     Glide.with(Users.this)
@@ -235,7 +236,7 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
             @Override
             public UserViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new UserViewHolder(inflater.inflate(R.layout.item_user,viewGroup,false));
+                return new UserViewHolder(inflater.inflate(R.layout.item_user_full,viewGroup,false));
             }
         };
 
@@ -254,7 +255,6 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
         });
 
         mUsersRecyclerView.setAdapter(mFirebaseAdapter);
-
 
     }
 
