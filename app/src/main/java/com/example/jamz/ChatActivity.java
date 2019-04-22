@@ -90,6 +90,9 @@ public class ChatActivity extends AppCompatActivity
             mFirebaseAdapter;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
+    //GROUPCHAT!!!!!!!!!!!!!!!!!!
+    private String eventname;
+
 
     private static final String TAG = "MainActivity";
     public static final String MESSAGES_CHILD = "messages";
@@ -103,6 +106,7 @@ public class ChatActivity extends AppCompatActivity
     private String mPhotoUrl;
     private SharedPreferences mSharedPreferences;
     private GoogleApiClient mGoogleApiClient;
+    //private static final String MESSAGE_URL = "https://chat-demo-101.firebaseio.com/messages/";
     private static final String MESSAGE_URL = "http://friendlychat.firebase.google.com/message/";
 
     private Button mSendButton;
@@ -118,6 +122,10 @@ public class ChatActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        Bundle bundle = getIntent().getExtras();
+        eventname = bundle.getString("eventname");
+
 
         // Set default username is anonymous.
         mUsername = ANONYMOUS;
@@ -190,7 +198,7 @@ public class ChatActivity extends AppCompatActivity
             }
         };
 
-        DatabaseReference messagesRef = mFirebaseDatabaseReference.child(MESSAGES_CHILD);
+        DatabaseReference messagesRef = mFirebaseDatabaseReference.child("GroupChat").child(eventname).child(MESSAGES_CHILD);
         FirebaseRecyclerOptions<FriendlyMessage> options =
                 new FirebaseRecyclerOptions.Builder<FriendlyMessage>()
                         .setQuery(messagesRef, parser)
@@ -313,7 +321,7 @@ public class ChatActivity extends AppCompatActivity
                         mUsername,
                         mPhotoUrl,
                         null /* no image */);
-                mFirebaseDatabaseReference.child(MESSAGES_CHILD)
+                mFirebaseDatabaseReference.child("GroupChat").child(eventname).child(MESSAGES_CHILD)
                         .push().setValue(friendlyMessage);
                 mMessageEditText.setText("");
             }
@@ -407,7 +415,7 @@ public class ChatActivity extends AppCompatActivity
 
                     FriendlyMessage tempMessage = new FriendlyMessage(null, mUsername, mPhotoUrl,
                             LOADING_IMAGE_URL);
-                    mFirebaseDatabaseReference.child(MESSAGES_CHILD).push()
+                    mFirebaseDatabaseReference.child("GroupChat").child(eventname).child(MESSAGES_CHILD).push()
                             .setValue(tempMessage, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError,
@@ -442,7 +450,7 @@ public class ChatActivity extends AppCompatActivity
                                     new FriendlyMessage(null, mUsername, mPhotoUrl,
                                             task.getResult().getMetadata().getDownloadUrl()
                                                     .toString());
-                            mFirebaseDatabaseReference.child(MESSAGES_CHILD).child(key)
+                            mFirebaseDatabaseReference.child("GroupChat").child(eventname).child(MESSAGES_CHILD).child(key)
                                     .setValue(friendlyMessage);
                         } else {
                             Log.w(TAG, "Image upload task was not successful.",

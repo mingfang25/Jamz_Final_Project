@@ -236,6 +236,7 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
 
         Event event = new Event(UserName,EventName,EventDescription, EventFromStart, EventFromEnd, Eventallday,EventAddress,EventLat.latitude,EventLat.longitude,mPhotoUrl);
         mDatabase.child("Events").child(event.eventname).setValue(event);
+        //mDatabase.child("GroupChat").child(event.eventname).setValue(0);
     }
 
     protected void placeMarkerOnMap(LatLng location) {
