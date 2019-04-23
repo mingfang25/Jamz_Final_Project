@@ -91,6 +91,7 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
 
     //User Chat
     private String displayName;
+    private String toName;
 
 
     private static final String TAG = "MainActivity";
@@ -122,6 +123,7 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
 
         Bundle bundle = getIntent().getExtras();
         displayName = bundle.getString("displayName");
+        toName = bundle.getString("toName");
 
 
         // Set default username is anonymous.
@@ -319,6 +321,7 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
                 FriendlyMessage friendlyMessage = new
                         FriendlyMessage(mMessageEditText.getText().toString(),
                         mUsername,
+                        toName,
                         mPhotoUrl,
                         null /* no image */);
                 mFirebaseDatabaseReference.child(mUsername).child(MESSAGES_CHILD)
