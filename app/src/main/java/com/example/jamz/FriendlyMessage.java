@@ -23,6 +23,7 @@ public class FriendlyMessage {
     private String photoUrl;
     private String imageUrl;
     private String displayName;
+    public String toName;
 
     public FriendlyMessage() {
     }
@@ -30,6 +31,14 @@ public class FriendlyMessage {
     public FriendlyMessage(String text, String name, String photoUrl, String imageUrl) {
         this.text = text;
         this.name = name;
+        this.photoUrl = photoUrl;
+        this.imageUrl = imageUrl;
+    }
+
+    public FriendlyMessage(String text, String name, String toName, String photoUrl, String imageUrl) {
+        this.text = text;
+        this.name = name;
+        this.toName = toName;
         this.photoUrl = photoUrl;
         this.imageUrl = imageUrl;
     }

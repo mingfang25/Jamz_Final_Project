@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -104,6 +105,8 @@ public class FragFriends extends Fragment implements GoogleApiClient.OnConnectio
 
         TextView usernameTxt;
         ImageView uProfileImgVw;
+        ImageButton btnMessage;
+        ImageButton btnProfile;
 
         public UserViewHolder(View itemView) {
             super(itemView);
@@ -111,6 +114,8 @@ public class FragFriends extends Fragment implements GoogleApiClient.OnConnectio
             usernameTxt = (TextView) itemView.findViewById(R.id.usernameTxt);
             uProfileImgVw = (ImageView) itemView.findViewById(R.id.uProfileImgVw);
 
+            btnMessage = itemView.findViewById(R.id.imgBtnMsg);
+            btnProfile = itemView.findViewById(R.id.imgBtnProfile);
         }
 
     }
@@ -232,6 +237,24 @@ public class FragFriends extends Fragment implements GoogleApiClient.OnConnectio
                             .load(friendlyUser.getPhotoUrl())
                             .into(viewHolder.uProfileImgVw);
                 }
+
+
+
+                viewHolder.imgBtnMsg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), UserChatActivity.class);
+                        intent.putExtra("displayName",mUsername);
+                        intent.putExtra("toName",viewHolder.usernameTxt.getText().toString());
+                        //intent.setClass(v.getContext(), UserChatActivity.class);//Go to individual chat activity
+                        startActivity(intent);
+                        //viewHolder.usernameTxt
+                    }
+                });
+
+
+
+
             }
             @Override
             public Users.UserViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
