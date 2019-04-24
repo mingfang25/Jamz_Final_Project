@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_marginStart="173dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="189dp"
         android:layout_marginEnd="173dp"
         android:layout_marginBottom="520dp"
         android:text="Username"
@@ -38,75 +38,22 @@
         android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_marginStart="179dp"
-        android:layout_marginTop="223dp"
+        android:layout_marginTop="224dp"
         android:layout_marginEnd="179dp"
         android:layout_marginBottom="485dp"
         android:text="User Bio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/card_list"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="115dp"
-        android:layout_marginEnd="116dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtUserBio">
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/spotifyCardView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="106dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        card_view:cardCornerRadius="4dp">
-
-        <TextView
-            android:id="@+id/txtPlaceHolderS"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
-            android:text="Here is My Spotify"
-            android:layout_gravity="center" />
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/youtubeCardView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="106dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spotifyCardView"
-        card_view:cardCornerRadius="4dp">
-
-        <TextView
-            android:id="@+id/txtPlaceHolderY"
-            android:layout_width="wrap_content"
-            android:layout_height="23dp"
-            android:text="Here is My YouTube"
-            android:layout_gravity="center" />
-
-    </android.support.v7.widget.CardView>
-</ListView>
 
     <TextView
         android:id="@+id/txtInstrument"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
+        android:layout_marginStart="171dp"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="171dp"
         android:layout_marginBottom="678dp"
@@ -115,4 +62,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/messageImgBtn"
+        android:layout_width="45dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginTop="178dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="519dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        card_view:srcCompat="@drawable/ic_baseline_message_24px" />
+
 </android.support.constraint.ConstraintLayout>
