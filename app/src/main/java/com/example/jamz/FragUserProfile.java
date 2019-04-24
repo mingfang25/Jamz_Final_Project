@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +48,6 @@ public class FragUserProfile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-//        profImageView = (ImageView) getView().findViewById(R.id.profImageView);
-//        txtUserProf = (TextView) getView().findViewById(R.id.txtUserProf);
-
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_users_profile, container, false);
 
@@ -57,6 +55,11 @@ public class FragUserProfile extends Fragment {
         currentUserID = mAuth.getCurrentUser().getUid();
         mUsername = mAuth.getCurrentUser().getDisplayName();
        // mPhotoURL = mUser.getPhotoUrl().toString();
+
+        profImageView = (ImageView) view.findViewById(R.id.profImageView);
+        txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
+
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserID);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -65,19 +68,25 @@ public class FragUserProfile extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    String displayName = dataSnapshot.child(mUsername).getValue().toString();
-                    String photoURL = dataSnapshot.child(mPhotoURL).getValue().toString();
+                    if (mUsername != null && mPhotoURL !=null) {
+                        String displayName = dataSnapshot.child(mUsername).getValue().toString();
+                        String photoURL = dataSnapshot.child(mPhotoURL).getValue().toString();
+                        Log.d("displayName", displayName);
+                        txtUserProf.setText(displayName);
+                        txtUserProf.setVisibility(TextView.VISIBLE);
+                        Glide.with(getActivity()).load(photoURL).into(profImageView);
+                        profImageView.setVisibility(ImageView.VISIBLE);
+                    }
 
                 //    Picasso.with(getContext()).load(photoURL).placeholder(R.drawable.com_facebook_profile_picture_blank_portrait).into(profImageView);
                     //profImageView.setImageDrawable(ContextCompat.getDrawable(getActivity().getApplicationContext(), Integer.parseInt(photoURL)));
 
-                 //   txtUserProf.setText(displayName);
-
                 }
 
-
-             //   txtUserProf.setText(mUsername);
-           //     Glide.with(getActivity()).load(mPhotoURL).into(profImageView);
+//                else {
+//                    profImageView.setVisibility(ImageView.GONE);
+//                    txtUserProf.setVisibility(TextView.GONE);
+//                }
 
             }
 

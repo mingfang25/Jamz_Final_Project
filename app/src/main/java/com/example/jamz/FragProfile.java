@@ -30,7 +30,7 @@ public class FragProfile extends Fragment {
 
         profileTabLayout = (TabLayout) v.findViewById(R.id.profileTabLayout);
         profileViewPager = (ViewPager) v.findViewById(R.id.profileViewPager);
-        ViewPageAdapter adapter = new ViewPageAdapter(getFragmentManager());
+        ViewPageAdapter adapter = new ViewPageAdapter(getChildFragmentManager());
 
         adapter.AddFragment( new FragUserProfile(), "Profile");
         adapter.AddFragment( new FragSettings(), "Settings");
