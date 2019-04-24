@@ -1,3 +1,4 @@
+
 package com.example.jamz;
 
 import android.app.ProgressDialog;
@@ -308,3 +309,4 @@ public class FragProfile extends Fragment {
     }
 
 }
+
