@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +33,6 @@ public class FragUserProfile extends Fragment {
     private ImageView profImageView;
     private TextView txtUserProf;
 
-
     //Firebase references
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
@@ -53,6 +54,10 @@ public class FragUserProfile extends Fragment {
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_users_profile, container, false);
 
+        profImageView = (ImageView) view.findViewById(R.id.profImageView);
+        txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
+
+
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
         mUsername = mAuth.getCurrentUser().getDisplayName();
@@ -61,17 +66,21 @@ public class FragUserProfile extends Fragment {
 
         databaseReference.addValueEventListener(new ValueEventListener() {
 
-
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     String displayName = dataSnapshot.child(mUsername).getValue().toString();
                     String photoURL = dataSnapshot.child(mPhotoURL).getValue().toString();
 
+                    if (mUsername != null && mPhotoURL != null) {
+                           txtUserProf.setText(mUsername);
+                           txtUserProf.setVisibility(TextView.VISIBLE);
+                           Glide.with(getActivity()).load(mPhotoURL).into(profImageView);
+                           profImageView.setVisibility(ImageView.VISIBLE);
+                    }
+
                 //    Picasso.with(getContext()).load(photoURL).placeholder(R.drawable.com_facebook_profile_picture_blank_portrait).into(profImageView);
                     //profImageView.setImageDrawable(ContextCompat.getDrawable(getActivity().getApplicationContext(), Integer.parseInt(photoURL)));
-
-                 //   txtUserProf.setText(displayName);
 
                 }
 
@@ -87,7 +96,7 @@ public class FragUserProfile extends Fragment {
             }
         });
 
-
         return view;
     }
+
 }
