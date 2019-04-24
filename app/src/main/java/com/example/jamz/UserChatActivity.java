@@ -53,6 +53,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.firebase.storage.FirebaseStorage;
@@ -139,7 +140,7 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
             return;
         } else {
             mUsername = mFirebaseUser.getDisplayName();
-            mUID = mFirebaseUser.getUid().toString();
+            mUID = mFirebaseUser.getUid();
             if (mFirebaseUser.getPhotoUrl() != null) {
                 mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
             }
@@ -232,7 +233,8 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
             protected void onBindViewHolder(final UserChatActivity.MessageViewHolder viewHolder,
                                             int position,
                                             FriendlyMessage friendlyMessage) {
-                if((friendlyMessage.getName().equals(mUsername) && friendlyMessage.toName.equals(toName)) || (friendlyMessage.getName().equals(toName) && friendlyMessage.toName.equals(mUsername))) {
+
+                if(( friendlyMessage.getName() != null && friendlyMessage.toName != null && friendlyMessage.getName().equals(mUsername) && friendlyMessage.toName.equals(toName)) || (friendlyMessage.getName() != null && friendlyMessage.toName != null && friendlyMessage.getName().equals(toName) && friendlyMessage.toName.equals(mUsername))) {
 
                     mProgressBar.setVisibility(ProgressBar.INVISIBLE);
                     if (friendlyMessage.getText() != null) {
