@@ -196,16 +196,32 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
                 if (friendlyMessage != null) {
                     friendlyMessage.setId(dataSnapshot.getKey());
                 }
+
+//                if ((friendlyMessage.getName().equals(mUsername) && friendlyMessage.toName.equals(toName)) || (friendlyMessage.getName().equals(toName) && friendlyMessage.toName.equals(mUsername))) {
+//                    return friendlyMessage;
+//                }
+//                else return null;
+
+//                // delete not include msg!!!!!!!!!!!!!!
+//                for(int i =0;i<options.getSnapshots().size();i++) {
+//                    FriendlyMessage friendlyMessage = mFirebaseAdapter.getItem(i);
+//                    if ((friendlyMessage.getName().equals(mUsername) && friendlyMessage.toName.equals(toName)) || (friendlyMessage.getName().equals(toName) && friendlyMessage.toName.equals(mUsername))) {
+//                        options.getSnapshots().remove(i);
+//                    }
+//                }
+
                 return friendlyMessage;
             }
         };
 
-        DatabaseReference messagesRef = mFirebaseDatabaseReference.child(mUsername).child(MESSAGES_CHILD);
+        DatabaseReference messagesRef = mFirebaseDatabaseReference;
         FirebaseRecyclerOptions<FriendlyMessage> options =
                 new FirebaseRecyclerOptions.Builder<FriendlyMessage>()
                         .setQuery(messagesRef, parser)
                         .build();
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage, UserChatActivity.MessageViewHolder>(options) {
+
+            mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage, UserChatActivity.MessageViewHolder>(options) {
+
             @Override
             public UserChatActivity.MessageViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
@@ -216,59 +232,82 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
             protected void onBindViewHolder(final UserChatActivity.MessageViewHolder viewHolder,
                                             int position,
                                             FriendlyMessage friendlyMessage) {
-                mProgressBar.setVisibility(ProgressBar.INVISIBLE);
-                if (friendlyMessage.getText() != null) {
-                    // write this message to the on-device index
-                    FirebaseAppIndex.getInstance()
-                            .update(getMessageIndexable(friendlyMessage));
+                if((friendlyMessage.getName().equals(mUsername) && friendlyMessage.toName.equals(toName)) || (friendlyMessage.getName().equals(toName) && friendlyMessage.toName.equals(mUsername))) {
 
-                    viewHolder.messageTextView.setText(friendlyMessage.getText());
-                    viewHolder.messageTextView.setVisibility(TextView.VISIBLE);
-                    viewHolder.messageImageView.setVisibility(ImageView.GONE);
-                } else if (friendlyMessage.getImageUrl() != null) {
-                    String imageUrl = friendlyMessage.getImageUrl();
-                    if (imageUrl.startsWith("gs://")) {
-                        StorageReference storageReference = FirebaseStorage.getInstance()
-                                .getReferenceFromUrl(imageUrl);
-                        storageReference.getDownloadUrl().addOnCompleteListener(
-                                new OnCompleteListener<Uri>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Uri> task) {
-                                        if (task.isSuccessful()) {
-                                            String downloadUrl = task.getResult().toString();
-                                            Glide.with(viewHolder.messageImageView.getContext())
-                                                    .load(downloadUrl)
-                                                    .into(viewHolder.messageImageView);
-                                        } else {
-                                            Log.w(TAG, "Getting download url was not successful.",
-                                                    task.getException());
+                    mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+                    if (friendlyMessage.getText() != null) {
+                        // write this message to the on-device index
+                        FirebaseAppIndex.getInstance()
+                                .update(getMessageIndexable(friendlyMessage));
+                        viewHolder.messageTextView.setText(friendlyMessage.getText());
+                        viewHolder.messageTextView.setVisibility(TextView.VISIBLE);
+                        viewHolder.messageImageView.setVisibility(ImageView.GONE);
+                    } else if (friendlyMessage.getImageUrl() != null) {
+                        String imageUrl = friendlyMessage.getImageUrl();
+                        if (imageUrl.startsWith("gs://")) {
+                            StorageReference storageReference = FirebaseStorage.getInstance()
+                                    .getReferenceFromUrl(imageUrl);
+                            storageReference.getDownloadUrl().addOnCompleteListener(
+                                    new OnCompleteListener<Uri>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Uri> task) {
+                                            if (task.isSuccessful()) {
+                                                String downloadUrl = task.getResult().toString();
+                                                Glide.with(viewHolder.messageImageView.getContext())
+                                                        .load(downloadUrl)
+                                                        .into(viewHolder.messageImageView);
+                                            } else {
+                                                Log.w(TAG, "Getting download url was not successful.",
+                                                        task.getException());
+                                            }
                                         }
-                                    }
-                                });
-                    } else {
-                        Glide.with(viewHolder.messageImageView.getContext())
-                                .load(friendlyMessage.getImageUrl())
-                                .into(viewHolder.messageImageView);
+                                    });
+                        } else {
+                            Glide.with(viewHolder.messageImageView.getContext())
+                                    .load(friendlyMessage.getImageUrl())
+                                    .into(viewHolder.messageImageView);
+                        }
+                        viewHolder.messageImageView.setVisibility(ImageView.VISIBLE);
+                        viewHolder.messageTextView.setVisibility(TextView.GONE);
                     }
-                    viewHolder.messageImageView.setVisibility(ImageView.VISIBLE);
-                    viewHolder.messageTextView.setVisibility(TextView.GONE);
+
+                    // log a view action on it
+                    FirebaseUserActions.getInstance().end(getMessageViewAction(friendlyMessage));
+
+                    viewHolder.messengerTextView.setText(friendlyMessage.getName());
+                    if (friendlyMessage.getPhotoUrl() == null) {
+                        viewHolder.messengerImageView.setImageDrawable(ContextCompat.getDrawable(UserChatActivity.this,
+                                R.drawable.ic_account_circle_black_36dp));
+                    } else {
+                        Glide.with(UserChatActivity.this)
+                                .load(friendlyMessage.getPhotoUrl())
+                                .into(viewHolder.messengerImageView);
+                    }
                 }
-
-                // log a view action on it
-                FirebaseUserActions.getInstance().end(getMessageViewAction(friendlyMessage));
-
-                viewHolder.messengerTextView.setText(friendlyMessage.getName());
-                if (friendlyMessage.getPhotoUrl() == null) {
-                    viewHolder.messengerImageView.setImageDrawable(ContextCompat.getDrawable(UserChatActivity.this,
-                            R.drawable.ic_account_circle_black_36dp));
-                } else {
-                    Glide.with(UserChatActivity.this)
-                            .load(friendlyMessage.getPhotoUrl())
-                            .into(viewHolder.messengerImageView);
+                else{
+                    viewHolder.messageImageView.setVisibility(ImageView.GONE);
+                    viewHolder.messageTextView.setVisibility(TextView.GONE);
+                    viewHolder.messengerImageView.setVisibility(CircleImageView.GONE);
+                    viewHolder.messengerTextView.setVisibility(TextView.GONE);
                 }
 
             }
+
         };
+
+
+        // delete not include msg!!!!!!!!!!!!!!
+        for(int i =0;i<mFirebaseAdapter.getSnapshots().size();i++) {
+            FriendlyMessage friendlyMessage = mFirebaseAdapter.getItem(i);
+            if ((friendlyMessage.getName().equals(mUsername) && friendlyMessage.toName.equals(toName)) || (friendlyMessage.getName().equals(toName) && friendlyMessage.toName.equals(mUsername))) {
+            }
+            else{
+                mFirebaseAdapter.getSnapshots().remove(i);
+                mFirebaseAdapter.notifyDataSetChanged();
+            }
+        }
+
+
 
         mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -324,8 +363,7 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
                         toName,
                         mPhotoUrl,
                         null /* no image */);
-                mFirebaseDatabaseReference.child(mUsername).child(MESSAGES_CHILD)
-                        .push().setValue(friendlyMessage);
+                mFirebaseDatabaseReference.push().setValue(friendlyMessage);
                 mMessageEditText.setText("");
             }
         });

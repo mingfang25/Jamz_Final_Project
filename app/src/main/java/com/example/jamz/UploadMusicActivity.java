@@ -123,7 +123,8 @@ public class UploadMusicActivity extends AppCompatActivity {
 
     public void btnBrowse_Click(View v){
         Intent intent = new Intent();
-        intent.setType("audio/*");
+        //intent.setType("audio/*");
+        intent.setType("video/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select audio"),REQUEST_CODE);
     }
