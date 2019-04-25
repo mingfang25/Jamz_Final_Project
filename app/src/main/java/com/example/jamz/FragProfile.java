@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 
@@ -45,6 +46,7 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         profileTabLayout = (TabLayout) v.findViewById(R.id.profileTabLayout);
@@ -68,6 +70,13 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
         return v;
     }
 
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState){
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public void onStart() {
@@ -97,10 +106,13 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
+        if (getActivity().getMenuInflater() != null) {
+            MenuInflater inflater = getActivity().getMenuInflater();
+            inflater.inflate(R.menu.main_menu, menu);
+            return true;
+        }else{return false;}
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

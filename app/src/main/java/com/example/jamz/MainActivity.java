@@ -128,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
-        //Mingfnag's test comment
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
