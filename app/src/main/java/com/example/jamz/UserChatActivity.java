@@ -95,7 +95,7 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
     private String toName;
 
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "UserChatActivity";
     public static final String MESSAGES_CHILD = "userToUserChat";
     private static final int REQUEST_INVITE = 1;
     private static final int REQUEST_IMAGE = 2;
@@ -546,9 +546,6 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.fresh_config_menu:
-                fetchConfig();
-                return true;
             case R.id.sign_out_menu:
                 mFirebaseAuth.signOut();
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
