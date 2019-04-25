@@ -183,12 +183,8 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
         mLinearLayoutManager.setStackFromEnd(true);
         mMessageRecyclerView.setLayoutManager(mLinearLayoutManager);
 
-
-
-
 // New child entries READ MSG!
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference("userToUserChat");
-
 
         SnapshotParser<FriendlyMessage> parser = new SnapshotParser<FriendlyMessage>() {
             @Override
@@ -292,11 +288,8 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
                     viewHolder.messengerImageView.setVisibility(CircleImageView.GONE);
                     viewHolder.messengerTextView.setVisibility(TextView.GONE);
                 }
-
             }
-
         };
-
 
         // delete not include msg!!!!!!!!!!!!!!
         for(int i =0;i<mFirebaseAdapter.getSnapshots().size();i++) {
@@ -308,8 +301,6 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
                 mFirebaseAdapter.notifyDataSetChanged();
             }
         }
-
-
 
         mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -330,8 +321,6 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
         });
 
         mMessageRecyclerView.setAdapter(mFirebaseAdapter);
-
-
 
         mMessageEditText = (EditText) findViewById(R.id.messageEditText);
         mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mSharedPreferences

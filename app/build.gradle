@@ -20,6 +20,9 @@ android {
 }
 
 dependencies {
+    // HTTP!!!!!!
+    implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+
     //add by Lunhao on 16 April for google places api
     implementation 'com.google.android.libraries.places:places:1.1.0'
 

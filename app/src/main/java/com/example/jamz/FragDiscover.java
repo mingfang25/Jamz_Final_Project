@@ -1,10 +1,12 @@
 package com.example.jamz;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -42,6 +45,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -53,7 +72,17 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener,
         LocationListener {
 
+    //TICKET MASTER
+    private Button call_api;
+    private TextView print_api;
+    private String ROOT_URL = "https://app.ticketmaster.com/discovery/v2/events?";
+    private String TM_KEY = "apikey=OdN6pW3p8rPEDMzrvmKhycIZEhx5HPyd";
+    private String music_segment_id = "&segmentId=KZFzniwnSyZfZ7v7nJ";
+    private String boston_latlong = "&latlong=42.3600825,-71.0588801";
+    private String country_code = "&countryCode=US";
+    private ArrayList<Event> mListData = new ArrayList<>();
 
+    // GOOGLE MAP
     private GoogleMap mMap;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private Location mLastLocation;
@@ -74,17 +103,24 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
 
     public FragDiscover(){
         //Required empty public constructor
+
     }
 
     ArrayList<Event> events = new ArrayList<>();
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
 
+
         events.clear();
+
+
+        int test =1;
+
+        //FROM FIREBASE
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference user_id_ref = database.getReference("Events");
         user_id_ref.addValueEventListener(new ValueEventListener() {
@@ -162,6 +198,7 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
 
         return view;
     }
+
 
 //
 //    private void setUpLocation() {
@@ -252,7 +289,12 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
         }
     }
 
-
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mListData = ((NavigationActivity) activity).getTicketMasterEvents();
+        int test =1;
+    }
 
 
     protected void placeMarkerOnMap(LatLng location) {
@@ -329,31 +371,20 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
                 .title("Melbourne")
                 .snippet("Population: 4,137,400"));
 
+        events.addAll(mListData);
+
         ArrayList<LatLng> lat_set = new ArrayList<>();
+
         for(int i=0;i<events.size();i++){
             LatLng event_location = new LatLng(events.get(i).eventlatitude,events.get(i).eventlongitude);
             lat_set.add(event_location);
         }
-
-//        final String username;
-//        final String eventname;
-//        final String eventDescription;
-//        final String eventFromStart;
-//        final String eventFromEnd;
-//        final boolean eventallday;
-//        final String eventAddress;
-//        final double eventlatitude;
-//        final double eventlongitude;
-//        final String UserPhotoURL;
 
         for(int i=0;i<events.size();i++){
             mMap.addMarker(new MarkerOptions()
                     .position(lat_set.get(i))
                     .title(events.get(i).eventname)
                     .snippet(events.get(i).eventAddress));
-
-
-
 
             mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
@@ -393,6 +424,18 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
             });
         }
 
+
+
+//        final String username;
+//        final String eventname;
+//        final String eventDescription;
+//        final String eventFromStart;
+//        final String eventFromEnd;
+//        final boolean eventallday;
+//        final String eventAddress;
+//        final double eventlatitude;
+//        final double eventlongitude;
+//        final String UserPhotoURL;
     }
     @Override
     public void onLocationChanged(Location location) {
@@ -432,7 +475,6 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-
         return false;
     }
 

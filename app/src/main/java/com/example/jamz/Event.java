@@ -59,5 +59,16 @@ public class Event {
             //this.eventLat = eventLat;
         }
 
-
+    // TicketMaster
+    public Event(String username, String eventname, String eventDescription, String eventFromStart,
+                 String eventAddress, double eventlatitude, double eventlongitude, String UserPhotoURL ) {
+        this.username = username;
+        this.eventname = eventname;
+        this.eventDescription = eventDescription;
+        this.eventFromStart = eventFromStart;
+        this.eventAddress = eventAddress;
+        this.eventlatitude = eventlatitude;
+        this.eventlongitude = eventlongitude;
+        this.UserPhotoURL = UserPhotoURL;
+    }
 }
