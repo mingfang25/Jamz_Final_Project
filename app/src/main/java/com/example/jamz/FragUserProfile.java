@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -56,9 +57,6 @@ public class FragUserProfile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-//        profImageView = (ImageView) getView().findViewById(R.id.profImageView);
-//        txtUserProf = (TextView) getView().findViewById(R.id.txtUserProf);
-
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_users_profile, container, false);
 
@@ -78,6 +76,13 @@ public class FragUserProfile extends Fragment {
 
 
         mAuth = FirebaseAuth.getInstance();
+        currentUserID = mAuth.getCurrentUser().getUid();
+        mUsername = mAuth.getCurrentUser().getDisplayName();
+       // mPhotoURL = mUser.getPhotoUrl().toString();
+
+        profImageView = (ImageView) view.findViewById(R.id.profImageView);
+        txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
+
         mUser = mAuth.getCurrentUser();
         if (mAuth.getCurrentUser() == null){
             startActivity(new Intent(getActivity(), MainActivity.class));
@@ -89,7 +94,6 @@ public class FragUserProfile extends Fragment {
             mPhotoURL = mUser.getPhotoUrl().toString();
             }
         }
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserID);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -97,6 +101,7 @@ public class FragUserProfile extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
+
                     String displayName = dataSnapshot.child(mUsername).getValue().toString();
                     String photoURL = dataSnapshot.child(mPhotoURL).getValue().toString();
                     Log.d("displayName", displayName);
