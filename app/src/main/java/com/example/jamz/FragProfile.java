@@ -79,6 +79,8 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
     @Override
     public void onPause() {
         super.onPause();
+        mGoogleApiClient.stopAutoManage(getActivity());
+        mGoogleApiClient.disconnect();
     }
 
     @Override
@@ -89,6 +91,8 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mGoogleApiClient.stopAutoManage(getActivity());
+        mGoogleApiClient.disconnect();
     }
 
 
