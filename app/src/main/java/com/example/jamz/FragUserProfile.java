@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,25 +99,23 @@ public class FragUserProfile extends Fragment {
                 if (dataSnapshot.exists()){
                     String displayName = dataSnapshot.child(mUsername).getValue().toString();
                     String photoURL = dataSnapshot.child(mPhotoURL).getValue().toString();
+                    Log.d("displayName", displayName);
+                    Log.d("photoURL", photoURL);
 
-                    if (mUsername != null && mPhotoURL != null) {
+                    if (mUsername != null) {
                            txtUserProf.setText(mUsername);
                            txtUserProf.setVisibility(TextView.VISIBLE);
+                           if (mPhotoURL != null){
                            Glide.with(getActivity()).load(mPhotoURL).into(profImageView);
                            profImageView.setVisibility(ImageView.VISIBLE);
+                           }
+                           else{Picasso.with(getContext()).load(R.drawable.com_facebook_profile_picture_blank_square).into(profImageView);
+                           }
                     }
 
                     txtUserBio.setText("Here Is a new Bio");
                     txtUserBio.setVisibility(TextView.VISIBLE);
-
-                //    Picasso.with(getContext()).load(photoURL).placeholder(R.drawable.com_facebook_profile_picture_blank_portrait).into(profImageView);
-                    //profImageView.setImageDrawable(ContextCompat.getDrawable(getActivity().getApplicationContext(), Integer.parseInt(photoURL)));
-
                 }
-
-
-             //   txtUserProf.setText(mUsername);
-           //     Glide.with(getActivity()).load(mPhotoURL).into(profImageView);
 
             }
 

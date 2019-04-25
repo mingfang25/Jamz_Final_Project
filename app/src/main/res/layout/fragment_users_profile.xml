@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="171dp"
         android:layout_marginTop="34dp"
-        android:layout_marginEnd="171dp"
+        android:layout_marginEnd="170dp"
         android:layout_marginBottom="678dp"
         android:text="Instrument"
         app:layout_constraintBottom_toBottomOf="parent"

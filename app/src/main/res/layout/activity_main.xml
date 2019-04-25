@@ -5,7 +5,9 @@
     android:layout_gravity="center_horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/jamz_login_page"
+    >
 
     <LinearLayout
         android:orientation="vertical"
