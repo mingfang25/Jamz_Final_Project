@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -35,8 +37,13 @@ import java.io.IOException;
 
 public class UploadMusicActivity extends AppCompatActivity {
 
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
+    private String mUsername;
+    private String mPhotoUrl;
+
     private EditText txtAudioName;
     private Uri audioUri;
 
@@ -115,6 +122,21 @@ public class UploadMusicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_music);
 
+        // Initialize Firebase Auth
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        if (mFirebaseUser == null) {
+            // Not signed in, launch the Sign In activity
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        } else {
+            mUsername = mFirebaseUser.getDisplayName();
+            if (mFirebaseUser.getPhotoUrl() != null) {
+                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+            }
+        }
+
         mStorageRef = FirebaseStorage.getInstance().getReference();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
 
@@ -175,7 +197,7 @@ public class UploadMusicActivity extends AppCompatActivity {
                                 final String url = uri.toString();
                                 int test = 1;
                                 url_out = url;
-                                ImageUpload imageUpload = new ImageUpload(file_name, url);
+                                ImageUpload imageUpload = new ImageUpload(file_name, url, mUsername);
 
                                 String uploadId = mDatabaseRef.push().getKey();
                                 mDatabaseRef.child(file_name).setValue(imageUpload);
