@@ -490,6 +490,7 @@ public class ChatActivity extends AppCompatActivity
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
    
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
