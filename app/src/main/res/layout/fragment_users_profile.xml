@@ -10,26 +10,24 @@
         android:id="@+id/profImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="155dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="156dp"
-        android:layout_marginBottom="567dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.191" />
 
     <TextView
         android:id="@+id/txtUserProf"
-        android:layout_width="wrap_content"
-        android:layout_height="23dp"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="189dp"
-        android:layout_marginEnd="173dp"
-        android:layout_marginBottom="520dp"
+        android:layout_width="103dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="245dp"
+        android:layout_marginBottom="448dp"
         android:text="Username"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,14 +35,11 @@
         android:id="@+id/txtUserBio"
         android:layout_width="wrap_content"
         android:layout_height="23dp"
-        android:layout_marginStart="179dp"
-        android:layout_marginTop="224dp"
-        android:layout_marginEnd="179dp"
-        android:layout_marginBottom="485dp"
+        android:layout_marginTop="323dp"
+        android:layout_marginBottom="385dp"
         android:text="User Bio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,13 +48,12 @@
         android:id="@+id/txtInstrument"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="171dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="170dp"
-        android:layout_marginBottom="678dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginBottom="643dp"
         android:text="Instrument"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,14 +61,28 @@
         android:id="@+id/messageImgBtn"
         android:layout_width="45dp"
         android:layout_height="35dp"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="178dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="519dp"
+        android:layout_marginStart="272dp"
+        android:layout_marginTop="248dp"
+        android:layout_marginEnd="94dp"
+        android:layout_marginBottom="448dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         card_view:srcCompat="@drawable/ic_baseline_message_24px" />
+
+    <ImageButton
+        android:id="@+id/preferencesImgBtn"
+        android:layout_width="42dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="317dp"
+        android:layout_marginTop="248dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="448dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        card_view:srcCompat="@android:drawable/ic_menu_preferences" />
 
 </android.support.constraint.ConstraintLayout>

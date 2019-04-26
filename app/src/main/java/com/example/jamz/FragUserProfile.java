@@ -41,6 +41,7 @@ public class FragUserProfile extends Fragment {
     private TextView txtInstrument;
     private TextView txtUserBio;
     private ImageButton messageImgBtn;
+    private ImageButton preferencesImgBtn;
 
     //Firebase references
     private DatabaseReference databaseReference;
@@ -63,6 +64,7 @@ public class FragUserProfile extends Fragment {
         profImageView = (ImageView) view.findViewById(R.id.profImageView);
         txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
         messageImgBtn = (ImageButton) view.findViewById(R.id.messageImgBtn);
+        preferencesImgBtn = (ImageButton) view.findViewById(R.id.preferencesImgBtn);
 
         messageImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,11 +76,20 @@ public class FragUserProfile extends Fragment {
             }
         });
 
+        //Preferences page for User
+        preferencesImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FragSettings.class);
+                startActivity(intent);
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance();
-        currentUserID = mAuth.getCurrentUser().getUid();
-        mUsername = mAuth.getCurrentUser().getDisplayName();
-       // mPhotoURL = mUser.getPhotoUrl().toString();
+//        currentUserID = mAuth.getCurrentUser().getDisplayName();
+//        mUsername = mAuth.getCurrentUser().getDisplayName();
+//        mPhotoURL = mAuth.getCurrentUser().getPhotoUrl().toString();
 
         profImageView = (ImageView) view.findViewById(R.id.profImageView);
         txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
@@ -88,26 +99,20 @@ public class FragUserProfile extends Fragment {
             startActivity(new Intent(getActivity(), MainActivity.class));
         }
         else {
-            currentUserID = mAuth.getCurrentUser().getUid();
+            currentUserID = mAuth.getCurrentUser().getDisplayName();
             mUsername = mUser.getDisplayName();
             if (mUser.getPhotoUrl() != null){
-            mPhotoURL = mUser.getPhotoUrl().toString();
+            mPhotoURL = mAuth.getCurrentUser().getPhotoUrl().toString();
             }
         }
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserID);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        //Preferences button should only be visible to current user on their profile
+        if (currentUserID == mUsername) {
+            preferencesImgBtn.setVisibility(ImageButton.VISIBLE);
+        } else {preferencesImgBtn.setVisibility(ImageButton.GONE);}
 
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
 
-                    String displayName = dataSnapshot.child(mUsername).getValue().toString();
-                    String photoURL = dataSnapshot.child(mPhotoURL).getValue().toString();
-                    Log.d("displayName", displayName);
-                    Log.d("photoURL", photoURL);
-
-                    if (mUsername != null) {
+        if (mUsername != null) {
                            txtUserProf.setText(mUsername);
                            txtUserProf.setVisibility(TextView.VISIBLE);
                            if (mPhotoURL != null){
@@ -118,17 +123,41 @@ public class FragUserProfile extends Fragment {
                            }
                     }
 
-                    txtUserBio.setText("Here Is a new Bio");
-                    txtUserBio.setVisibility(TextView.VISIBLE);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(mUsername);
+//
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()){
+//
+//                    String displayName = dataSnapshot.child(mUsername).getValue().toString();
+//                    String photoURL = dataSnapshot.child(mPhotoURL).getValue().toString();
+//                    Log.d("displayName", displayName);
+//                    Log.d("photoURL", photoURL);
+//
+//                    if (mUsername != null) {
+//                           txtUserProf.setText(mUsername);
+//                           txtUserProf.setVisibility(TextView.VISIBLE);
+//                           if (mPhotoURL != null){
+//                           Glide.with(getActivity()).load(mPhotoURL).into(profImageView);
+//                           profImageView.setVisibility(ImageView.VISIBLE);
+//                           }
+//                           else{Picasso.with(getContext()).load(R.drawable.com_facebook_profile_picture_blank_square).into(profImageView);
+//                           }
+//                    }
+//
+//                    txtUserBio.setText("Here Is a new Bio");
+//                    txtUserBio.setVisibility(TextView.VISIBLE);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
         return view;
     }
