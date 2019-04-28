@@ -126,7 +126,6 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
         displayName = bundle.getString("displayName");
         toName = bundle.getString("toName");
 
-
         // Set default username is anonymous.
         mUsername = ANONYMOUS;
 
@@ -193,19 +192,6 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
                 if (friendlyMessage != null) {
                     friendlyMessage.setId(dataSnapshot.getKey());
                 }
-
-//                if ((friendlyMessage.getName().equals(mUsername) && friendlyMessage.toName.equals(toName)) || (friendlyMessage.getName().equals(toName) && friendlyMessage.toName.equals(mUsername))) {
-//                    return friendlyMessage;
-//                }
-//                else return null;
-
-//                // delete not include msg!!!!!!!!!!!!!!
-//                for(int i =0;i<options.getSnapshots().size();i++) {
-//                    FriendlyMessage friendlyMessage = mFirebaseAdapter.getItem(i);
-//                    if ((friendlyMessage.getName().equals(mUsername) && friendlyMessage.toName.equals(toName)) || (friendlyMessage.getName().equals(toName) && friendlyMessage.toName.equals(mUsername))) {
-//                        options.getSnapshots().remove(i);
-//                    }
-//                }
 
                 return friendlyMessage;
             }
@@ -399,7 +385,6 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
                 });
     }
 
-
     /**
      * Apply retrieved length limit to edit text field.
      * This result may be fresh from the server or it may be from cached
@@ -512,7 +497,6 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
         return messageToIndex;
     }
 
-
     @Override
     public void onResume() {
         mFirebaseAdapter.startListening();
@@ -524,7 +508,6 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
         super.onDestroy();
     }
 
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         // An unresolvable error has occurred and Google APIs (including Sign-In) will not
@@ -532,7 +515,5 @@ public class UserChatActivity extends AppCompatActivity implements GoogleApiClie
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
-
-
 
 }

@@ -154,35 +154,6 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
             }
         });
 
-
-//        /**
-//         * Initialize Places. For simplicity, the API key is hard-coded. In a production
-//         * environment we recommend using a secure mechanism to manage API keys.
-//         */
-//        if (!Places.isInitialized()) {
-//            Places.initialize(getActivity().getApplicationContext(), "AIzaSyBEjPfwZEYB3XHyglA3fdRML_HbhPt-q3g");
-//        }
-//
-//        // Initialize the AutocompleteSupportFragment.
-//        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
-//                getChildFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
-//
-//        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-//
-//        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-//            @Override
-//            public void onPlaceSelected(Place place) {
-//                // TODO: Get info about the selected place.
-//                Log.i(AUTOTAG, "Place: " + place.getName() + ", " + place.getId());
-//            }
-//
-//            @Override
-//            public void onError(Status status) {
-//                // TODO: Handle the error.
-//                Log.i(AUTOTAG, "An error occurred: " + status);
-//            }
-//        });
-
         // Map part
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
@@ -198,80 +169,6 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
 
         return view;
     }
-
-
-//
-//    private void setUpLocation() {
-//        if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED &&
-//                ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED)
-//        {
-//            ActivityCompat.requestPermissions(getActivity(), new String[]{
-//                    Manifest.permission.ACCESS_FINE_LOCATION,
-//                    Manifest.permission.ACCESS_COARSE_LOCATION
-//            }, PERMISSION_REQUEST_CODE);
-//        }
-//        else
-//        {
-//            if(checkPlayServices())
-//            {
-//                buildGoogleApiClient();
-//                createLocationRequest();
-//                displayLocation();
-//            }
-//        }
-//    }
-//
-//    private void displayLocation() {
-//        if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED &&
-//                ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED)
-//        {
-//            return;
-//        }
-//        mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-//        if(mLocation!=null)
-//        {
-//            final double latitude = mLocation.getLatitude();
-//            final double longitude = mLocation.getLongitude();
-//
-//            //show marker
-//            mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("your position"));
-//            //Animate camera to your position
-//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15.0f));
-//        }
-//    }
-//
-//    private void createLocationRequest() {
-//        mLocationRequest = new LocationRequest();
-//        mLocationRequest.setInterval(UPDATE_INTERVAL);
-//        mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
-//        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-//        mLocationRequest.setSmallestDisplacement(DISPLACEMENT);
-//    }
-//
-//    private void buildGoogleApiClient() {
-//        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
-//                .addConnectionCallbacks(this)
-//                .addOnConnectionFailedListener(this)
-//                .addApi(LocationServices.API)
-//                .build();
-//        mGoogleApiClient.connect();
-//    }
-//
-//    private boolean checkPlayServices() {
-//        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-//        if(resultCode != ConnectionResult.SUCCESS)
-//        {
-//            if(GooglePlayServicesUtil.isUserRecoverableError(resultCode))
-//                GooglePlayServicesUtil.getErrorDialog(resultCode, this, PLAY_SERVICE_REQUEST).show();
-//            else
-//            {
-//                Toast.makeText(this, "This device is not supported", Toast.LENGTH_SHORT).show();
-//                finish();
-//            }
-//            return false;
-//        }
-//        return true;
-//    }
 
     @Override
     public void onStart() {
@@ -319,18 +216,6 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-//        // Add a marker for alice and move the camera
-//        LatLng alice = new LatLng(42.361145, -71.057083);
-//        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap
-//                (BitmapFactory.decodeResource(getResources(), R.mipmap.ic_user_location))).position(alice).title("Alice"));
-////        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(alice, 12));
-//
-//        // Add a marker for alice and move the camera
-//        LatLng ryan = new LatLng(42.37, -71.06);
-//        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap
-//                (BitmapFactory.decodeResource(getResources(), R.mipmap.ic_user_location))).position(ryan).title("Ryan"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ryan, 14));
-
         // markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource
         //(getResources(), R.mipmap.ic_user_location)));
 
@@ -365,11 +250,11 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
         }
 
         // INFORMATION WINDOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
-        mMap.addMarker(new MarkerOptions()
-                .position(MELBOURNE)
-                .title("Melbourne")
-                .snippet("Population: 4,137,400"));
+//        final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(MELBOURNE)
+//                .title("Melbourne")
+//                .snippet("Population: 4,137,400"));
 
         events.addAll(mListData);
 

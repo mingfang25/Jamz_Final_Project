@@ -1,14 +1,12 @@
 package com.example.jamz;
 
 import android.app.ProgressDialog;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,7 +38,7 @@ public class ImageListActivity extends AppCompatActivity {
         progressDialog.show();
 
         LayoutInflater inflater = getLayoutInflater();
-        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_header,lv,false);
+        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_music_header,lv,false);
         lv.addHeaderView(header);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadMusicActivity.FB_DATABASE_PATH);

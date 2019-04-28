@@ -79,6 +79,7 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
         TextView usernameTxt;
         ImageView uProfileImgVw;
         ImageButton imgBtnMsg;
+        ImageButton imgBtnProfile;
 
         public UserViewHolder(View v) {
             super(v);
@@ -86,6 +87,7 @@ public class Users extends AppCompatActivity implements GoogleApiClient.OnConnec
             usernameTxt = (TextView) itemView.findViewById(R.id.usernameTxt);
             uProfileImgVw = (ImageView) itemView.findViewById(R.id.uProfileImgVw);
             imgBtnMsg = (ImageButton) itemView.findViewById(R.id.imgBtnMsg);
+            imgBtnProfile = (ImageButton) itemView.findViewById(R.id.imgBtnProfile);
 
 
         }

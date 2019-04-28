@@ -36,7 +36,7 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
         View v =inflater.inflate(resource, null);
         TextView tvName = (TextView) v.findViewById(R.id.tvImageName);
 
-        tvName.setText(listImage.get(position).getName());
+        tvName.setText(listImage.get(position).getName() + '.' + listImage.get(position).type);
 
         return v;
     }

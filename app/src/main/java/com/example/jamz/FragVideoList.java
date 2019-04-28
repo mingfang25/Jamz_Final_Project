@@ -1,6 +1,5 @@
 package com.example.jamz;
 
-import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -10,7 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +30,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragMusicList extends Fragment {
+public class FragVideoList extends Fragment {
 
     private DatabaseReference mDatabaseRef;
     private List<ImageUpload> imgList;
@@ -47,8 +46,6 @@ public class FragMusicList extends Fragment {
     private boolean playPause;
     private MediaPlayer mediaPlayer;
     private boolean initialStage = true;
-
-    private String current_name = "";
 
     //Firebase
     FirebaseStorage storage;
@@ -123,7 +120,7 @@ public class FragMusicList extends Fragment {
         }
     }
 
-    public FragMusicList(){
+    public FragVideoList(){
         //Required empty public constructor
     }
 
@@ -147,9 +144,10 @@ public class FragMusicList extends Fragment {
         //music play and pause settings
         //btnplay = (Button) getView().findViewById(R.id.btnPlay);
 
-        mediaPlayer = new MediaPlayer();
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//        mediaPlayer = new MediaPlayer();
+//        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         progressDialog = new ProgressDialog(getActivity());
+        //play/pause button settings
 
         // SHOW MUSIC LIST!!!
         imgList = new ArrayList<>();
@@ -159,11 +157,10 @@ public class FragMusicList extends Fragment {
         progressDialog.show();
 
         LayoutInflater inflater = getLayoutInflater();
-        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_music_header,lv,false);
+        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_video_header,lv,false);
         lv.addHeaderView(header);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadMusicActivity.FB_DATABASE_PATH);
-
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -171,7 +168,7 @@ public class FragMusicList extends Fragment {
 
                 for (DataSnapshot snapshot:dataSnapshot.getChildren()){
                     ImageUpload img= snapshot.getValue(ImageUpload.class);
-                    if(img.type.equals("mp3"))
+                    if(img.type.equals("mp4"))
                         imgList.add(img);
                 }
 
@@ -190,57 +187,14 @@ public class FragMusicList extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0) {
-
+                    Intent i = new Intent(getActivity(), ShowVideo.class);
                     ImageUpload obj = (ImageUpload) lv.getAdapter().getItem(position);
-                    if (!current_name.equals(obj.name)) {
-                        try {
-                            mediaPlayer.stop();
-                        }
-                        catch (Exception e){
-
-                        }
-                        mediaPlayer = new MediaPlayer();
-                        current_name = obj.name;
-                        playPause = false;
-                        initialStage = true;
-                    }
-
-                    if (!playPause) {
-                        //btnplay.setText("Pause");
-                        String file_url = (String) obj.url;
-                        Log.d("Yourtag", file_url);
-
-                        //Log.d("MyLog", "Value is: "+value);
-                        int i = 0;
-
-                        if (initialStage) {
-                            try {
-                                new Player().execute(file_url);
-                            } catch (Exception e) {
-                                Log.e("error_play", e.getMessage());
-                            }
-                        } else {
-                            if (!mediaPlayer.isPlaying())
-                                mediaPlayer.start();
-                        }
-
-                        playPause = true;
-
-                    } else {
-                        //btnplay.setText("Play");
-
-                        if (mediaPlayer.isPlaying()) {
-                            mediaPlayer.pause();
-                        }
-
-                        playPause = false;
-                    }
-                    Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
+                    String file_url = (String) obj.url;
+                    i.putExtra("url", file_url);
+                    startActivity(i);
                 }
             }
         });
-
-
 
         Button btupload = (Button) getView().findViewById(R.id.btnUpload);
         btupload.setOnClickListener(new View.OnClickListener() {
@@ -253,5 +207,6 @@ public class FragMusicList extends Fragment {
         });
 
     }
+
 
 }

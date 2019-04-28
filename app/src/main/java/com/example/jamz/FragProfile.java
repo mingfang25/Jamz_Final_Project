@@ -41,8 +41,6 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
 
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,7 +60,7 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
         adapter.AddFragment( new FragUserProfile(), "Profile");
         adapter.AddFragment( new FragMusicList(), "Music List");
         adapter.AddFragment(new FragMusicList(), "Recent Listens");
-        adapter.AddFragment(new FragMusicList(), "Videos");
+        adapter.AddFragment(new FragVideoList(), "Videos");
 
         profileViewPager.setAdapter(adapter);
         profileTabLayout.setupWithViewPager(profileViewPager);
@@ -127,7 +125,6 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

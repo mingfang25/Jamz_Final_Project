@@ -6,12 +6,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="332dp">
+        android:layout_height="476dp">
 
         <ListView
-            android:id="@+id/ListViewImage"
+            android:id="@+id/MediaListViewImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
+            android:layout_height="415dp"></ListView>
     </LinearLayout>
 
     <LinearLayout

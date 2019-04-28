@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -39,11 +40,12 @@ public class UploadMusicActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
-    private StorageReference mStorageRef;
-    private DatabaseReference mDatabaseRef;
     private String mUsername;
+    private String mUID;
     private String mPhotoUrl;
 
+    private StorageReference mStorageRef;
+    private DatabaseReference mDatabaseRef;
     private EditText txtAudioName;
     private Uri audioUri;
 
@@ -132,21 +134,31 @@ public class UploadMusicActivity extends AppCompatActivity {
             return;
         } else {
             mUsername = mFirebaseUser.getDisplayName();
+            mUID = mFirebaseUser.getUid();
             if (mFirebaseUser.getPhotoUrl() != null) {
                 mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
             }
         }
 
+
         mStorageRef = FirebaseStorage.getInstance().getReference();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
 
         txtAudioName = findViewById(R.id.txtAudioName);
+
+//        Button btnShow = findViewById(R.id.btnShowVideo);
+//        btnShow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(UploadMusicActivity.this, ShowVideo.class);
+//                startActivity(i);
+//            }
+//        });
     }
 
     public void btnBrowse_Click(View v){
         Intent intent = new Intent();
-        //intent.setType("audio/*");
-        intent.setType("video/*");
+        intent.setType("file/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select audio"),REQUEST_CODE);
     }
@@ -164,6 +176,7 @@ public class UploadMusicActivity extends AppCompatActivity {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
+
     String url_out;
     String s;
     String file_name;
@@ -197,7 +210,7 @@ public class UploadMusicActivity extends AppCompatActivity {
                                 final String url = uri.toString();
                                 int test = 1;
                                 url_out = url;
-                                ImageUpload imageUpload = new ImageUpload(file_name, url, mUsername);
+                                ImageUpload imageUpload = new ImageUpload(file_name, url, mUsername, getAudioExt(audioUri));
 
                                 String uploadId = mDatabaseRef.push().getKey();
                                 mDatabaseRef.child(file_name).setValue(imageUpload);

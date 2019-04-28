@@ -101,27 +101,6 @@ public class FragFriends extends Fragment implements GoogleApiClient.OnConnectio
 
     }
 
-    public static class UserViewHolder extends RecyclerView.ViewHolder{
-
-        TextView usernameTxt;
-        ImageView uProfileImgVw;
-        ImageButton btnMessage;
-        ImageButton btnProfile;
-
-        public UserViewHolder(View itemView) {
-            super(itemView);
-
-            usernameTxt = (TextView) itemView.findViewById(R.id.usernameTxt);
-            uProfileImgVw = (ImageView) itemView.findViewById(R.id.uProfileImgVw);
-
-            btnMessage = itemView.findViewById(R.id.imgBtnMsg);
-            btnProfile = itemView.findViewById(R.id.imgBtnProfile);
-        }
-
-    }
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -252,6 +231,15 @@ public class FragFriends extends Fragment implements GoogleApiClient.OnConnectio
                     }
                 });
 
+                viewHolder.imgBtnProfile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+//                        intent.putExtra("toName",viewHolder.usernameTxt.getText().toString());
+//                        startActivity(intent);
+                    }
+                });
+
 
 
 
@@ -338,23 +326,23 @@ public class FragFriends extends Fragment implements GoogleApiClient.OnConnectio
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Button btchat = (Button) getView().findViewById(R.id.btnChat);
-        btchat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), ChatActivity.class);
-                startActivity(i);
-            }
-        });
-
-        Button btnUsers = (Button) getView().findViewById(R.id.btnUsers);
-        btnUsers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), Users.class);
-                startActivity(i);
-            }
-        });
+//        Button btchat = (Button) getView().findViewById(R.id.btnChat);
+//        btchat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getContext(), ChatActivity.class);
+//                startActivity(i);
+//            }
+//        });
+//
+//        Button btnUsers = (Button) getView().findViewById(R.id.btnUsers);
+//        btnUsers.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getContext(), Users.class);
+//                startActivity(i);
+//            }
+//        });
     }
 
 }
