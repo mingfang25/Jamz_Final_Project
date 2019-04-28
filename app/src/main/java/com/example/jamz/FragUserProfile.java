@@ -28,6 +28,8 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.util.Set;
+
 
 public class FragUserProfile extends Fragment {
 
@@ -80,7 +82,7 @@ public class FragUserProfile extends Fragment {
         preferencesImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FragSettings.class);
+                Intent intent = new Intent(getActivity(), Settings.class);
                 startActivity(intent);
             }
         });

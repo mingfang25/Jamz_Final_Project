@@ -90,7 +90,7 @@ public class ChatActivity extends AppCompatActivity
             mFirebaseAdapter;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
-    //GROUPCHAT!!!!!!!!!!!!!!!!!!
+    //GROUPCHAT
     private String eventname;
 
 

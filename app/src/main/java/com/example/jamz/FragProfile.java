@@ -44,7 +44,6 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         profileTabLayout = (TabLayout) v.findViewById(R.id.profileTabLayout);
@@ -72,7 +71,6 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
-        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
     }
 
@@ -102,29 +100,6 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
         mGoogleApiClient.disconnect();
     }
 
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (getActivity().getMenuInflater() != null) {
-            MenuInflater inflater = getActivity().getMenuInflater();
-            inflater.inflate(R.menu.main_menu, menu);
-            return true;
-        }else{return false;}
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings_menu:
-                startActivity(new Intent(getActivity(), FragSettings.class));
-            case R.id.sign_out_menu:
-                FirebaseAuth.getInstance().signOut();
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-                startActivity(new Intent(getActivity(), MainActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
