@@ -10,11 +10,11 @@
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="#E16460"
         android:gravity="center_horizontal"
         android:padding="10dp"
         android:text="My Video List"
-        android:textColor="#FF4500"
+        android:textColor="@color/quantum_orange"
         android:textSize="48dp"
         android:textStyle="normal|bold|italic" />
 </LinearLayout>
