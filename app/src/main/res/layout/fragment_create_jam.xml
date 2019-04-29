@@ -33,8 +33,8 @@
                 android:ems="10"
                 android:fontFeatureSettings="Roboto-Regular"
                 android:inputType="textPersonName"
-                android:text="Event Name"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                tools:text="Event Name" />
 
         </LinearLayout>
 
@@ -53,8 +53,8 @@
                 android:ems="10"
                 android:fontFeatureSettings="Arial"
                 android:inputType="textPersonName"
-                android:text="Sample description for the Jam event. For example a mini concert."
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Event Description" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,9 +76,9 @@
                 android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Location" />
 
             <LinearLayout
                 android:id="@+id/topPanel"
