@@ -3,4 +3,10 @@
     <color name="colorPrimary">#FF9800</color>
     <color name="colorPrimaryDark">#FF5722</color>
     <color name="colorAccent">#FFC107</color>
+
+    <color name="common_blue_bg">#0055bd</color>
+    <color name="common_gray_txt">#514e4e</color>
+    <color name="common_black_50">#80000000</color>
+    <color name="text_dark">#9FA0A0</color>
+    <color name="black">#000000</color>
 </resources>
