@@ -11,11 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.api.services.youtube.YouTube;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +34,7 @@ public class FragUserProfileFriend extends Fragment {
     }
 
     private String get_info_username;
+    private String user_youtube_url;
 
     //Components from XML file
     private ImageView profImageView;
@@ -40,6 +43,7 @@ public class FragUserProfileFriend extends Fragment {
     private TextView txtUserBio;
     private ImageButton messageImgBtn;
     private ImageButton preferencesImgBtn;
+    private Button youtube;
 
     //Firebase references
     private DatabaseReference databaseReference;
@@ -133,6 +137,52 @@ public class FragUserProfileFriend extends Fragment {
 
             }
         });
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("YouTubeInfo");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+
+                    for (DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        //YouTubeCID user = snapshot.getValue(YouTubeCID.class);
+                        String username = (String) snapshot.child("username").getValue();
+                        String YouTubeURL = (String) snapshot.child("YouTubeUrl").getValue();
+                        //String YouTubeURL = user.YouTubeUrl;
+
+                        if(username.equals(get_info_username)){
+                            user_youtube_url = YouTubeURL;
+                        }
+                    }
+
+//                    txtUserBio.setText("Here Is a new Bio");
+//                    txtUserBio.setVisibility(TextView.VISIBLE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        youtube = (Button) view.findViewById(R.id.youtube);
+        youtube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), YoutubeActivity.class);
+                i.putExtra("youtube",user_youtube_url);
+                startActivity(i);
+                // Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         return view;
     }

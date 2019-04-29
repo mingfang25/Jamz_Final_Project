@@ -36,6 +36,7 @@ import com.example.jamz.FragProfile;
 import com.example.jamz.MainActivity;
 import com.example.jamz.R;
 import com.example.jamz.YouTubeCID;
+import com.example.jamz.YoutubeActivity;
 import com.example.jamz.adapters.VideoPostAdapter;
 import com.example.jamz.interfaces.OnItemClickListener;
 import com.example.jamz.models.YoutubeDataModel;
@@ -61,6 +62,7 @@ public class ChannelFragment extends Fragment {
     private static String CHANNEL_ID = ChannelIdActivity.aaa;//"UCRo6jBRIAV28zFmpI8s3-7g";//(String) ChannelIdActivity.MakeRequestTask.getCID();//getLastBitFromUrl(FragProfile.getMyField()); //"UCRo6jBRIAV28zFmpI8s3-7g"; //here you should use your channel id for testing purpose you can use this api also
     private static String CHANNLE_GET_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&channelId=" + CHANNEL_ID + "&maxResults=3&key=" + GOOGLE_YOUTUBE_API_KEY + "";
 
+    private static String Firebase_URL = YoutubeActivity.get_youtube_url;
 
 
     private RecyclerView mList_videos = null;

@@ -10,6 +10,7 @@ import com.example.jamz.adapters.PagerAdapter;
 
 public class YoutubeActivity extends AppCompatActivity {
 
+    public static String get_youtube_url;
 
     private TabLayout tabLayout = null;
     private ViewPager viewPager = null;
@@ -19,6 +20,9 @@ public class YoutubeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube);
+
+        Bundle bundle = getIntent().getExtras();
+        get_youtube_url = bundle.getString("youtube");
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
