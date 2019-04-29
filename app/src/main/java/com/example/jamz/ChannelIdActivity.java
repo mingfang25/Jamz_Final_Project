@@ -157,7 +157,7 @@ public class ChannelIdActivity extends Activity
         callyoutube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ChannelIdActivity.this, "yeeeeea", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ChannelIdActivity.this, "yeeeeea", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getBaseContext(), YoutubeActivity.class);
                 startActivity(i);
 
@@ -218,7 +218,7 @@ public class ChannelIdActivity extends Activity
     private void chooseAccount() {
         if (EasyPermissions.hasPermissions(
                 this, Manifest.permission.GET_ACCOUNTS)) {
-            Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
             String accountName = getPreferences(Context.MODE_PRIVATE)
                     .getString(PREF_ACCOUNT_NAME, null);
             if (accountName != null) {
@@ -231,7 +231,7 @@ public class ChannelIdActivity extends Activity
                         REQUEST_ACCOUNT_PICKER);
             }
         } else {
-            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
 
             // Request the GET_ACCOUNTS permission via a user dialog
             EasyPermissions.requestPermissions(
@@ -462,7 +462,7 @@ public class ChannelIdActivity extends Activity
 //                output.add(0, "Data retrieved using the YouTube Data API:");
                 mOutputText.setText(TextUtils.join("\n", output));
                 aaa = output.get(0);
-                Toast.makeText(ChannelIdActivity.this, "id"+aaa, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ChannelIdActivity.this, "id"+aaa, Toast.LENGTH_SHORT).show();
 
             }
         }
