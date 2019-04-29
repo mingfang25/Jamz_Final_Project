@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public class FragUserProfile extends Fragment {
     //String to get the current User's information
     private String currentUserID;
 
+    private Button youtube;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -160,6 +162,17 @@ public class FragUserProfile extends Fragment {
 //
 //            }
 //        });
+
+
+        youtube = (Button) view.findViewById(R.id.youtube);
+        youtube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), ChannelIdActivity.class);
+                startActivity(i);
+                // Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }

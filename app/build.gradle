@@ -17,6 +17,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    packagingOptions {
+        exclude 'org/apache/http/version.properties'
+        exclude 'org/apache/http/client/version.properties'
+
+    }
+}
+
+
+
+
+repositories {
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -67,6 +83,35 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:design:28.0.0'
+
+
+
+    //youtube:
+
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
+
+    //for image show
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
+
+    implementation 'com.squareup.okhttp:okhttp:2.3.0'
+    implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+
+
+    // compile 'com.google.android.gms:play-services-auth:10.2.1'
+    implementation 'pub.devrel:easypermissions:0.3.0'
+    compile('com.google.api-client:google-api-client-android:1.28.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    compile('com.google.apis:google-api-services-youtube:v3-rev210-1.25.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+
 }
 
 // ADD THIS AT THE BOTTOM
