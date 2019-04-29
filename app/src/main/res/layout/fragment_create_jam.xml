@@ -32,9 +32,11 @@
                 android:background="@null"
                 android:ems="10"
                 android:fontFeatureSettings="Roboto-Regular"
+                android:hint="Event Name"
                 android:inputType="textPersonName"
                 android:textSize="36sp"
-                tools:text="Event Name" />
+                tools:text="Event Name"
+                tools:visibility="visible" />
 
         </LinearLayout>
 
@@ -52,9 +54,11 @@
                 android:background="@null"
                 android:ems="10"
                 android:fontFeatureSettings="Arial"
+                android:hint="Event Description"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
-                tools:text="Event Description" />
+                tools:text="Event Description"
+                tools:visibility="visible" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,9 +80,11 @@
                 android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Location"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="16sp"
-                tools:text="Location" />
+                tools:text="Location"
+                tools:visibility="visible" />
 
             <LinearLayout
                 android:id="@+id/topPanel"
