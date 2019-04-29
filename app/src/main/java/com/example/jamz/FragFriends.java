@@ -234,9 +234,9 @@ public class FragFriends extends Fragment implements GoogleApiClient.OnConnectio
                 viewHolder.imgBtnProfile.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        Intent intent = new Intent(getActivity(), ProfileActivity.class);
-//                        intent.putExtra("toName",viewHolder.usernameTxt.getText().toString());
-//                        startActivity(intent);
+                        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                        intent.putExtra("toName",viewHolder.usernameTxt.getText());
+                        startActivity(intent);
                     }
                 });
 

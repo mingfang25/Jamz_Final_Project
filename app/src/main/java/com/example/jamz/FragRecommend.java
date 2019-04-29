@@ -90,7 +90,6 @@ public class FragRecommend extends Fragment implements
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mListData = ((NavigationActivity) activity).getTicketMasterEvents();
-        int test =1;
     }
 
     @Override

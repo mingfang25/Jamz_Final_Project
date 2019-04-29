@@ -30,9 +30,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class FragProfile extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
 
+    private String get_info_username;
+
     private TabLayout profileTabLayout;
     private ViewPager profileViewPager;
     private static final String TAG = "FragProfile";
+
+
 
     private GoogleApiClient mGoogleApiClient;
 

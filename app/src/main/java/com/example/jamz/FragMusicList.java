@@ -1,5 +1,6 @@
 package com.example.jamz;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,6 +21,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +35,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragMusicList extends Fragment {
+
+    private String get_info_username;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private String mUsername;
+    private String mUID;
+    private String mPhotoUrl;
 
     private DatabaseReference mDatabaseRef;
     private List<ImageUpload> imgList;
@@ -131,9 +141,36 @@ public class FragMusicList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflate the layout for this fragment
+// Initialize Firebase Auth
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        if (mFirebaseUser == null) {
+            // Not signed in, launch the Sign In activity
+            startActivity(new Intent(getActivity(), MainActivity.class));
+        } else {
+            mUsername = mFirebaseUser.getDisplayName();
+            mUID = mFirebaseUser.getUid();
+            if (mFirebaseUser.getPhotoUrl() != null) {
+                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+            }
+        }
+
+        if(get_info_username == null)
+            get_info_username = mUsername;
+//        Bundle bundle = new Bundle();
+//        if(bundle.getString("get_info_username")!=null)
+//            get_info_username = bundle.getString("get_info_username");
 
         return inflater.inflate(R.layout.fragment_music_list, container, false);
     }
+//
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        if(((ProfileActivity) activity).getVisitUsername()!=null)
+//            get_info_username = ((ProfileActivity) activity).getVisitUsername();
+//    }
+
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -171,8 +208,9 @@ public class FragMusicList extends Fragment {
 
                 for (DataSnapshot snapshot:dataSnapshot.getChildren()){
                     ImageUpload img= snapshot.getValue(ImageUpload.class);
-                    if(img.type.equals("mp3"))
-                        imgList.add(img);
+                    if(img.username.equals(get_info_username))
+                        if(img.type.equals("mp3"))
+                            imgList.add(img);
                 }
 
                 adapter = new ImageListAdapter(getActivity(), R.layout.image_item,imgList);

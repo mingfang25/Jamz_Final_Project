@@ -22,6 +22,7 @@
         <activity android:name=".ImageListActivity" />
         <activity android:name=".UploadMusicActivity" />
         <activity android:name=".EventDetailActivity" />
+        <activity android:name=".ProfileActivity"/>
         <activity android:name=".ShowVideo" />
         <activity android:name=".Settings" />
 

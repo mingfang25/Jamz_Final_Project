@@ -145,7 +145,6 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         navigation.setOnNavigationItemSelectedListener(this);
     }
 
-
     // This method will load the Fragment selected by User
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
