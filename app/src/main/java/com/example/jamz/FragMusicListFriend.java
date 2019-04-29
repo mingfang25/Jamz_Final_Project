@@ -1,6 +1,8 @@
 package com.example.jamz;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -32,7 +34,11 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragVideoList extends Fragment {
+public class FragMusicListFriend extends Fragment {
+
+    public FragMusicListFriend() {
+        // Required empty public constructor
+    }
 
     private String get_info_username;
     private FirebaseAuth mFirebaseAuth;
@@ -55,6 +61,8 @@ public class FragVideoList extends Fragment {
     private boolean playPause;
     private MediaPlayer mediaPlayer;
     private boolean initialStage = true;
+
+    private String current_name = "";
 
     //Firebase
     FirebaseStorage storage;
@@ -129,34 +137,39 @@ public class FragVideoList extends Fragment {
         }
     }
 
-    public FragVideoList(){
-        //Required empty public constructor
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflate the layout for this fragment
+//// Initialize Firebase Auth
+//        mFirebaseAuth = FirebaseAuth.getInstance();
+//        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+//        if (mFirebaseUser == null) {
+//            // Not signed in, launch the Sign In activity
+//            startActivity(new Intent(getActivity(), MainActivity.class));
+//        } else {
+//            mUsername = mFirebaseUser.getDisplayName();
+//            mUID = mFirebaseUser.getUid();
+//            if (mFirebaseUser.getPhotoUrl() != null) {
+//                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+//            }
+//        }
+//
+//        if(get_info_username == null)
+//            get_info_username = mUsername;
+//        Bundle bundle = new Bundle();
+//        if(bundle.getString("get_info_username")!=null)
+//            get_info_username = bundle.getString("get_info_username");
 
-        // Initialize Firebase Auth
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        if (mFirebaseUser == null) {
-            // Not signed in, launch the Sign In activity
-            startActivity(new Intent(getActivity(), MainActivity.class));
-        } else {
-            mUsername = mFirebaseUser.getDisplayName();
-            mUID = mFirebaseUser.getUid();
-            if (mFirebaseUser.getPhotoUrl() != null) {
-                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
-            }
-        }
-
-        if(get_info_username == null)
-            get_info_username = mUsername;
-
-        return inflater.inflate(R.layout.fragment_music_list, container, false);
+        return inflater.inflate(R.layout.fragment_frag_music_list_friend, container, false);
     }
+//
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+            get_info_username = ((ProfileActivity) activity).getVisitUsername();
+    }
+
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -170,10 +183,9 @@ public class FragVideoList extends Fragment {
         //music play and pause settings
         //btnplay = (Button) getView().findViewById(R.id.btnPlay);
 
-//        mediaPlayer = new MediaPlayer();
-//        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         progressDialog = new ProgressDialog(getActivity());
-        //play/pause button settings
 
         // SHOW MUSIC LIST!!!
         imgList = new ArrayList<>();
@@ -183,10 +195,11 @@ public class FragVideoList extends Fragment {
         progressDialog.show();
 
         LayoutInflater inflater = getLayoutInflater();
-        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_video_header,lv,false);
+        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_music_header,lv,false);
         lv.addHeaderView(header);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadMusicActivity.FB_DATABASE_PATH);
+
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -194,9 +207,9 @@ public class FragVideoList extends Fragment {
 
                 for (DataSnapshot snapshot:dataSnapshot.getChildren()){
                     ImageUpload img= snapshot.getValue(ImageUpload.class);
-                    if(img.username.equals(mUsername))
-                    if(img.type.equals("mp4"))
-                        imgList.add(img);
+                    if(img.username.equals(get_info_username))
+                        if(img.type.equals("mp3"))
+                            imgList.add(img);
                 }
 
                 adapter = new ImageListAdapter(getActivity(), R.layout.image_item,imgList);
@@ -214,22 +227,53 @@ public class FragVideoList extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0) {
-                    Intent i = new Intent(getActivity(), ShowVideo.class);
-                    ImageUpload obj = (ImageUpload) lv.getAdapter().getItem(position);
-                    String file_url = (String) obj.url;
-                    i.putExtra("url", file_url);
-                    startActivity(i);
-                }
-            }
-        });
 
-        Button btupload = (Button) getView().findViewById(R.id.btnUpload);
-        btupload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), UploadMusicActivity.class);
-                mediaPlayer.stop();
-                startActivity(i);
+                    ImageUpload obj = (ImageUpload) lv.getAdapter().getItem(position);
+                    if (!current_name.equals(obj.name)) {
+                        try {
+                            mediaPlayer.stop();
+                        }
+                        catch (Exception e){
+
+                        }
+                        mediaPlayer = new MediaPlayer();
+                        current_name = obj.name;
+                        playPause = false;
+                        initialStage = true;
+                    }
+
+                    if (!playPause) {
+                        //btnplay.setText("Pause");
+                        String file_url = (String) obj.url;
+                        Log.d("Yourtag", file_url);
+
+                        //Log.d("MyLog", "Value is: "+value);
+                        int i = 0;
+
+                        if (initialStage) {
+                            try {
+                                new FragMusicListFriend.Player().execute(file_url);
+                            } catch (Exception e) {
+                                Log.e("error_play", e.getMessage());
+                            }
+                        } else {
+                            if (!mediaPlayer.isPlaying())
+                                mediaPlayer.start();
+                        }
+
+                        playPause = true;
+
+                    } else {
+                        //btnplay.setText("Play");
+
+                        if (mediaPlayer.isPlaying()) {
+                            mediaPlayer.pause();
+                        }
+
+                        playPause = false;
+                    }
+                    Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

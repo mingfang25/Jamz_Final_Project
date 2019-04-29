@@ -1,8 +1,9 @@
 package com.example.jamz;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -17,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,8 +32,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragVideoList extends Fragment {
-
+public class FragVideoListFriend extends Fragment {
     private String get_info_username;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -129,7 +128,7 @@ public class FragVideoList extends Fragment {
         }
     }
 
-    public FragVideoList(){
+    public FragVideoListFriend(){
         //Required empty public constructor
     }
 
@@ -138,24 +137,24 @@ public class FragVideoList extends Fragment {
                              Bundle savedInstanceState) {
         //Inflate the layout for this fragment
 
-        // Initialize Firebase Auth
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        if (mFirebaseUser == null) {
-            // Not signed in, launch the Sign In activity
-            startActivity(new Intent(getActivity(), MainActivity.class));
-        } else {
-            mUsername = mFirebaseUser.getDisplayName();
-            mUID = mFirebaseUser.getUid();
-            if (mFirebaseUser.getPhotoUrl() != null) {
-                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
-            }
-        }
+//        // Initialize Firebase Auth
+//        mFirebaseAuth = FirebaseAuth.getInstance();
+//        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+//        if (mFirebaseUser == null) {
+//            // Not signed in, launch the Sign In activity
+//            startActivity(new Intent(getActivity(), MainActivity.class));
+//        } else {
+//            mUsername = mFirebaseUser.getDisplayName();
+//            mUID = mFirebaseUser.getUid();
+//            if (mFirebaseUser.getPhotoUrl() != null) {
+//                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+//            }
+//        }
+//
+//        if(get_info_username == null)
+//            get_info_username = mUsername;
 
-        if(get_info_username == null)
-            get_info_username = mUsername;
-
-        return inflater.inflate(R.layout.fragment_music_list, container, false);
+        return inflater.inflate(R.layout.fragment_frag_music_list_friend, container, false);
     }
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -194,9 +193,9 @@ public class FragVideoList extends Fragment {
 
                 for (DataSnapshot snapshot:dataSnapshot.getChildren()){
                     ImageUpload img= snapshot.getValue(ImageUpload.class);
-                    if(img.username.equals(mUsername))
-                    if(img.type.equals("mp4"))
-                        imgList.add(img);
+                    if(img.username.equals(get_info_username))
+                        if(img.type.equals("mp4"))
+                            imgList.add(img);
                 }
 
                 adapter = new ImageListAdapter(getActivity(), R.layout.image_item,imgList);
@@ -222,17 +221,12 @@ public class FragVideoList extends Fragment {
                 }
             }
         });
+    }
 
-        Button btupload = (Button) getView().findViewById(R.id.btnUpload);
-        btupload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), UploadMusicActivity.class);
-                mediaPlayer.stop();
-                startActivity(i);
-            }
-        });
-
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        get_info_username = ((ProfileActivity) activity).getVisitUsername();
     }
 
 
