@@ -4,16 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/quantum_grey200">
+    android:background="@color/quantum_grey200"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtSettingsPage"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/signOutbtn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="312dp"
-        android:text="Here's the settings page"
+        android:layout_marginTop="15dp"
+        android:text="@string/sign_out" />
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/chngeDName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Change Display Name:" />
+
+        <EditText
+            android:id="@+id/nameEdtTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter Name"
+            android:inputType="textPersonName" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/pickInstrumentsTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Instrument(s):" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/bassCB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bass" />
+
+            <CheckBox
+                android:id="@+id/drumCB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Drum" />
+
+            <CheckBox
+                android:id="@+id/fluteCB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Flute" />
+
+            <CheckBox
+                android:id="@+id/guitaraCB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Guitar(Acoustic)" />
+
+            <CheckBox
+                android:id="@+id/guitareCB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Guitar(Electric)" />
+
+            <CheckBox
+                android:id="@+id/pianoCB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Piano" />
+
+            <CheckBox
+                android:id="@+id/saxophoneCB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Saxophone" />
+
+            <CheckBox
+                android:id="@+id/violinCB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Violin" />
+
+            <CheckBox
+                android:id="@+id/voiceCB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Voice(Singer)" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>
