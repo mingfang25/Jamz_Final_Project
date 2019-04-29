@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
         android:allowBackup="true"
@@ -14,12 +16,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ImageListActivity"></activity>
+        <activity android:name=".YoutubeActivity"></activity>
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".ChannelIdActivity" />
+        <activity android:name=".ImageListActivity" />
         <activity android:name=".UploadMusicActivity" />
         <activity android:name=".EventDetailActivity" />
-        <activity android:name=".ShowVideo"/>
-        <activity android:name=".Settings"></activity>
-        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".ShowVideo" />
+        <activity android:name=".Settings" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -58,7 +62,6 @@
                     android:scheme="http" />
             </intent-filter>
         </activity>
-
         <activity android:name=".UserChatActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -71,8 +74,6 @@
                     android:pathPrefix="/userToUserChat"
                     android:scheme="http" />
             </intent-filter>
-
-
         </activity>
         <activity android:name=".Users">
             <intent-filter>
