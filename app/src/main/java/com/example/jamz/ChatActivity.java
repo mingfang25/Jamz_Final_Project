@@ -82,6 +82,8 @@ public class ChatActivity extends AppCompatActivity
         }
     }
 
+    //new comments
+
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
