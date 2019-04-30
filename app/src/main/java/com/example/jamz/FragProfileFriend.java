@@ -33,8 +33,6 @@ public class FragProfileFriend extends Fragment {
     private String mParam2;
 
 
-    private ImageButton preferencesImgBtn;
-
     private OnFragmentInteractionListener mListener;
 
     public FragProfileFriend() {
@@ -71,7 +69,6 @@ public class FragProfileFriend extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        preferencesImgBtn = (ImageButton) getView().findViewById(R.id.preferencesImgBtn);
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_frag_profile_friend, container, false);

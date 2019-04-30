@@ -12,6 +12,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,6 +25,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.data.model.User;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -37,7 +43,7 @@ import org.w3c.dom.Text;
 import java.util.Set;
 
 
-public class FragUserProfile extends Fragment {
+public class FragUserProfile extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
 
     public FragUserProfile() {
         //Required empty public constructor
@@ -49,13 +55,13 @@ public class FragUserProfile extends Fragment {
     private TextView txtInstrument;
     private TextView txtUserBio;
     private ImageButton messageImgBtn;
-    private ImageButton preferencesImgBtn;
 
     //Firebase references
     private DatabaseReference databaseReference;
     private DatabaseReference prefNameRef;
     private DatabaseReference bioRef;
     private DatabaseReference instrumentRef;
+    private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private String preferredName;
@@ -73,13 +79,14 @@ public class FragUserProfile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        setHasOptionsMenu(true);
+
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_users_profile, container, false);
 
         profImageView = (ImageView) view.findViewById(R.id.profImageView);
         txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
         messageImgBtn = (ImageButton) view.findViewById(R.id.messageImgBtn);
-        preferencesImgBtn = (ImageButton) view.findViewById(R.id.preferencesImgBtn);
         txtUserBio = (TextView) view.findViewById(R.id.txtUserBio);
         txtInstrument = (TextView) view.findViewById(R.id.txtInstrument);
 
@@ -89,15 +96,6 @@ public class FragUserProfile extends Fragment {
                 Intent intent = new Intent(getActivity(), UserChatActivity.class);
                 intent.putExtra("displayName",mUsername);
                 intent.putExtra("toName", mUsername);
-                startActivity(intent);
-            }
-        });
-
-        //Preferences page for User
-        preferencesImgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Settings.class);
                 startActivity(intent);
             }
         });
@@ -191,7 +189,65 @@ public class FragUserProfile extends Fragment {
             }
         });
 
+        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
+                .enableAutoManage(getActivity() /* FragmentActivity */, 1, this::onConnectionFailed /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API)
+                .build();
+
+
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mGoogleApiClient.stopAutoManage(getActivity());
+        mGoogleApiClient.disconnect();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mGoogleApiClient.stopAutoManage(getActivity());
+        mGoogleApiClient.disconnect();
+    }
+
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        if (getActivity().getMenuInflater() != null) {
+//            MenuInflater inflater = getActivity().getMenuInflater();
+//            inflater.inflate(R.menu.main_menu, menu);
+//            return true;
+//        }else{return false;}
+//    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu,inflater);
+        inflater.inflate(R.menu.main_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settings_menu:
+                startActivity(new Intent(getActivity(), Settings.class));
+                return true;
+            case R.id.sign_out_menu:
+                FirebaseAuth.getInstance().signOut();
+                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+                startActivity(new Intent(getActivity(), MainActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
+        // be available.
+        Log.d("Settings", "onConnectionFailed:" + connectionResult);
+        Toast.makeText(getActivity(), "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
 
 }

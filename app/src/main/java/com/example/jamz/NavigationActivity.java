@@ -190,6 +190,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
                 fragment = new FragProfile();
                 break;
 
+
         }
 
         return loadFragment(fragment);

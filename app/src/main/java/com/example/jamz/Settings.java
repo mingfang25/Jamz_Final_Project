@@ -35,8 +35,6 @@ import java.util.ArrayList;
 public class Settings extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
 
-
-    private Button signOutbtn;
     private EditText nameEdtText;
     private CheckBox bassCB;
     private CheckBox drumCB;
@@ -182,29 +180,29 @@ public class Settings extends AppCompatActivity implements GoogleApiClient.OnCon
 
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (this.getMenuInflater() != null) {
-            MenuInflater inflater = this.getMenuInflater();
-            inflater.inflate(R.menu.main_menu, menu);
-            return true;
-        }else{return false;}
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings_menu:
-                startActivity(new Intent(this, Settings.class));
-            case R.id.sign_out_menu:
-                FirebaseAuth.getInstance().signOut();
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-                startActivity(new Intent(this, MainActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        if (this.getMenuInflater() != null) {
+//            MenuInflater inflater = this.getMenuInflater();
+//            inflater.inflate(R.menu.main_menu, menu);
+//            return true;
+//        }else{return false;}
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.settings_menu:
+//                startActivity(new Intent(this, Settings.class));
+//            case R.id.sign_out_menu:
+//                FirebaseAuth.getInstance().signOut();
+//                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+//                startActivity(new Intent(this, MainActivity.class));
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+//
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
