@@ -122,9 +122,9 @@ public class FragVideoList extends Fragment {
         progressDialog.setMessage("wait loading");
         progressDialog.show();
 
-        LayoutInflater inflater = getLayoutInflater();
-        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_video_header,lv,false);
-        lv.addHeaderView(header);
+//        LayoutInflater inflater = getLayoutInflater();
+//        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_video_header,lv,false);
+//        lv.addHeaderView(header);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadMusicActivity.FB_DATABASE_PATH);
         mDatabaseRef.addValueEventListener(new ValueEventListener() {

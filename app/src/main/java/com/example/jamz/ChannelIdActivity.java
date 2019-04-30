@@ -461,7 +461,7 @@ public class ChannelIdActivity extends Activity
                 mOutputText.setText("No results returned.");
             } else {
 //                output.add(0, "Data retrieved using the YouTube Data API:");
-                mOutputText.setText(TextUtils.join("\n", output));
+//                mOutputText.setText(TextUtils.join("\n", output));
                 aaa = output.get(0);
 //                Toast.makeText(ChannelIdActivity.this, "id"+aaa, Toast.LENGTH_SHORT).show();
 
