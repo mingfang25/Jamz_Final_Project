@@ -193,7 +193,7 @@ public class UploadMusicActivity extends AppCompatActivity {
 
                 StorageReference ref;
 
-                if(getAudioExt(audioUri)!="mp3" && getAudioExt(audioUri)!="mp4") {
+                if(!getAudioExt(audioUri).equals("mp3") && !getAudioExt(audioUri).equals("mp4")) {
                     ref = mStorageRef.child(FB_STORAGE_PATH + file_name + ".mp3");
                 }
                 else {
@@ -211,7 +211,7 @@ public class UploadMusicActivity extends AppCompatActivity {
 
                         StorageReference storageRef;
 
-                        if(getAudioExt(audioUri)!="mp3" && getAudioExt(audioUri)!="mp4") {
+                        if(!getAudioExt(audioUri).equals("mp3") && !getAudioExt(audioUri).equals("mp4")) {
                             // Create a storage reference from our app
                             storageRef = storage.getReferenceFromUrl(FB_HEAD + FB_STORAGE_PATH + file_name + ".mp3");
                         }
@@ -228,7 +228,7 @@ public class UploadMusicActivity extends AppCompatActivity {
                                 url_out = url;
 
                                 ImageUpload imageUpload;
-                                if(getAudioExt(audioUri)!="mp3" && getAudioExt(audioUri)!="mp4") {
+                                if(getAudioExt(audioUri).equals("mp3") && getAudioExt(audioUri).equals("mp4")) {
                                     // Create a storage reference from our app
                                     imageUpload = new ImageUpload(file_name, url, mUsername, "mp3");
                                 }
