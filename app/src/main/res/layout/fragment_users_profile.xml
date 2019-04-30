@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Add Your Top Tracks"/>
+            android:text="Top Tracks"/>
 
         <ImageButton
             android:id="@+id/messageImgBtn"
@@ -63,13 +63,6 @@
             card_view:srcCompat="@drawable/ic_baseline_message_24px" />
     </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/messageImgBtn"
-                android:layout_width="59dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                card_view:srcCompat="@drawable/ic_baseline_message_24px" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
