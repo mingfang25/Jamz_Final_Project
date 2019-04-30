@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none">
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:orientation="vertical"-->
-    <!--android:padding="10dp">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:padding="10dp">-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:orientation="vertical"
             android:weightSum="1">
 
-            <TextView
+            <EditText
                 android:id="@+id/editEventName"
                 android:layout_width="match_parent"
                 android:layout_height="51dp"
@@ -32,9 +32,11 @@
                 android:background="@null"
                 android:ems="10"
                 android:fontFeatureSettings="Roboto-Regular"
+                android:hint="Event Name"
                 android:inputType="textPersonName"
-                android:text="Event Name"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                tools:text="Event Name"
+                tools:visibility="visible" />
 
         </LinearLayout>
 
@@ -44,7 +46,7 @@
             android:orientation="vertical"
             android:weightSum="1">
 
-            <TextView
+            <EditText
                 android:id="@+id/editDescription"
                 android:layout_width="match_parent"
                 android:layout_height="49.05dp"
@@ -52,9 +54,11 @@
                 android:background="@null"
                 android:ems="10"
                 android:fontFeatureSettings="Arial"
+                android:hint="Event Description"
                 android:inputType="textPersonName"
-                android:text="Sample description for the Jam event. For example a mini concert."
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Event Description"
+                tools:visibility="visible" />
         </LinearLayout>
 
         <LinearLayout
@@ -78,7 +82,9 @@
                 android:layout_height="wrap_content"
                 android:text="Location"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Location"
+                tools:visibility="visible" />
 
             <fragment
                 android:id="@+id/map"
@@ -97,59 +103,43 @@
 
             <TextView
                 android:id="@+id/tvFrom"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="From"
+                android:text="Date"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="16sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/editStart"
-                android:layout_width="180dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
                 android:ems="10"
+                android:hint="MM.DD.YY"
                 android:inputType="date"
-                android:text="4.16.2019"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="36dp" />
 
             <TextView
                 android:id="@+id/tvTo"
-                android:layout_width="36dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="To"
+                android:text="Time"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="16sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/editEnd"
-                android:layout_width="180dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
                 android:ems="10"
-                android:inputType="date"
-                android:text="4.17.2019"
-                tools:layout_editor_absoluteY="35dp" />
+                android:hint="00:00:00"
+                android:inputType="time" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <CheckBox
-                android:id="@+id/cballday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="All-day" />
         </LinearLayout>
 
         <LinearLayout
@@ -162,7 +152,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="EVENT CHAT" />
+                android:text="Event Chat" />
+
         </LinearLayout>
 
     </LinearLayout>

@@ -138,7 +138,7 @@ public class FragRecommend extends Fragment implements
         public FragRecommend.MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                                        int viewType) {
 
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_postwithoutbtn, parent, false);
             FragRecommend.MyAdapter.MyViewHolder vh = new FragRecommend.MyAdapter.MyViewHolder(view);
             return vh;
         }

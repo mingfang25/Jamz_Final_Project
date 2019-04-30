@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +30,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +52,11 @@ private RecyclerView.LayoutManager mLayoutManager;
 private RecyclerView recyclerView;
 private LinearLayoutManager linearLayoutManager;
 private FirebaseRecyclerAdapter adapter;
+
+        private FirebaseAuth mFirebaseAuth;
+        private FirebaseUser mFirebaseUser;
+        private String mUsername;
+        private String mPhotoUrl;
 
 private GoogleMap mMap;
 private static final int LOCATION_PERMISSION_REQUEST_CODE=1;
@@ -77,6 +85,16 @@ public FragJAMZ(){
 @Override
 public View onCreateView(LayoutInflater inflater,ViewGroup container,
         Bundle savedInstanceState){
+
+        // Initialize Firebase Auth
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+        mUsername = mFirebaseUser.getDisplayName();
+        if (mFirebaseUser.getPhotoUrl() != null) {
+                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+        }
+
         //Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_frag_jamz,container,false);
 
@@ -176,8 +194,29 @@ public void onClick(View v){
         }
         });
 
+        holder.imgBtnMsg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), UserChatActivity.class);
+                        intent.putExtra("displayName",mUsername);
+                        intent.putExtra("toName",holder.postAuthor.getText().toString());
+                        //intent.setClass(v.getContext(), UserChatActivity.class);//Go to individual chat activity
+                        startActivity(intent);
+                        //viewHolder.usernameTxt
+                }
+        });
 
-        }
+        holder.imgBtnProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                        intent.putExtra("toName",holder.postAuthor.getText());
+                        startActivity(intent);
+                }
+        });
+
+
+}
 
         };
         recyclerView.setAdapter(adapter);
@@ -201,6 +240,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public TextView EventTime;
     public TextView postAuthor;
     public ImageView AuthorPhoto;
+        ImageButton imgBtnMsg;
+        ImageButton imgBtnProfile;
 
     public ViewHolder(View itemView) {
         super(itemView);
@@ -209,6 +250,9 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         EventTime = itemView.findViewById(R.id.EventTime);
         postAuthor = itemView.findViewById(R.id.usernameTxt);
         AuthorPhoto = itemView.findViewById(R.id.uProfileImgVw);
+            imgBtnMsg = (ImageButton) itemView.findViewById(R.id.imgBtnMsg);
+            imgBtnProfile = (ImageButton) itemView.findViewById(R.id.imgBtnProfile);
+
     }
 
 }

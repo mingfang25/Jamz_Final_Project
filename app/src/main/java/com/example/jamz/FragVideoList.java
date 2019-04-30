@@ -60,15 +60,8 @@ public class FragVideoList extends Fragment {
     FirebaseStorage storage;
     StorageReference storageReference;
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mediaPlayer != null) {
-            mediaPlayer.reset();
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
-    }
+
+
 
     //upload audio function
     private void chooseAudio() {
@@ -76,57 +69,6 @@ public class FragVideoList extends Fragment {
         intent.setType("audio/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select File"), PICK_AUDIO_REQUEST);
-    }
-
-
-    class Player extends AsyncTask<String, Void, Boolean> {
-        @Override
-        protected Boolean doInBackground(String... strings) {
-            Boolean prepared = false;
-
-            try {
-                mediaPlayer.setDataSource(strings[0]);
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        initialStage = true;
-                        playPause = false;
-                        //btnplay.setText("Play");
-                        mediaPlayer.stop();
-                        mediaPlayer.reset();
-                    }
-                });
-
-                mediaPlayer.prepare();
-                prepared = true;
-
-            } catch (Exception e) {
-                Log.e("playApp", e.getMessage());
-                prepared = false;
-            }
-
-            return prepared;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            super.onPostExecute(aBoolean);
-
-            if (progressDialog.isShowing()) {
-                progressDialog.cancel();
-            }
-
-            mediaPlayer.start();
-            initialStage = false;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressDialog.setMessage("Buffering...");
-            progressDialog.show();
-        }
     }
 
     public FragVideoList(){
@@ -170,8 +112,6 @@ public class FragVideoList extends Fragment {
         //music play and pause settings
         //btnplay = (Button) getView().findViewById(R.id.btnPlay);
 
-//        mediaPlayer = new MediaPlayer();
-//        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         progressDialog = new ProgressDialog(getActivity());
         //play/pause button settings
 
@@ -228,7 +168,6 @@ public class FragVideoList extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), UploadMusicActivity.class);
-                mediaPlayer.stop();
                 startActivity(i);
             }
         });

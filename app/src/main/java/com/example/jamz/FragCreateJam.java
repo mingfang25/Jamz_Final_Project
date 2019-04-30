@@ -177,7 +177,6 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
         final EditText edtFromEnd = (EditText) getView().findViewById(R.id.editEnd);
         //final EditText edtToStart = (EditText) getView().findViewById(R.id.editToStart);
         //final EditText edtToEnd = (EditText) getView().findViewById(R.id.editToEnd);
-        final CheckBox cbAllday = (CheckBox) getView().findViewById(R.id.cballday);
 
         edteventname.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,11 +216,10 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
                 EventName = edteventname.getText().toString() ;
                 EventDescription = edteventdescription.getText().toString();
                 EventFromStart = edtFromStart.getText().toString();
-                EventFromEnd = edtFromStart.getText().toString();
+                EventFromEnd = edtFromEnd.getText().toString();
                 mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
                 //EventToStart = edtToStart.getText().toString();
                 //EventToEnd = edtToEnd.getText().toString();
-                Eventallday = cbAllday.isChecked();
                 basicReadWrite();
             }
         });

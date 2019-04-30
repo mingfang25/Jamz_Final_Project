@@ -111,7 +111,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
                         double event_lat = Double.valueOf(json.getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getJSONObject("location").getString("latitude"));
                         double event_lont = Double.valueOf(json.getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getJSONObject("location").getString("longitude"));
 
-                        Event youtubeObject = new Event("TicketMaster",event_name,event_description,event_datetime,event_address,event_lat,event_lont,event_photo_url);
+                        Event youtubeObject = new Event("TicketMaster",event_name,event_description,event_start_date,event_start_time,event_address,event_lat,event_lont,event_photo_url);
 
                         mList.add(youtubeObject);
 

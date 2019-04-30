@@ -33,6 +33,10 @@ public class FragUserProfileFriend extends Fragment {
         // Required empty public constructor
     }
 
+    private String preferredName;
+    private String instruments;
+    private String userBio;
+
     private String get_info_username;
     private String user_youtube_url;
 
@@ -42,7 +46,6 @@ public class FragUserProfileFriend extends Fragment {
     private TextView txtInstrument;
     private TextView txtUserBio;
     private ImageButton messageImgBtn;
-    private ImageButton preferencesImgBtn;
     private Button youtube;
 
     //Firebase references
@@ -66,39 +69,42 @@ public class FragUserProfileFriend extends Fragment {
                              Bundle savedInstanceState) {
 
         //Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_users_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_users_profile_friends, container, false);
 
         profImageView = (ImageView) view.findViewById(R.id.profImageView);
         txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
         messageImgBtn = (ImageButton) view.findViewById(R.id.messageImgBtn);
-        preferencesImgBtn = (ImageButton) view.findViewById(R.id.preferencesImgBtn);
+        txtUserBio = (TextView) view.findViewById(R.id.txtUserBio);
+        txtInstrument = (TextView) view.findViewById(R.id.txtInstrument);
 
         messageImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), UserChatActivity.class);
                 intent.putExtra("displayName",mUsername);
-                intent.putExtra("toName", mUsername);
+                intent.putExtra("toName", get_info_username);
                 startActivity(intent);
             }
         });
 
-        //Preferences page for User
-        preferencesImgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FragSettings.class);
-                startActivity(intent);
-            }
-        });
+//
+//        //Preferences page for User
+//        preferencesImgBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), FragSettings.class);
+//                startActivity(intent);
+//            }
+//        });
 
         profImageView = (ImageView) view.findViewById(R.id.profImageView);
         txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
+        txtInstrument = (TextView) view.findViewById(R.id.txtInstrument);
 
         //Preferences button should only be visible to current user on their profile
-        if (currentUserID == mUsername) {
-            preferencesImgBtn.setVisibility(ImageButton.VISIBLE);
-        } else {preferencesImgBtn.setVisibility(ImageButton.GONE);}
+//        if (currentUserID == mUsername) {
+//            preferencesImgBtn.setVisibility(ImageButton.VISIBLE);
+//        } else {preferencesImgBtn.setVisibility(ImageButton.GONE);}
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -137,6 +143,44 @@ public class FragUserProfileFriend extends Fragment {
 
             }
         });
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("UserInfo").child(get_info_username);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    preferredName = dataSnapshot.child("altdisplayname").getValue().toString();
+                    if (preferredName != null) {
+                        txtUserProf.setText(preferredName);
+                    } else {
+                        txtUserProf.setText(mUsername);
+                    }
+                    userBio = dataSnapshot.child("userbio").getValue().toString();
+                    if (userBio != null) {
+                        txtUserBio.setText(userBio);
+                    } else {
+                        txtUserBio.setText("Nothing to say, yet.");
+                    }
+                    instruments = dataSnapshot.child("userinstruments").getValue().toString();
+                    if (instruments != null) {
+                        txtInstrument.setText(instruments);
+                    } else {
+                        txtInstrument.setText("No Instruments, yet.");
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference("YouTubeInfo");
