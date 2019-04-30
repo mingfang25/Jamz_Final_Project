@@ -38,6 +38,8 @@ public class FragUserProfileFriend extends Fragment {
     private String userBio;
 
     private String get_info_username;
+
+    public static String youtubeuser;
     private String user_youtube_url;
 
     //Components from XML file
@@ -58,10 +60,13 @@ public class FragUserProfileFriend extends Fragment {
     //String to get the current User's information
     private String currentUserID;
 
+    public static int flag = 0;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         get_info_username = ((ProfileActivity) activity).getVisitUsername();
+        youtubeuser = get_info_username;
     }
 
     @Override
@@ -195,10 +200,12 @@ public class FragUserProfileFriend extends Fragment {
                         //YouTubeCID user = snapshot.getValue(YouTubeCID.class);
                         String username = (String) snapshot.child("username").getValue();
                         String YouTubeURL = (String) snapshot.child("YouTubeUrl").getValue();
+
                         //String YouTubeURL = user.YouTubeUrl;
 
                         if(username.equals(get_info_username)){
                             user_youtube_url = YouTubeURL;
+                           // flag = 1;//find url
                         }
                     }
 
@@ -221,6 +228,8 @@ public class FragUserProfileFriend extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), YoutubeActivity.class);
                 i.putExtra("youtube",user_youtube_url);
+                i.putExtra("userinfo",get_info_username);
+                i.putExtra("way", "otheruser");
                 startActivity(i);
                 // Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
             }

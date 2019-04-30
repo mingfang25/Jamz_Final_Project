@@ -184,6 +184,8 @@ public class FragUserProfile extends Fragment implements GoogleApiClient.OnConne
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), ChannelIdActivity.class);
+                i.putExtra("way", "myself");
+
                 startActivity(i);
                 // Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
             }

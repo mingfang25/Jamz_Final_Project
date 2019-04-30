@@ -34,6 +34,7 @@ import com.example.jamz.ChannelIdActivity;
 import com.example.jamz.DetailsActivity;
 import com.example.jamz.FragProfile;
 import com.example.jamz.MainActivity;
+import com.example.jamz.ProfileActivity;
 import com.example.jamz.R;
 import com.example.jamz.YouTubeCID;
 import com.example.jamz.YoutubeActivity;
@@ -56,14 +57,15 @@ public class ChannelFragment extends Fragment {
     private FirebaseUser mFirebaseUser;
     private String mUsername;
     private String mPhotoUrl;
+    private String get_info_username;
+
 
     //private static String CHANNEL_ID = getLastBitFromUrl("http://example.com/UCRo6jBRIAV28zFmpI8s3-7g");
     private static String GOOGLE_YOUTUBE_API_KEY = "AIzaSyBEjPfwZEYB3XHyglA3fdRML_HbhPt-q3g";//here you should use your api key for testing purpose you can use this api also
     private static String CHANNEL_ID = ChannelIdActivity.aaa;//"UCRo6jBRIAV28zFmpI8s3-7g";//(String) ChannelIdActivity.MakeRequestTask.getCID();//getLastBitFromUrl(FragProfile.getMyField()); //"UCRo6jBRIAV28zFmpI8s3-7g"; //here you should use your channel id for testing purpose you can use this api also
-    private static String CHANNLE_GET_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&channelId=" + CHANNEL_ID + "&maxResults=3&key=" + GOOGLE_YOUTUBE_API_KEY + "";
+    private static String CHANNLE_GET_URL; //=YoutubeActivity.get_youtube_url;// "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&channelId=" + CHANNEL_ID + "&maxResults=3&key=" + GOOGLE_YOUTUBE_API_KEY + "";
 
-    private static String Firebase_URL = YoutubeActivity.get_youtube_url;
-
+    private static String Firebase_URL;
 
     private RecyclerView mList_videos = null;
     private VideoPostAdapter adapter = null;
@@ -86,9 +88,30 @@ public class ChannelFragment extends Fragment {
 //
 //    }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+//        if(Firebase_URL!=null)
+//        {
+//            CHANNLE_GET_URL = Firebase_URL;
+//        }
+
+        //Toast.makeText(getContext(), "your account", Toast.LENGTH_SHORT).show();
+        CHANNLE_GET_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&channelId=" + CHANNEL_ID + "&maxResults=3&key=" + GOOGLE_YOUTUBE_API_KEY + "";
+
+
+        if(YoutubeActivity.way.equals("otheruser"))
+        {
+//            Toast.makeText(getContext(), "his account", Toast.LENGTH_SHORT).show();
+            get_info_username = YoutubeActivity.userinfo;
+            Firebase_URL = YoutubeActivity.get_youtube_url;
+            CHANNLE_GET_URL = YoutubeActivity.get_youtube_url;
+        }
+//        Toast.makeText(getContext(), get_info_username + "/n" + Firebase_URL, Toast.LENGTH_SHORT).show();
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // Inflate the layout for this fragment
@@ -107,10 +130,18 @@ public class ChannelFragment extends Fragment {
             mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
         }
 //        Toast.makeText(getContext(), mUsername, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), CHANNEL_ID, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), get_info_username, Toast.LENGTH_SHORT).show();
 
         YouTubeCID youTubeCID = new YouTubeCID(mUsername,CHANNLE_GET_URL);
         mDatabase.child("YouTubeInfo").child(mUsername).setValue(youTubeCID);
+
+
+
+//        if(!mUsername.equals(get_info_username))
+//        {
+//            CHANNLE_GET_URL = Firebase_URL;
+//        }
+
 
         return view;
     }
