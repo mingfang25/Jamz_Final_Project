@@ -221,6 +221,7 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
                 //EventToStart = edtToStart.getText().toString();
                 //EventToEnd = edtToEnd.getText().toString();
                 basicReadWrite();
+                Toast.makeText(getActivity(), "Event Created", Toast.LENGTH_SHORT);
             }
         });
     }
