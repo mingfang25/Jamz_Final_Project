@@ -194,9 +194,9 @@ public class FragMusicListFriend extends Fragment {
         progressDialog.setMessage("wait loading");
         progressDialog.show();
 
-        LayoutInflater inflater = getLayoutInflater();
-        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_music_header,lv,false);
-        lv.addHeaderView(header);
+//        LayoutInflater inflater = getLayoutInflater();
+//        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_music_header,lv,false);
+//        lv.addHeaderView(header);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadMusicActivity.FB_DATABASE_PATH);
 
@@ -226,7 +226,7 @@ public class FragMusicListFriend extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0) {
+                if (position != -1) {
 
                     ImageUpload obj = (ImageUpload) lv.getAdapter().getItem(position);
                     if (!current_name.equals(obj.name)) {
@@ -272,7 +272,7 @@ public class FragMusicListFriend extends Fragment {
 
                         playPause = false;
                     }
-                    Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Playing", Toast.LENGTH_SHORT).show();
                 }
             }
         });

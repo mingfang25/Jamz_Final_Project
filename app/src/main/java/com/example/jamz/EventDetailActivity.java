@@ -110,14 +110,12 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
         final TextView edteventdescription = (TextView) findViewById(R.id.editDescription);
         final TextView edtFromStart = (TextView) findViewById(R.id.editStart);
         final TextView edtFromEnd = (TextView) findViewById(R.id.editEnd);
-        final CheckBox cbAllday = (CheckBox) findViewById(R.id.cballday);
         final Button btngroupchat = (Button) findViewById(R.id.btnGroupChat);
 
         edteventname.setText(eventname);
         edteventdescription.setText(eventDescription);
         edtFromStart.setText(eventFromStart);
         edtFromEnd.setText(eventFromEnd);
-        cbAllday.setChecked(eventallday);
 
         btngroupchat.setOnClickListener(new View.OnClickListener() {
             @Override

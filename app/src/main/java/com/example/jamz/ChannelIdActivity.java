@@ -117,7 +117,7 @@ public class ChannelIdActivity extends Activity
         mOutputText.setMovementMethod(new ScrollingMovementMethod());
 //        mOutputText.setText(
 //                "Click the \'" + BUTTON_TEXT +"\' button to get channel info.");
-        mOutputText.setText("API calling");
+        mOutputText.setText("");
         activityLayout.addView(mOutputText);
 //        Toast.makeText(ChannelIdActivity.this, aaa, Toast.LENGTH_SHORT).show();
 
@@ -159,6 +159,7 @@ public class ChannelIdActivity extends Activity
             public void onClick(View v) {
 //                Toast.makeText(ChannelIdActivity.this, "yeeeeea", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getBaseContext(), YoutubeActivity.class);
+                i.putExtra("way","myself");
                 startActivity(i);
 
             }
@@ -460,7 +461,7 @@ public class ChannelIdActivity extends Activity
                 mOutputText.setText("No results returned.");
             } else {
 //                output.add(0, "Data retrieved using the YouTube Data API:");
-                mOutputText.setText(TextUtils.join("\n", output));
+//                mOutputText.setText(TextUtils.join("\n", output));
                 aaa = output.get(0);
 //                Toast.makeText(ChannelIdActivity.this, "id"+aaa, Toast.LENGTH_SHORT).show();
 

@@ -6,22 +6,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="476dp">
+        android:layout_height="305dp">
 
         <ListView
             android:id="@+id/MediaListViewImage"
             android:layout_width="match_parent"
-            android:layout_height="415dp"></ListView>
+            android:layout_height="365dp"></ListView>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
 
         <Button
             android:id="@+id/btnUpload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="112dp"

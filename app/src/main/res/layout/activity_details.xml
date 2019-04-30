@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsActivity">
+    tools:context="com.oceanize.app.activities.Youtube.DetailsActivity">
 
     <!--<ImageView-->
     <!--android:id="@+id/imageView"-->
@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:id="@+id/title_layout"
+        android:layout_below="@+id/youtube_player"
         android:background="#e4e4e4"
         android:orientation="vertical">
 
@@ -73,6 +74,7 @@
         android:layout_marginTop="20dp"
         android:onClick="share_btn_pressed"
         android:scaleType="fitCenter"
+        android:layout_below="@+id/youtube_player"
         android:src="@drawable/share"
         android:visibility="visible" />
 

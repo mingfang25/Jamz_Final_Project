@@ -71,4 +71,18 @@ public class Event {
         this.eventlongitude = eventlongitude;
         this.UserPhotoURL = UserPhotoURL;
     }
+
+    // TicketMaster
+    public Event(String username, String eventname, String eventDescription, String eventFromStart,
+                 String eventFromEnd, String eventAddress, double eventlatitude, double eventlongitude, String UserPhotoURL ) {
+        this.username = username;
+        this.eventname = eventname;
+        this.eventDescription = eventDescription;
+        this.eventFromStart = eventFromStart;
+        this.eventFromEnd = eventFromEnd;
+        this.eventAddress = eventAddress;
+        this.eventlatitude = eventlatitude;
+        this.eventlongitude = eventlongitude;
+        this.UserPhotoURL = UserPhotoURL;
+    }
 }

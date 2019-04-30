@@ -33,7 +33,13 @@ public class FragUserProfileFriend extends Fragment {
         // Required empty public constructor
     }
 
+    private String preferredName;
+    private String instruments;
+    private String userBio;
+
     private String get_info_username;
+
+    public static String youtubeuser;
     private String user_youtube_url;
 
     //Components from XML file
@@ -42,7 +48,6 @@ public class FragUserProfileFriend extends Fragment {
     private TextView txtInstrument;
     private TextView txtUserBio;
     private ImageButton messageImgBtn;
-    private ImageButton preferencesImgBtn;
     private Button youtube;
 
     //Firebase references
@@ -55,10 +60,13 @@ public class FragUserProfileFriend extends Fragment {
     //String to get the current User's information
     private String currentUserID;
 
+    public static int flag = 0;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         get_info_username = ((ProfileActivity) activity).getVisitUsername();
+        youtubeuser = get_info_username;
     }
 
     @Override
@@ -66,39 +74,28 @@ public class FragUserProfileFriend extends Fragment {
                              Bundle savedInstanceState) {
 
         //Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_users_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_users_profile_friends, container, false);
 
         profImageView = (ImageView) view.findViewById(R.id.profImageView);
         txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
         messageImgBtn = (ImageButton) view.findViewById(R.id.messageImgBtn);
-        preferencesImgBtn = (ImageButton) view.findViewById(R.id.preferencesImgBtn);
+        txtUserBio = (TextView) view.findViewById(R.id.txtUserBio);
+        txtInstrument = (TextView) view.findViewById(R.id.txtInstrument);
 
         messageImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), UserChatActivity.class);
                 intent.putExtra("displayName",mUsername);
-                intent.putExtra("toName", mUsername);
+                intent.putExtra("toName", get_info_username);
                 startActivity(intent);
             }
         });
 
-        //Preferences page for User
-        preferencesImgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FragSettings.class);
-                startActivity(intent);
-            }
-        });
 
         profImageView = (ImageView) view.findViewById(R.id.profImageView);
         txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
-
-        //Preferences button should only be visible to current user on their profile
-        if (currentUserID == mUsername) {
-            preferencesImgBtn.setVisibility(ImageButton.VISIBLE);
-        } else {preferencesImgBtn.setVisibility(ImageButton.GONE);}
+        txtInstrument = (TextView) view.findViewById(R.id.txtInstrument);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -126,8 +123,6 @@ public class FragUserProfileFriend extends Fragment {
                         }
                     }
 
-//                    txtUserBio.setText("Here Is a new Bio");
-//                    txtUserBio.setVisibility(TextView.VISIBLE);
                 }
 
             }
@@ -137,6 +132,44 @@ public class FragUserProfileFriend extends Fragment {
 
             }
         });
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("UserInfo").child(get_info_username);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    preferredName = dataSnapshot.child("altdisplayname").getValue().toString();
+                    if (preferredName != null) {
+                        txtUserProf.setText(preferredName);
+                    } else {
+                        txtUserProf.setText(mUsername);
+                    }
+                    userBio = dataSnapshot.child("userbio").getValue().toString();
+                    if (userBio != null) {
+                        txtUserBio.setText(userBio);
+                    } else {
+                        txtUserBio.setText("Nothing to say, yet.");
+                    }
+                    instruments = dataSnapshot.child("userinstruments").getValue().toString();
+                    if (instruments != null) {
+                        txtInstrument.setText(instruments);
+                    } else {
+                        txtInstrument.setText("No Instruments, yet.");
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference("YouTubeInfo");
@@ -151,10 +184,12 @@ public class FragUserProfileFriend extends Fragment {
                         //YouTubeCID user = snapshot.getValue(YouTubeCID.class);
                         String username = (String) snapshot.child("username").getValue();
                         String YouTubeURL = (String) snapshot.child("YouTubeUrl").getValue();
+
                         //String YouTubeURL = user.YouTubeUrl;
 
                         if(username.equals(get_info_username)){
                             user_youtube_url = YouTubeURL;
+                           // flag = 1;//find url
                         }
                     }
 
@@ -177,8 +212,9 @@ public class FragUserProfileFriend extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), YoutubeActivity.class);
                 i.putExtra("youtube",user_youtube_url);
+                i.putExtra("userinfo",get_info_username);
+                i.putExtra("way", "otheruser");
                 startActivity(i);
-                // Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -158,7 +158,7 @@ public class UploadMusicActivity extends AppCompatActivity {
 
     public void btnBrowse_Click(View v){
         Intent intent = new Intent();
-        intent.setType("file/*");
+        intent.setType("*/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select audio"),REQUEST_CODE);
     }
@@ -190,7 +190,15 @@ public class UploadMusicActivity extends AppCompatActivity {
 
                 s = FB_STORAGE_PATH + System.currentTimeMillis() + "." + getAudioExt(audioUri);
                 file_name = txtAudioName.getText().toString();
-                final StorageReference ref = mStorageRef.child(FB_STORAGE_PATH + file_name + "." + getAudioExt(audioUri));
+
+                StorageReference ref;
+
+                if(!getAudioExt(audioUri).equals("mp3") && !getAudioExt(audioUri).equals("mp4")) {
+                    ref = mStorageRef.child(FB_STORAGE_PATH + file_name + ".mp3");
+                }
+                else {
+                    ref = mStorageRef.child(FB_STORAGE_PATH + file_name + "." + getAudioExt(audioUri));
+                }
 
 
                 ref.putFile(audioUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -200,9 +208,17 @@ public class UploadMusicActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Audio uploaded", Toast.LENGTH_SHORT).show();
 
                         final FirebaseStorage storage = FirebaseStorage.getInstance();
-                        ;
-                        // Create a storage reference from our app
-                        StorageReference storageRef = storage.getReferenceFromUrl(FB_HEAD + FB_STORAGE_PATH + file_name + "." + getAudioExt(audioUri));
+
+                        StorageReference storageRef;
+
+                        if(!getAudioExt(audioUri).equals("mp3") && !getAudioExt(audioUri).equals("mp4")) {
+                            // Create a storage reference from our app
+                            storageRef = storage.getReferenceFromUrl(FB_HEAD + FB_STORAGE_PATH + file_name + ".mp3");
+                        }
+                        else{
+                            storageRef = storage.getReferenceFromUrl(FB_HEAD + FB_STORAGE_PATH + file_name + "." + getAudioExt(audioUri));
+                        }
+
                         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
@@ -210,7 +226,16 @@ public class UploadMusicActivity extends AppCompatActivity {
                                 final String url = uri.toString();
                                 int test = 1;
                                 url_out = url;
-                                ImageUpload imageUpload = new ImageUpload(file_name, url, mUsername, getAudioExt(audioUri));
+
+                                ImageUpload imageUpload;
+                                if(getAudioExt(audioUri).equals("mp3") && getAudioExt(audioUri).equals("mp4")) {
+                                    // Create a storage reference from our app
+                                    imageUpload = new ImageUpload(file_name, url, mUsername, "mp3");
+                                }
+                                else{
+                                    imageUpload = new ImageUpload(file_name, url, mUsername, getAudioExt(audioUri));
+                                }
+                                //ImageUpload imageUpload = new ImageUpload(file_name, url, mUsername, getAudioExt(audioUri));
 
                                 String uploadId = mDatabaseRef.push().getKey();
                                 mDatabaseRef.child(file_name).setValue(imageUpload);
