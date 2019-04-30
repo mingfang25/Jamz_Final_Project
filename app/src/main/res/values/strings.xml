@@ -26,6 +26,14 @@
     <string name="title_friends">Friends</string>
     <string name="title_profile">Profile</string>
 
+    <!-- Spotify -->
+    <string name="com_spotify_sdk_redirect_scheme">jamzapp</string>
+    <string name="com_spotify_sdk_redirect_host">jamzcallback</string>
+
+    <string name="warning_need_token">You need to request an access token first</string>
+    <string name="code">Code: %1$s</string>
+    <string name="token">Access Token: %1$s</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

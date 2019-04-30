@@ -16,13 +16,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".YoutubeActivity"></activity>
+        <activity android:name=".SpotifyPersonalization"></activity>
+        <activity android:name=".YoutubeActivity" />
         <activity android:name=".DetailsActivity" />
         <activity android:name=".ChannelIdActivity" />
         <activity android:name=".ImageListActivity" />
         <activity android:name=".UploadMusicActivity" />
         <activity android:name=".EventDetailActivity" />
-        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".ShowVideo" />
         <activity android:name=".Settings" />
 
@@ -118,6 +119,28 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:exported="true"
+            android:name="com.spotify.sdk.android.authentication.AuthCallbackActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:scheme="@string/com_spotify_sdk_redirect_scheme"
+                    android:host="@string/com_spotify_sdk_redirect_host"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.spotify.sdk.android.authentication.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        </activity>
+
     </application>
 
 </manifest>

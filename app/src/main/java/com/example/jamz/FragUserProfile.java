@@ -58,6 +58,8 @@ public class FragUserProfile extends Fragment {
 
     private Button youtube;
 
+    private Button spotify;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -173,6 +175,17 @@ public class FragUserProfile extends Fragment {
                 // Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
             }
         });
+
+        spotify = (Button) view.findViewById(R.id.to_spotify_activity);
+        spotify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), SpotifyPersonalization.class);
+                startActivity(i);
+                // Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         return view;
     }
