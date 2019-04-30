@@ -1,12 +1,17 @@
 package com.example.jamz;
 
 import android.content.Context;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 
 /**
@@ -26,6 +31,9 @@ public class FragProfileFriend extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    private ImageButton preferencesImgBtn;
 
     private OnFragmentInteractionListener mListener;
 
@@ -63,8 +71,11 @@ public class FragProfileFriend extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        preferencesImgBtn = (ImageButton) getView().findViewById(R.id.preferencesImgBtn);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_frag_profile_friend, container, false);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

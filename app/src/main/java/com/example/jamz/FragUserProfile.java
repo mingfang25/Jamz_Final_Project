@@ -114,7 +114,7 @@ public class FragUserProfile extends Fragment {
 
 
         mUser = mAuth.getCurrentUser();
-        if (mAuth.getCurrentUser() == null){
+        if (mUser == null){
             startActivity(new Intent(getActivity(), MainActivity.class));
         }
         else {
@@ -124,11 +124,6 @@ public class FragUserProfile extends Fragment {
             mPhotoURL = mAuth.getCurrentUser().getPhotoUrl().toString();
             }
         }
-
-        //Preferences button should only be visible to current user on their profile
-        if (currentUserID == mUsername) {
-            preferencesImgBtn.setVisibility(ImageButton.VISIBLE);
-        } else {preferencesImgBtn.setVisibility(ImageButton.GONE);}
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(mUsername);
         prefNameRef = databaseReference.child("altdisplayname");
@@ -140,21 +135,28 @@ public class FragUserProfile extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
                     preferredName = dataSnapshot.child("altdisplayname").getValue().toString();
-                    if (preferredName != null){
+                    if (preferredName != null) {
                         txtUserProf.setText(preferredName);
-                    } else {txtUserProf.setText(mUsername);}
+                    } else {
+                        txtUserProf.setText(mUsername);
+                    }
                     userBio = dataSnapshot.child("userbio").getValue().toString();
                     if (userBio != null) {
                         txtUserBio.setText(userBio);
-                    } else {txtUserBio.setText("Nothing to say, yet.");}
+                    } else {
+                        txtUserBio.setText("Nothing to say, yet.");
+                    }
                     instruments = dataSnapshot.child("userinstruments").getValue().toString();
-                    if (instruments != null){
+                    if (instruments != null) {
                         txtInstrument.setText(instruments);
-                    } else {txtInstrument.setText("No Instruments, yet.");}
+                    } else {
+                        txtInstrument.setText("No Instruments, yet.");
+                    }
 
+                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getActivity(), "Database read failed", Toast.LENGTH_SHORT).show();

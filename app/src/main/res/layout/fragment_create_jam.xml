@@ -118,7 +118,7 @@
 
             <TextView
                 android:id="@+id/tvFrom"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="Date"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -126,13 +126,13 @@
 
             <EditText
                 android:id="@+id/editStart"
-                android:layout_width="250dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
                 android:ems="10"
+                android:hint="MM.DD.YY"
                 android:inputType="date"
-                android:text="4.16.2019"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="36dp" />
 
@@ -147,13 +147,13 @@
 
             <EditText
                 android:id="@+id/editEnd"
-                android:layout_width="250dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
                 android:ems="10"
-                android:inputType="time"
-                android:text="20:00:00" />
+                android:hint="00:00:00"
+                android:inputType="time" />
 
         </LinearLayout>
 

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -10,33 +10,32 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/ic_account_circle_black_36dp" />
-    
+
     <TextView
+        android:id="@+id/usernameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username"
-        android:id="@+id/usernameTxt"
-        android:layout_toRightOf="@id/uProfileImgVw"
-        android:layout_toEndOf="@id/uProfileImgVw"
+        android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_centerVertical="true"
-        android:textSize="18dp"
-        />
+        android:layout_toEndOf="@id/uProfileImgVw"
+        android:layout_toRightOf="@id/uProfileImgVw"
+        android:text="Username"
+        android:textSize="18dp" />
 
     <ImageButton
         android:id="@+id/imgBtnMsg"
         android:layout_width="38dp"
         android:layout_height="32dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="59dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="35dp"
         android:src="@drawable/ic_baseline_message_24px" />
 
     <ImageButton
         android:id="@+id/imgBtnProfile"
         android:layout_width="38dp"
         android:layout_height="32dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="35dp"
         android:src="@drawable/ic_profile_black_24dp" />
 
 
