@@ -83,8 +83,7 @@ public class ProfileActivity extends AppCompatActivity implements GoogleApiClien
         ViewPageAdapter adapter = new ViewPageAdapter(getSupportFragmentManager());
 
         adapter.AddFragment( new FragUserProfileFriend(), "Profile");
-        adapter.AddFragment( new FragMusicListFriend(), "Music List");
-        adapter.AddFragment(new FragMusicListFriend(), "Recent Listens");
+        adapter.AddFragment( new FragMusicListFriend(), "Music");
         adapter.AddFragment(new FragVideoListFriend(), "Videos");
 
         profileViewPager.setAdapter(adapter);

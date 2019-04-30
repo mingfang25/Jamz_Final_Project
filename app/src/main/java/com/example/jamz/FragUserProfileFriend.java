@@ -92,24 +92,10 @@ public class FragUserProfileFriend extends Fragment {
             }
         });
 
-//
-//        //Preferences page for User
-//        preferencesImgBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), FragSettings.class);
-//                startActivity(intent);
-//            }
-//        });
 
         profImageView = (ImageView) view.findViewById(R.id.profImageView);
         txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
         txtInstrument = (TextView) view.findViewById(R.id.txtInstrument);
-
-        //Preferences button should only be visible to current user on their profile
-//        if (currentUserID == mUsername) {
-//            preferencesImgBtn.setVisibility(ImageButton.VISIBLE);
-//        } else {preferencesImgBtn.setVisibility(ImageButton.GONE);}
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -137,8 +123,6 @@ public class FragUserProfileFriend extends Fragment {
                         }
                     }
 
-//                    txtUserBio.setText("Here Is a new Bio");
-//                    txtUserBio.setVisibility(TextView.VISIBLE);
                 }
 
             }
@@ -231,7 +215,6 @@ public class FragUserProfileFriend extends Fragment {
                 i.putExtra("userinfo",get_info_username);
                 i.putExtra("way", "otheruser");
                 startActivity(i);
-                // Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
             }
         });
 
