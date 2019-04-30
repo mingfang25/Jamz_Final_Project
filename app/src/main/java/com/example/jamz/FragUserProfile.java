@@ -75,6 +75,8 @@ public class FragUserProfile extends Fragment implements GoogleApiClient.OnConne
 
     private Button youtube;
 
+    private Button spotify;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -195,6 +197,15 @@ public class FragUserProfile extends Fragment implements GoogleApiClient.OnConne
                 .enableAutoManage(getActivity() /* FragmentActivity */, 1, this::onConnectionFailed /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
+
+        spotify = (Button) view.findViewById(R.id.to_spotify_activity);
+        spotify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), SpotifyPersonalization.class);
+                startActivity(i);
+            }
+        });
 
 
         return view;
