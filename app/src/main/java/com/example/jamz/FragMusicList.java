@@ -227,7 +227,7 @@ public class FragMusicList extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0) {
+                if (position != -1) {
 
                     ImageUpload obj = (ImageUpload) lv.getAdapter().getItem(position);
                     if (!current_name.equals(obj.name)) {
@@ -273,7 +273,7 @@ public class FragMusicList extends Fragment {
 
                         playPause = false;
                     }
-                    Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Playing", Toast.LENGTH_SHORT).show();
                 }
             }
         });

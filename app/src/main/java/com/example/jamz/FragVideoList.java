@@ -153,7 +153,7 @@ public class FragVideoList extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0) {
+                if (position != -1) {
                     Intent i = new Intent(getActivity(), ShowVideo.class);
                     ImageUpload obj = (ImageUpload) lv.getAdapter().getItem(position);
                     String file_url = (String) obj.url;
