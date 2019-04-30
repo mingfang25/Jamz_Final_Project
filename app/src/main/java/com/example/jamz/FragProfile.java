@@ -61,8 +61,7 @@ public class FragProfile extends Fragment implements GoogleApiClient.OnConnectio
         ViewPageAdapter adapter = new ViewPageAdapter(getChildFragmentManager());
 
         adapter.AddFragment( new FragUserProfile(), "Profile");
-        adapter.AddFragment( new FragMusicList(), "Music List");
-        adapter.AddFragment(new FragMusicList(), "Recent Listens");
+        adapter.AddFragment( new FragMusicList(), "Music");
         adapter.AddFragment(new FragVideoList(), "Videos");
 
         profileViewPager.setAdapter(adapter);

@@ -23,13 +23,7 @@
             android:id="@+id/musicList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="My Music" />
-
-        <android.support.design.widget.TabItem
-            android:id="@+id/spotifyTab"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Recent Listens" />
+            android:text="Music" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/videoTab"
