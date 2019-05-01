@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12dp"
-            android:text="video Published at"
+            android:text="@string/yt_p"
             android:layout_alignParentRight="true"
             android:singleLine="true"
             android:layout_margin="5dp"

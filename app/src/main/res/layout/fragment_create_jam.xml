@@ -32,10 +32,10 @@
                 android:background="@null"
                 android:ems="10"
                 android:fontFeatureSettings="Roboto-Regular"
-                android:hint="Event Name"
+                android:hint="@string/creat_jam_name"
                 android:inputType="textPersonName"
                 android:textSize="36sp"
-                tools:text="Event Name"
+                tools:text="@string/creat_jam_name"
                 tools:visibility="visible" />
 
         </LinearLayout>
@@ -54,10 +54,10 @@
                 android:background="@null"
                 android:ems="10"
                 android:fontFeatureSettings="Arial"
-                android:hint="Event Description"
+                android:hint="@string/creat_jam_description"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
-                tools:text="Event Description"
+                tools:text="@string/creat_jam_description"
                 tools:visibility="visible" />
         </LinearLayout>
 
@@ -80,10 +80,10 @@
                 android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:text="@string/creat_jam_location"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="16sp"
-                tools:text="Location"
+                tools:text="@string/creat_jam_location"
                 tools:visibility="visible" />
 
             <LinearLayout
@@ -120,7 +120,7 @@
                 android:id="@+id/tvFrom"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="Date"
+                android:text="@string/creat_jam_date"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="16sp" />
 
@@ -141,7 +141,7 @@
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Time"
+                android:text="@string/creat_jam_time"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="16sp" />
 
@@ -167,7 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="51dp"
                 android:layout_weight="1"
-                android:text="Create Jam" />
+                android:text="@string/creat_jam_create" />
         </LinearLayout>
 
     </LinearLayout>

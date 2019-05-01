@@ -9,7 +9,7 @@
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My Music List"
+        android:text="@string/header"
         android:gravity="center_horizontal"
         android:textColor="@color/quantum_orange"
         android:background="#E16460"

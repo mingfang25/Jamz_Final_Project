@@ -144,4 +144,14 @@
     <!--yt-->
     <string name="yt_p">视频上传地址</string>
 
+    <!--spotify personalization-->
+    <string name="spotify_p">用户热搜列表</string>
+
+    <!--event list-->
+    <string name="eventlist_reco">推荐活动</string>
+    <string name="eventlist_jamz">Jamz活动</string>
+
+    <!--top track-->
+    <string name="tc">热搜</string>
+
 </resources>

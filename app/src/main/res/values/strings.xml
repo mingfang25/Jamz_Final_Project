@@ -142,4 +142,16 @@
 
     <!--yt-->
     <string name="yt_p">video Published at</string>
+
+    <!--spotify personalization-->
+    <string name="spotify_p">Get Users Top Tracks from Spotify</string>
+
+    <!--event list-->
+    <string name="eventlist_reco">Recommended</string>
+    <string name="eventlist_jamz">Jamz</string>
+
+    <!--top track-->
+    <string name="tc">Top Tracks</string>
+
+
 </resources>

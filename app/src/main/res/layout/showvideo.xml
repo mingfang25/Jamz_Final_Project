@@ -19,7 +19,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="87dp"
         android:layout_marginTop="7dp"
-        android:text="play" />
+        android:text="@string/show_video_play" />
 
     <Button
         android:id="@+id/pause"
@@ -29,6 +29,6 @@
         android:layout_alignStart="@+id/play"
         android:layout_marginStart="145dp"
         android:layout_marginTop="-49dp"
-        android:text="pause" />
+        android:text="@string/show_video_pause" />
 
 </RelativeLayout>

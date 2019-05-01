@@ -32,10 +32,10 @@
                 android:background="@null"
                 android:ems="10"
                 android:fontFeatureSettings="Roboto-Regular"
-                android:hint="Event Name"
+                android:hint="@string/event_detail_event_name"
                 android:inputType="textPersonName"
                 android:textSize="36sp"
-                tools:text="Event Name"
+                tools:text="@string/event_detail_event_name"
                 tools:visibility="visible" />
 
         </LinearLayout>
@@ -54,10 +54,10 @@
                 android:background="@null"
                 android:ems="10"
                 android:fontFeatureSettings="Arial"
-                android:hint="Event Description"
+                android:hint="@string/event_detail_event_description"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
-                tools:text="Event Description"
+                tools:text="@string/event_detail_event_description"
                 tools:visibility="visible" />
         </LinearLayout>
 
@@ -80,7 +80,7 @@
                 android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:text="@string/event_detail_location"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="16sp"
                 tools:text="Location"
@@ -105,7 +105,7 @@
                 android:id="@+id/tvFrom"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="Date"
+                android:text="@string/event_detail_date"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="16sp" />
 
@@ -126,7 +126,7 @@
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Time"
+                android:text="@string/event_detail_time"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="16sp" />
 
@@ -152,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Event Chat" />
+                android:text="@string/event_detail_event_chat" />
 
         </LinearLayout>
 

@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_gravity="center"
-                android:text="Username"
+                android:text="@string/user_profile_user"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </LinearLayout>
 
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Youtube" />
+                android:text="@string/user_profile_yt" />
 
             <ImageButton
                 android:id="@+id/messageImgBtn"
@@ -65,14 +65,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="23dp"
                 android:layout_gravity="center"
-                android:text="User Bio" />
+                android:text="@string/user_profile_bio" />
 
             <TextView
                 android:id="@+id/txtInstrument"
                 android:layout_width="wrap_content"
                 android:layout_height="23dp"
                 android:layout_gravity="center"
-                android:text="Instrument" />
+                android:text="@string/user_profile_ins" />
         </LinearLayout>
 
     </LinearLayout>

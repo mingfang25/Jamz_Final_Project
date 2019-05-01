@@ -19,7 +19,7 @@
         android:layout_marginLeft="10dp"
         android:layout_toEndOf="@id/uProfileImgVw"
         android:layout_toRightOf="@id/uProfileImgVw"
-        android:text="Username"
+        android:text="@string/item_user_name"
         android:textSize="18dp" />
 
 

@@ -17,13 +17,13 @@
             android:id="@+id/RecommendedTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Recommended" />
+            android:text="@string/eventlist_reco" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/JAMZTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="JAMZ" />
+            android:text="@string/eventlist_jamz" />
 
 
     </android.support.design.widget.TabLayout>

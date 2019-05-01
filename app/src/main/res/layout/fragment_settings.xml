@@ -17,14 +17,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Change Display Name:" />
+            android:text="@string/setting_change" />
 
         <EditText
             android:id="@+id/nameEdtTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Enter Name"
+            android:hint="@string/setting_name"
             android:inputType="textPersonName" />
 
     </LinearLayout>
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Instrument(s):" />
+            android:text="@string/setting_instrument" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -52,63 +52,63 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Bass" />
+                android:text="@string/setting_Bass" />
 
             <CheckBox
                 android:id="@+id/drumCB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Drum" />
+                android:text="@string/setting_Drum" />
 
             <CheckBox
                 android:id="@+id/fluteCB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Flute" />
+                android:text="@string/setting_Flute" />
 
             <CheckBox
                 android:id="@+id/guitaraCB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Guitar(Acoustic)" />
+                android:text="@string/setting_Guitar1" />
 
             <CheckBox
                 android:id="@+id/guitareCB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Guitar(Electric)" />
+                android:text="@string/setting_Guitar2" />
 
             <CheckBox
                 android:id="@+id/pianoCB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Piano" />
+                android:text="@string/setting_Piano" />
 
             <CheckBox
                 android:id="@+id/saxophoneCB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Saxophone" />
+                android:text="@string/setting_sax" />
 
             <CheckBox
                 android:id="@+id/violinCB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Violin" />
+                android:text="@string/setting_violin" />
 
             <CheckBox
                 android:id="@+id/voiceCB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Voice(Singer)" />
+                android:text="@string/setting_voice" />
         </LinearLayout>
 
     </LinearLayout>
@@ -123,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="User Bio" />
+            android:text="@string/setting_bio" />
 
         <EditText
             android:id="@+id/userbioEdtTxt"
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Tell everyone about yourself"
+            android:hint="@string/setting_tell"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:text="Save" />
+            android:text="@string/setting_save" />
     </LinearLayout>
 
 </LinearLayout>

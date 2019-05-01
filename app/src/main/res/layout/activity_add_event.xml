@@ -22,7 +22,7 @@
             android:ems="10"
             android:fontFeatureSettings="Roboto-Regular"
             android:inputType="textPersonName"
-            android:text="Event Name"
+            android:text="@string/event_name"
             android:textSize="36sp" />
 
     </LinearLayout>
@@ -42,7 +42,7 @@
             android:ems="10"
             android:fontFeatureSettings="Arial"
             android:inputType="textPersonName"
-            android:text="Sample description for the Jam event. For example a mini concert."
+            android:text="@string/event_description"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -68,7 +68,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
-            android:text="Location" />
+            android:text="@string/event_location" />
 
     </LinearLayout>
 
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="19dp"
             android:layout_weight="1"
-            android:text="From"
+            android:text="@string/event_from"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="6dp" />
 
@@ -96,7 +96,7 @@
             android:background="@null"
             android:ems="10"
             android:inputType="date"
-            android:text="Thu, Jan 26"
+            android:text="@string/event_thu_126"
             tools:layout_editor_absoluteX="221dp"
             tools:layout_editor_absoluteY="36dp" />
 
@@ -108,7 +108,7 @@
             android:background="@null"
             android:ems="10"
             android:inputType="date"
-            android:text="Fri, May 12 2017"
+            android:text="@string/event_fri_512"
             tools:layout_editor_absoluteY="35dp" />
 
     </LinearLayout>
@@ -125,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="19dp"
             android:layout_weight="1"
-            android:text="To"
+            android:text="@string/event_to"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="6dp" />
 
@@ -137,7 +137,7 @@
             android:background="@null"
             android:ems="10"
             android:inputType="date"
-            android:text="Fri, May 12 2017"
+            android:text="@string/event_fri_512"
             tools:layout_editor_absoluteY="35dp" />
 
         <EditText
@@ -148,7 +148,7 @@
             android:background="@null"
             android:ems="10"
             android:inputType="date"
-            android:text="Thu, Jan 26"
+            android:text="@string/event_thu_126"
             tools:layout_editor_absoluteX="221dp"
             tools:layout_editor_absoluteY="36dp" />
 
@@ -166,7 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="All-day" />
+            android:text="@string/event_all_day" />
     </LinearLayout>
 
     <LinearLayout
@@ -179,7 +179,7 @@
             android:layout_width="wrap_content"
             android:layout_height="51dp"
             android:layout_weight="1"
-            android:text="ADD" />
+            android:text="@string/event_ADD" />
     </LinearLayout>
 
 </LinearLayout>

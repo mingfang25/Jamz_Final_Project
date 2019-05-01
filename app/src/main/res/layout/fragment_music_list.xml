@@ -27,7 +27,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="112dp"
-            android:text="Click to Upload"
+            android:text="@string/music_list"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>

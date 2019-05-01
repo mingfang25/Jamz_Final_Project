@@ -36,7 +36,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
             android:maxLines="2"
-            android:text="Android Name sjdnjas ajsk djak sjdka kaskdjaksdj kjskdjaksj"
+            android:text="@string/details_android_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/common_black_50"
             android:textSize="20dp" />
@@ -50,14 +50,14 @@
             android:layout_marginRight="10dp"
             android:maxLines="1"
             android:textColor="@color/common_gray_txt"
-            android:text="Android Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksj"
+            android:text="@string/details_android_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="16dp" />
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="30dp"
-            android:text="Download This Video"
+            android:text="@string/details_download"
             android:gravity="center"
             android:onClick="downloadVideo"
             android:textColor="@color/common_blue_bg"
@@ -86,7 +86,7 @@
         android:layout_gravity="left"
         android:layout_margin="10dp"
         android:maxLines="4"
-        android:text="Android Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksj"
+        android:text="@string/details_android_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/common_gray_txt"
         android:textSize="16dp" />
@@ -106,13 +106,13 @@
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FAVOURITE"
+            android:text="@string/details_favorite"
             android:textColor="@color/colorAccent"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="COMMENTS"
+            android:text="@string/details_comment"
             android:layout_marginLeft="0dp"
             android:layout_marginBottom="10dp"
             android:textColor="@color/common_blue_bg"/>

@@ -17,25 +17,25 @@
             android:id="@+id/profTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Profile" />
+            android:text="@string/profile_profile" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/musicList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="My Music" />
+            android:text="@string/profile_music" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/spotifyTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Recent Listens" />
+            android:text="@string/profile_Recent" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/videoTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Videos" />
+            android:text="@string/profile_videos" />
 
     </android.support.design.widget.TabLayout>
 

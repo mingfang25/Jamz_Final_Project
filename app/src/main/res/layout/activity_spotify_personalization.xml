@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@color/spotify_green"
-            android:text="Get User's Top Tracks from Spotify" />
+            android:text="@string/spotify_p" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/top_track_list"
