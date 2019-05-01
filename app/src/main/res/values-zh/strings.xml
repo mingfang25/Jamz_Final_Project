@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jamz</string>
+
+    <string name="facebook_app_id">2352158468402077</string>
+    <string name="fb_login_protocol_scheme">fb2352158468402077</string>
+    <string name="default_web_client_id">243173272705-5stt21uq237ehel56bka7mc3q6gqkpmh.apps.googleusercontent.com</string>
+
+    <!--Add by Lunhao on 16 April -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBEjPfwZEYB3XHyglA3fdRML_HbhPt-q3g</string>
+
+    <!-- Chat -->
+    <string name="welcome_msg">欢迎!</string>
+    <string name="sign_out">登出</string>
+    <string name="contacts_permission_rationale">需登陆请求才可登入</string>
+    <string name="invitation_message">加入畅谈</string>
+    <string name="invitation_cta">加入活动</string>
+    <string name="invitation_title">邀请对话</string>
+    <string name="sign_in">登入</string>
+    <string name="sign_up">注册</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+
+    <!-- Navigator -->
+    <string name="title_create_jam">开始JAM</string>
+    <string name="title_chat">通话</string>
+    <string name="title_discover">探索</string>
+    <string name="title_friends">好友</string>
+    <string name="title_profile">个人资料</string>
+
+    <!-- Spotify -->
+    <string name="com_spotify_sdk_redirect_scheme" translatable="false">jamzapp</string>
+    <string name="com_spotify_sdk_redirect_host" translatable="false">jamzcallback</string>
+
+    <string name="warning_need_token" translatable="false">You need to request an access token first</string>
+    <string name="code" translatable="false">Code: %1$s</string>
+    <string name="token" translatable="false">Access Token: %1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">空块</string>
+
+    <string name="server_client_id">243173272705-aar5mjihcm12carlscuga8mjh1fbfjbl.apps.googleusercontent.com</string>
+    <string name="title_events">活动</string>
+    <string name="settings">设置</string>
+
+    <!-- add event-->
+    <string name="event_name">活动名</string>
+    <string name="event_description">活动描述</string>
+    <string name="event_location">地点</string>
+    <string name="event_from">从</string>
+    <string name="event_to">到</string>
+    <string name="event_thu_126">四 1 26</string>
+    <string name="event_fri_512">五 5 12 2017</string>
+    <string name="event_all_day">全天</string>
+    <string name="event_ADD">添加</string>
+
+    <!-- chat-->
+    <string name="chat_send">发送</string>
+
+    <!--details-->
+    <string name="details_android_name">安卓名称</string>
+    <string name="details_download">下载</string>
+    <string name="details_favorite">最爱</string>
+    <string name="details_comment">评论</string>
+
+    <!--event details-->
+    <string name="event_detail_event_name">活动名</string>
+    <string name="event_detail_event_description">活动描述</string>
+    <string name="event_detail_location">地点</string>
+    <string name="event_detail_date">日期</string>
+    <string name="event_detail_time">时间</string>
+    <string name="event_detail_event_chat">活动群聊</string>
+
+    <!--profile-->
+    <string name="profile_music">我的音乐</string>
+    <string name="profile_Recent">最近播放</string>
+    <string name="profile_videos">视频</string>
+
+    <!--upload music-->
+    <string name="upload_music_name">音频名</string>
+    <string name="upload_music_upload">上传</string>
+    <string name="upload_music_back">返回主菜单</string>
+    <string name="upload_music_choose">选择</string>
+
+    <!--creat jam-->
+    <string name="creat_jam_name">活动名</string>
+    <string name="creat_jam_description">活动简介</string>
+    <string name="creat_jam_location">地点</string>
+    <string name="creat_jam_date">日期</string>
+    <string name="creat_jam_time">时间</string>
+    <string name="creat_jam_create">发起 Jam</string>
+
+    <!--discover-->
+    <string name="discover">探索此处</string>
+
+    <!--settings friends-->
+    <string name="settings_friend">设置页</string>
+
+    <!--music list-->
+    <string name="music_list">点击上传</string>
+
+    <!--profile-->
+    <string name="profile_profile">个人资料</string>
+
+    <!--settings-->
+    <string name="setting_name">输入名字</string>
+    <string name="setting_instrument">乐器：</string>
+    <string name="setting_Bass">贝斯</string>
+    <string name="setting_Drum">鼓</string>
+    <string name="setting_Flute">笛</string>
+    <string name="setting_Guitar1">传统吉他</string>
+    <string name="setting_Guitar2">电子吉他</string>
+    <string name="setting_Piano">钢琴</string>
+    <string name="setting_sax">萨克斯</string>
+    <string name="setting_violin">小提琴</string>
+    <string name="setting_voice">唱歌</string>
+    <string name="setting_bio">个性资料</string>
+    <string name="setting_tell">介绍</string>
+    <string name="setting_save">保存</string>
+    <string name="setting_change">更换用户名</string>
+
+    <!--user profile-->
+    <string name="user_profile_user">用户名</string>
+    <string name="user_profile_yt">油管</string>
+    <string name="user_profile_bio">个性资料</string>
+    <string name="user_profile_ins">乐器</string>
+
+    <!--image item-->
+    <string name="image_item">文件名</string>
+
+    <!--include post-->
+    <string name="include_post_fp">我的第一上传</string>
+    <string name="include_post_pa">上传地址</string>
+
+    <!--item user-->
+    <string name="item_user_name">用户名</string>
+
+    <!--header-->
+    <string name="header">我的列表</string>
+
+    <!--show video-->
+    <string name="show_video_play">播放</string>
+    <string name="show_video_pause">暂停</string>
+
+    <!--yt-->
+    <string name="yt_p">视频上传地址</string>
+
+</resources>

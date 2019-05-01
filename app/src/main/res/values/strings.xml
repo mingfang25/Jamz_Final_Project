@@ -27,12 +27,12 @@
     <string name="title_profile">Profile</string>
 
     <!-- Spotify -->
-    <string name="com_spotify_sdk_redirect_scheme">jamzapp</string>
-    <string name="com_spotify_sdk_redirect_host">jamzcallback</string>
+    <string name="com_spotify_sdk_redirect_scheme" translatable="false">jamzapp</string>
+    <string name="com_spotify_sdk_redirect_host" translatable="false">jamzcallback</string>
 
-    <string name="warning_need_token">You need to request an access token first</string>
-    <string name="code">Code: %1$s</string>
-    <string name="token">Access Token: %1$s</string>
+    <string name="warning_need_token" translatable="false">You need to request an access token first</string>
+    <string name="code" translatable="false">Code: %1$s</string>
+    <string name="token" translatable="false">Access Token: %1$s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -40,4 +40,106 @@
     <string name="server_client_id">243173272705-aar5mjihcm12carlscuga8mjh1fbfjbl.apps.googleusercontent.com</string>
     <string name="title_events">Events</string>
     <string name="settings">Settings</string>
+
+    <!-- add event-->
+    <string name="event_name">Event Name</string>
+    <string name="event_description">Sample description for the Jam event. For example a mini concert.</string>
+    <string name="event_location">Location</string>
+    <string name="event_from">From</string>
+    <string name="event_to">to</string>
+    <string name="event_thu_126">Thu 1 26</string>
+    <string name="event_fri_512">Fri 5 12 2017</string>
+    <string name="event_all_day">All day</string>
+    <string name="event_ADD">ADD</string>
+
+    <!-- chat-->
+    <string name="chat_send">SEND</string>
+
+    <!--details-->
+    <string name="details_android_name">Android Name</string>
+    <string name="details_download">Download This Video</string>
+    <string name="details_favorite">Favorite</string>
+    <string name="details_comment">Comment</string>
+
+    <!--event details-->
+    <string name="event_detail_event_name">Event name</string>
+    <string name="event_detail_event_description">Event description</string>
+    <string name="event_detail_location">Location</string>
+    <string name="event_detail_date">Date</string>
+    <string name="event_detail_time">Time</string>
+    <string name="event_detail_event_chat">Event Chat</string>
+
+    <!--profile-->
+    <string name="profile_music">My Music</string>
+    <string name="profile_Recent">Recent Listen</string>
+    <string name="profile_videos">Videos</string>
+
+    <!--upload music-->
+    <string name="upload_music_name">Audio Name</string>
+    <string name="upload_music_choose">Choose</string>
+    <string name="upload_music_upload">upload</string>
+    <string name="upload_music_back">back to main menu</string>
+
+    <!--creat jam-->
+    <string name="creat_jam_name">Event Name</string>
+    <string name="creat_jam_description">Event Description</string>
+    <string name="creat_jam_location">Location</string>
+    <string name="creat_jam_date">Date</string>
+    <string name="creat_jam_time">Time</string>
+    <string name="creat_jam_create">Create Jam</string>
+
+    <!--discover-->
+    <string name="discover">Discover Here</string>
+
+    <!--settings friends-->
+    <string name="settings_friend">Here is the settings page</string>
+
+    <!--music list-->
+    <string name="music_list">Click to Upload</string>
+
+    <!--profile-->
+    <string name="profile_profile">Profile</string>
+
+    <!--settings-->
+    <string name="setting_name">Enter Name</string>
+    <string name="setting_instrument">Instrument(s):</string>
+    <string name="setting_Bass">Bass</string>
+    <string name="setting_Drum">Drum</string>
+    <string name="setting_Flute">Flute</string>
+    <string name="setting_Guitar1">Guitar(Acoustic)</string>
+    <string name="setting_Guitar2">Guitar(Electric)</string>
+    <string name="setting_Piano">Piano</string>
+    <string name="setting_sax">Saxophone</string>
+    <string name="setting_violin">Violin</string>
+    <string name="setting_voice">Voice(Singer)</string>
+    <string name="setting_bio">User bio</string>
+    <string name="setting_tell">Tell everyone about yourself</string>
+    <string name="setting_save">Save</string>
+    <string name="setting_change">Change Display Name</string>
+
+    <!--user profile-->
+    <string name="user_profile_user">Username</string>
+    <string name="user_profile_yt">Youtube</string>
+    <string name="user_profile_bio">User Bio</string>
+    <string name="user_profile_ins">Instrument</string>
+
+    <!--image item-->
+    <string name="image_item">Image name</string>
+
+    <!--include post-->
+    <string name="include_post_fp">My First Post</string>
+    <string name="include_post_pa">Post Address</string>
+
+    <!--item user-->
+    <string name="item_user_name">Username</string>
+
+    <!--header-->
+    <string name="header">My list</string>
+
+    <!--show video-->
+    <string name="show_video_play">play</string>
+    <string name="show_video_pause">pause</string>
+
+    <!--yt-->
+    <string name="yt_p">video Published at</string>
 </resources>

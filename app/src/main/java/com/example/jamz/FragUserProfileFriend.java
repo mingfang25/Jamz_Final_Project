@@ -97,6 +97,8 @@ public class FragUserProfileFriend extends Fragment {
         txtUserProf = (TextView) view.findViewById(R.id.txtUserProf);
         txtInstrument = (TextView) view.findViewById(R.id.txtInstrument);
 
+
+        // Load user's information onto their profile page
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
