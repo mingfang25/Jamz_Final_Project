@@ -49,7 +49,6 @@ public class YoutubeActivity extends AppCompatActivity {
 //        if(FragUserProfileFriend.flag ==1) {// if has url
         if(way.equals("myself"))
         {
-//            Toast.makeText(this, "your", Toast.LENGTH_SHORT).show();
 
         }
         else

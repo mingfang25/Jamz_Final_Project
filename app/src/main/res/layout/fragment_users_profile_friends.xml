@@ -47,6 +47,13 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/user_profile_yt" />
 
+            <Button
+                android:id="@+id/spotifyBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Top Tracks" />
+
             <ImageButton
                 android:id="@+id/messageImgBtn"
                 android:layout_width="59dp"

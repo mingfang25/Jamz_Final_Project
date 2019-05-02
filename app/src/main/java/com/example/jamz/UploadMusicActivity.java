@@ -204,6 +204,10 @@ public class UploadMusicActivity extends AppCompatActivity {
                     ref = mStorageRef.child(FB_STORAGE_PATH + file_name + "." + getAudioExt(audioUri));
                 }
 
+                if (getAudioExt(audioUri).equals("3gpp"))
+                {
+                    ref = mStorageRef.child(FB_STORAGE_PATH + file_name + ".mp4");
+                }
 
                 ref.putFile(audioUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -223,6 +227,11 @@ public class UploadMusicActivity extends AppCompatActivity {
                             storageRef = storage.getReferenceFromUrl(FB_HEAD + FB_STORAGE_PATH + file_name + "." + getAudioExt(audioUri));
                         }
 
+                        if (getAudioExt(audioUri).equals("3gpp"))
+                        {
+                            storageRef = storage.getReferenceFromUrl(FB_HEAD + FB_STORAGE_PATH + file_name + ".mp4");
+                        }
+
                         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
@@ -238,6 +247,11 @@ public class UploadMusicActivity extends AppCompatActivity {
                                 }
                                 else{
                                     imageUpload = new ImageUpload(file_name, url, mUsername, getAudioExt(audioUri));
+                                }
+
+                                if (getAudioExt(audioUri).equals("3gpp"))
+                                {
+                                    imageUpload = new ImageUpload(file_name, url, mUsername, "mp4");
                                 }
                                 //ImageUpload imageUpload = new ImageUpload(file_name, url, mUsername, getAudioExt(audioUri));
 
