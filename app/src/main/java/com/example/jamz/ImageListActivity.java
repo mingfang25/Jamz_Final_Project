@@ -41,6 +41,7 @@ public class ImageListActivity extends AppCompatActivity {
         ViewGroup header = (ViewGroup)inflater.inflate(R.layout.listview_music_header,lv,false);
         lv.addHeaderView(header);
 
+        //get data address and storage to retrieve
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(UploadMusicActivity.FB_DATABASE_PATH);
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {

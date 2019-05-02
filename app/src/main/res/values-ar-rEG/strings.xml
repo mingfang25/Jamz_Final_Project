@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jamz</string>
+
+    <string name="facebook_app_id">2352158468402077</string>
+    <string name="fb_login_protocol_scheme">fb2352158468402077</string>
+    <string name="default_web_client_id">243173272705-5stt21uq237ehel56bka7mc3q6gqkpmh.apps.googleusercontent.com</string>
+
+    <!--Add by Lunhao on 16 April -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBEjPfwZEYB3XHyglA3fdRML_HbhPt-q3g</string>
+
+    <!-- Chat -->
+    <string name="welcome_msg">أهلا بك!</string>
+    <string name="sign_out">خروج</string>
+    <string name="contacts_permission_rationale">مطلوب لتسجيل الدخول.الوصول إلى معلومات الحساب</string>
+    <string name="invitation_message">يرجى الانضمام لي للدردشة ودية</string>
+    <string name="invitation_cta">دعوة إلى العمل</string>
+    <string name="invitation_title">دردشة ودية دعوة</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="sign_up">سجل</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+
+    <!-- Navigator -->
+    <string name="title_create_jam">إنشاء JAM</string>
+    <string name="title_chat">دردشة</string>
+    <string name="title_discover">اكتشف</string>
+    <string name="title_friends">اصحاب</string>
+    <string name="title_profile">الملف الشخصي</string>
+
+    <!-- Spotify -->
+    <string name="com_spotify_sdk_redirect_scheme" translatable="false">jamzapp</string>
+    <string name="com_spotify_sdk_redirect_host" translatable="false">jamzcallback</string>
+
+    <string name="warning_need_token" translatable="false">You need to request an access token first</string>
+    <string name="code" translatable="false">Code: %1$s</string>
+    <string name="token" translatable="false">Access Token: %1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">مرحبا شظية فارغة</string>
+
+    <string name="server_client_id">243173272705-aar5mjihcm12carlscuga8mjh1fbfjbl.apps.googleusercontent.com</string>
+    <string name="title_events">أحداث</string>
+    <string name="settings">الإعدادات</string>
+
+    <!-- add event-->
+    <string name="event_name">اسم الحدث</string>
+    <string name="event_description">صغير.وصف عينة لهذا الحدث المربى. على سبيل المثال حفل</string>
+    <string name="event_location">موقعك</string>
+    <string name="event_from">من عند</string>
+    <string name="event_to">إلى</string>
+    <string name="event_thu_126">الخميس 1 26</string>
+    <string name="event_fri_512">الجمعة 5 12 2017</string>
+    <string name="event_all_day">طوال اليوم</string>
+    <string name="event_ADD">أضف</string>
+
+    <!-- chat-->
+    <string name="chat_send">إرسال</string>
+
+    <!--details-->
+    <string name="details_android_name">اسم أندرويد</string>
+    <string name="details_download">حمل هذا الفيديو</string>
+    <string name="details_favorite">مفضل</string>
+    <string name="details_comment">تعليق</string>
+
+    <!--event details-->
+    <string name="event_detail_event_name">اسم الحدث</string>
+    <string name="event_detail_event_description">وصف الحدث</string>
+    <string name="event_detail_location">موقعك</string>
+    <string name="event_detail_date">تاريخ</string>
+    <string name="event_detail_time">زمن</string>
+    <string name="event_detail_event_chat">حدث الدردشة</string>
+
+    <!--profile-->
+    <string name="profile_music">موسيقاي</string>
+    <string name="profile_Recent">الاستماع مؤخرا</string>
+    <string name="profile_videos">أشرطة فيديو</string>
+
+    <!--upload music-->
+    <string name="upload_music_name">اسم الصوت</string>
+    <string name="upload_music_choose">أختر</string>
+    <string name="upload_music_upload">رفع</string>
+    <string name="upload_music_back">العودة إلى القائمة الرئيسية</string>
+
+    <!--creat jam-->
+    <string name="creat_jam_name">اسم الحدث</string>
+    <string name="creat_jam_description">وصف الحدث</string>
+    <string name="creat_jam_location">موقعك</string>
+    <string name="creat_jam_date">تاريخ</string>
+    <string name="creat_jam_time">زمن</string>
+    <string name="creat_jam_create">Jam خلق</string>
+
+    <!--discover-->
+    <string name="discover">اكتشف هنا</string>
+
+    <!--settings friends-->
+    <string name="settings_friend">هنا هي صفحة الإعدادات</string>
+
+    <!--music list-->
+    <string name="music_list">انقر لتحميل</string>
+
+    <!--profile-->
+    <string name="profile_profile">الملف الشخصي</string>
+
+    <!--settings-->
+    <string name="setting_name">أدخل الاسم</string>
+    <string name="setting_instrument">أداة (ق):</string>
+    <string name="setting_Bass">صوت عميق</string>
+    <string name="setting_Drum">طبل</string>
+    <string name="setting_Flute">مزمار</string>
+    <string name="setting_Guitar1">الغيتار (الصوتية)</string>
+    <string name="setting_Guitar2">الغيتار (الكهربائية)</string>
+    <string name="setting_Piano">بيانو</string>
+    <string name="setting_sax">ساكسفون</string>
+    <string name="setting_violin">كمان</string>
+    <string name="setting_voice">صوت (المغني)</string>
+    <string name="setting_bio">السيرة الذاتية للمستخدم</string>
+    <string name="setting_tell">أخبر الجميع عن نفسك</string>
+    <string name="setting_save">حفظ</string>
+    <string name="setting_change">تغيير اسم العرض</string>
+
+    <!--user profile-->
+    <string name="user_profile_user">اسم المستخدم</string>
+    <string name="user_profile_yt">موقع YouTube</string>
+    <string name="user_profile_bio">السيرة الذاتية للمستخدم</string>
+    <string name="user_profile_ins">صك</string>
+
+    <!--image item-->
+    <string name="image_item">اسم</string>
+
+    <!--include post-->
+    <string name="include_post_fp">رسالتي الأولى</string>
+        <string name="include_post_pa">عنوان البريد</string>
+
+    <!--item user-->
+    <string name="item_user_name">اسم المستخدم</string>
+
+    <!--header-->
+    <string name="header">قائمتي</string>
+
+    <!--show video-->
+    <string name="show_video_play">لعب</string>
+    <string name="show_video_pause">وقفة</string>
+
+    <!--yt-->
+    <string name="yt_p">فيديو منشور في</string>
+
+    <!--spotify personalization-->
+    <string name="spotify_p">المسارات من سبوتيفيالحصول على المستخدمين أعلى </string>
+
+    <!--event list-->
+    <string name="eventlist_reco">موصى به</string>
+    <string name="eventlist_jamz">Jamz</string>
+
+    <!--top track-->
+    <string name="tc">أهم المقاطع الصوتية</string>
+
+</resources>

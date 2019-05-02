@@ -49,6 +49,7 @@ public class UploadMusicActivity extends AppCompatActivity {
     private EditText txtAudioName;
     private Uri audioUri;
 
+    //important file tracking variables
     public static final String FB_STORAGE_PATH="audio/";
     public static final String FB_DATABASE_PATH="audio";
     public static final String FB_HEAD = "gs://chat-demo-101.appspot.com/";
@@ -102,6 +103,7 @@ public class UploadMusicActivity extends AppCompatActivity {
         alert.show();
     }
 
+    //add permission manually or will fail, add permission in manifest does not work here
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -181,6 +183,7 @@ public class UploadMusicActivity extends AppCompatActivity {
     String s;
     String file_name;
 
+    //upload button here, and track process
     public void btnUpload_Click(View v){
         if (checkPermissionREAD_EXTERNAL_STORAGE(this)) {
             if (audioUri != null) {
@@ -188,6 +191,7 @@ public class UploadMusicActivity extends AppCompatActivity {
                 dialog.setTitle("Uploading audio");
                 dialog.show();
 
+                //important address info, use to retrieve
                 s = FB_STORAGE_PATH + System.currentTimeMillis() + "." + getAudioExt(audioUri);
                 file_name = txtAudioName.getText().toString();
 
