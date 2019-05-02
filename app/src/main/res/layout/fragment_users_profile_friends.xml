@@ -48,11 +48,11 @@
                 android:text="@string/user_profile_yt" />
 
             <Button
-                android:id="@+id/spotifyBtn"
+                android:id="@+id/spotify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Top Tracks" />
+                android:layout_gravity="center_horizontal"
+                android:text="@string/user_profile_spotbutton" />
 
             <ImageButton
                 android:id="@+id/messageImgBtn"

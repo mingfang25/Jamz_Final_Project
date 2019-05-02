@@ -122,6 +122,7 @@
     <string name="user_profile_yt">Youtube</string>
     <string name="user_profile_bio">User Bio</string>
     <string name="user_profile_ins">Instrument</string>
+    <string name="user_profile_spotbutton">Spotify Top Listens</string>
 
     <!--image item-->
     <string name="image_item">Image name</string>

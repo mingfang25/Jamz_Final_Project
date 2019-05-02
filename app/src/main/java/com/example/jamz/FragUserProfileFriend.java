@@ -29,8 +29,6 @@ import com.squareup.picasso.Picasso;
 
 public class FragUserProfileFriend extends Fragment {
 
-    private Button spotifyBtn;
-
     public FragUserProfileFriend() {
         // Required empty public constructor
     }
@@ -51,6 +49,7 @@ public class FragUserProfileFriend extends Fragment {
     private TextView txtUserBio;
     private ImageButton messageImgBtn;
     private Button youtube;
+    private Button spotify;
 
     //Firebase references
     private DatabaseReference databaseReference;
@@ -222,17 +221,19 @@ public class FragUserProfileFriend extends Fragment {
             }
         });
 
-        spotifyBtn = (Button) view.findViewById(R.id.spotifyBtn);
-//        spotifyBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(getContext(), SpotifyPersonalization.class);
-//                i.putExtra("spotify");
-//                i.putExtra("userinfo", get_info_username);
-//                i.putExtra("way","otheruser");
-//                startActivity(i);
-//            }
-//        });
+        //start intent to call SpotifyPersonalization activity and get users top tracks
+        spotify = (Button) view.findViewById(R.id.spotify);
+        spotify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), SpotifyPersonalization.class);
+                //i.putExtra("youtube",user_youtube_url);
+                i.putExtra("userinfo",get_info_username);
+                i.putExtra("way", "otheruser");
+                startActivity(i);
+            }
+        });
+
 
 
         return view;
