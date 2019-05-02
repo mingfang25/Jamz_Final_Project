@@ -14,6 +14,20 @@ Artist are able to sign in with their Google or Facebook accounts and start conn
 5. Browse events that are either Jam Sessions created by other users or events from the TicketMaster API
                                            
 REFERENCES
-1. For youtube:
+Youtube:
   - https://developers.google.com/youtube/v3/quickstart/android
   - https://github.com/Lipdroid/YoutubeAPIV3
+  
+Spotify:
+
+Ticketmaster:
+
+Firebase(Chat and Data Storage):
+  - https://firebase.google.com/docs/android/setup
+  - https://codelabs.developers.google.com/codelabs/firebase-android/#0
+
+
+Other references listed are commented in the code where they are used.
+
+  
+
