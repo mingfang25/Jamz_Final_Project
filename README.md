@@ -20,8 +20,11 @@ Youtube:
   - https://github.com/Lipdroid/YoutubeAPIV3
   
 Spotify:
-
+  - https://developer.spotify.com/documentation/general/guides/authorization-guide/
+  - https://github.com/spotify/android-sdk
+  
 Ticketmaster:
+  - https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2
 
 Firebase(Chat and Data Storage):
   - https://firebase.google.com/docs/android/setup
