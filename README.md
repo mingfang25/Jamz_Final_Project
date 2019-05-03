@@ -1,4 +1,7 @@
 ## Jamz Music Networking App
+
+Jamz Team: Ricardo Ballesteros | Mingfang Du | Gahouray Dukuray | Lunhao Liang | Shirui Ye
+
 Jamz is an android social networking app for Musicians to be able to find other Musicians in their area to be able to collaborate with. Jamz is solving the problems of local artist struggling to find like artist; as an artist, you may find their are artist in your area, but they may not have the same music taste, or they do not play the same instruments as you, or you are simply trying to find a specific type of musician, Jamz is here for this very purpose.
 
 Artist are able to sign in with their Google or Facebook accounts and start connecting with other artist. Once the user logs in, they are able to perform these functions:
@@ -18,6 +21,7 @@ EXTRA CREDIT/BONUSES
   - App has three languages, targeting three locales: English, Chinese, and Arabic
   - App uses Fragments and RecyclerView
   - Use of Menu(Action Bar)
+  - During the demo presentation, we had a live demo with one of our teammates(Ricardo) playing guitar and everyone singing. Then we filmed the scene live and uploaded it to our database. Finally, we show that we can retrieve data by streaming the uploaded video in Jamz App.
 
 NOTE:
   - Before you sign in, make sure your name on Facebook/Google does not have any of the following characters in it, or else the app will crash: "." , "#" , "$" , "[" or "]"
