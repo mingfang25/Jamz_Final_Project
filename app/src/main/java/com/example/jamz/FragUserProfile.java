@@ -80,7 +80,7 @@ public class FragUserProfile extends Fragment implements GoogleApiClient.OnConne
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        //show menu options in action bar
         setHasOptionsMenu(true);
 
         //Inflate the layout for this fragment
@@ -225,13 +225,6 @@ public class FragUserProfile extends Fragment implements GoogleApiClient.OnConne
         mGoogleApiClient.disconnect();
     }
 
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        if (getActivity().getMenuInflater() != null) {
-//            MenuInflater inflater = getActivity().getMenuInflater();
-//            inflater.inflate(R.menu.main_menu, menu);
-//            return true;
-//        }else{return false;}
-//    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

@@ -104,6 +104,9 @@ public class FragFriends extends Fragment implements GoogleApiClient.OnConnectio
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //don't show menu options in action bar
+        setHasOptionsMenu(false);
+
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
@@ -326,23 +329,6 @@ public class FragFriends extends Fragment implements GoogleApiClient.OnConnectio
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//        Button btchat = (Button) getView().findViewById(R.id.btnChat);
-//        btchat.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(getContext(), ChatActivity.class);
-//                startActivity(i);
-//            }
-//        });
-//
-//        Button btnUsers = (Button) getView().findViewById(R.id.btnUsers);
-//        btnUsers.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(getContext(), Users.class);
-//                startActivity(i);
-//            }
-//        });
     }
 
 }

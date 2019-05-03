@@ -1,8 +1,10 @@
 package com.example.jamz;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,15 +65,6 @@ public class Settings extends AppCompatActivity implements GoogleApiClient.OnCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_settings);
 
-//        signOutbtn = (Button) findViewById(R.id.signOutbtn);
-//        signOutbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(this, MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
 
         mUsername = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         nameEdtText = (EditText) findViewById(R.id.nameEdtTxt);
@@ -88,52 +82,106 @@ public class Settings extends AppCompatActivity implements GoogleApiClient.OnCon
         saveBtn = (Button) findViewById(R.id.saveBtn);
         instruments = new StringBuffer();
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences.Editor editor = preferences.edit();
+        if(preferences.getBoolean("checked",false) == true) {
+            bassCB.setChecked(true);
+            drumCB.setChecked(true);
+            fluteCB.setChecked(true);
+            guitaraCB.setChecked(true);
+            guitareCB.setChecked(true);
+            pianoCB.setChecked(true);
+            saxophoneCB.setChecked(true);
+            violinCB.setChecked(true);
+            voiceCB.setChecked(true);
+        }else {
+            bassCB.setChecked(false);
+            drumCB.setChecked(false);
+            fluteCB.setChecked(false);
+            guitaraCB.setChecked(false);
+            guitareCB.setChecked(false);
+            pianoCB.setChecked(false);
+            saxophoneCB.setChecked(false);
+            violinCB.setChecked(false);
+            voiceCB.setChecked(false);
+
+        }
+
+
+
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (bassCB.isChecked()==true){
+
+                if (bassCB.isChecked()){
                     instruments.append("Bass ");
-                }
-                if (drumCB.isChecked()==true){
+                    editor.putBoolean("checked", true);
+                    editor.commit();
+                } else{editor.putBoolean("checked", false);
+                    editor.commit();}
+
+                if (drumCB.isChecked()){
                     instruments.append("Drums ");
-                }
-                if (fluteCB.isChecked()==true){
+                    editor.putBoolean("checked", true);
+                    editor.commit();
+                } else{editor.putBoolean("checked", false);
+                    editor.commit();}
+
+                if (fluteCB.isChecked()){
                     instruments.append("Flute ");
-                }
-                if (guitaraCB.isChecked()==true){
+                    editor.putBoolean("checked", true);
+                    editor.commit();
+                } else{editor.putBoolean("checked", false);
+                    editor.commit();}
+
+                if (guitaraCB.isChecked()){
                     instruments.append("Guitar(Acoustic) ");
-                }
-                if (guitareCB.isChecked()==true){
+                    editor.putBoolean("checked", true);
+                    editor.commit();
+                } else{editor.putBoolean("checked", false);
+                    editor.commit();}
+
+                if (guitareCB.isChecked()){
                     instruments.append("Guitar(Electric) ");
-                }
-                if (pianoCB.isChecked()==true){
+                    editor.putBoolean("checked", true);
+                    editor.commit();
+                } else{editor.putBoolean("checked", false);
+                    editor.commit();}
+
+                if (pianoCB.isChecked()){
                     instruments.append("Piano ");
-                }
-                if (saxophoneCB.isChecked()==true){
+                    editor.putBoolean("checked", true);
+                    editor.commit();
+                } else{editor.putBoolean("checked", false);
+                    editor.commit();}
+
+                if (saxophoneCB.isChecked()){
                     instruments.append("Saxophone ");
-                }
-                if (violinCB.isChecked()==true){
+                    editor.putBoolean("checked", true);
+                    editor.commit();
+                } else{editor.putBoolean("checked", false);
+                    editor.commit();}
+
+                if (violinCB.isChecked()){
                     instruments.append("Violin ");
-                }
-                if (voiceCB.isChecked()==true){
+                    editor.putBoolean("checked", true);
+                    editor.commit();
+                } else{editor.putBoolean("checked", false);
+                    editor.commit();}
+
+                if (voiceCB.isChecked()){
                     instruments.append("Singer ");
-                }
+                    editor.putBoolean("checked", true);
+                    editor.commit();
+                } else{editor.putBoolean("checked", false);
+                    editor.commit();}
 
                 userInstruments = instruments.toString();
                 userBio = userbioEdtTxt.getText().toString();
                 nameChange = nameEdtText.getText().toString();
 
                 Toast.makeText(Settings.this, "Saved Successfully", Toast.LENGTH_SHORT).show();
-
-              //  Bundle bundle = new Bundle();
-              //  Intent intent = new Intent(this, FragUserProfile.class);
-               // intent.putExtra("instruments", instruments.toString());
-
-             //   bundle.putString("instrumentsBundle", userInstruments);
-
-//                Fragment fragment = new FragUserProfile();
-//                fragment.setArguments(bundle);
 
                 mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
                 mFirebaseDatabaseReference.child("UserInfo").child(mUsername).child("altdisplayname").setValue(nameChange);

@@ -68,6 +68,12 @@ public FragEventList(){
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
+
+    //don't show menu options in action bar
+    setHasOptionsMenu(false);
+
+
+        // Inflate layout
         View v = inflater.inflate(R.layout.fragment_event_list, container, false);
 
         EventTabLayout = (TabLayout) v.findViewById(R.id.EventTabLayout);

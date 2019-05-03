@@ -110,6 +110,9 @@ public class FragDiscover extends Fragment implements OnMapReadyCallback,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //show menu options in action bar
+        setHasOptionsMenu(false);
+
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
 

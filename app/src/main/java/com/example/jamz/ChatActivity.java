@@ -200,6 +200,7 @@ public class ChatActivity extends AppCompatActivity
             }
         };
 
+        // Database Reference to Groupchat
         DatabaseReference messagesRef = mFirebaseDatabaseReference.child("GroupChat").child(eventname).child(MESSAGES_CHILD);
         FirebaseRecyclerOptions<FriendlyMessage> options =
                 new FirebaseRecyclerOptions.Builder<FriendlyMessage>()

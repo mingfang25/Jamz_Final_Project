@@ -130,12 +130,12 @@ public class SpotifyPersonalization extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Log.w(TAG, "onDataChnage Listener");
+             //   Log.w(TAG, "onDataChnage Listener");
 
                 //check for existance
                 if (dataSnapshot.hasChild("TopTracks/"+mUsername)){
 
-                    Log.w(TAG, "USER HAS TOP TRACKS");
+            //        Log.w(TAG, "USER HAS TOP TRACKS");
 
                     requestResponse = dataSnapshot.child("TopTracks").child(mUsername).getValue().toString();
 

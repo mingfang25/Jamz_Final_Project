@@ -98,6 +98,9 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //don't show menu options in action bar
+        setHasOptionsMenu(false);
+
         //Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_create_jam, null, false);
@@ -282,7 +285,7 @@ public class FragCreateJam extends Fragment implements OnMapReadyCallback,
             }
         }
 
-// INFORMATION WINDOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// INFORMATION WINDOW!
         final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
         mMap.addMarker(new MarkerOptions()
                 .position(MELBOURNE)
